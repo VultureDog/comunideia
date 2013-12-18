@@ -7,11 +7,11 @@ common: &common
 
 development:
   <<: *common
-  bucket: comununideiabckt
+  bucket: comununideiabucket
 
 test:
   <<: *common
-  bucket: comununideiabckt
+  bucket: comununideiabucket
 
 # set these environment variables on your production server
 production:
