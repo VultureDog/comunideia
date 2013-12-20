@@ -1,3 +1,33 @@
 <h1>Comunideia</h1>
-<p>Bem => Bem</p>
-<%= link_to 'Registrar-se', signup_path %>
+	<p>Bem => Bem</p>
+
+<% if signed_in? %>
+	<h2>Hello, <%= current_user.name %>! <br> CPF: <%= current_user.cpf %></h2>
+
+<% else %>
+	<br>
+
+<p id="notice"><%= notice %></p>
+
+	<br><p>Login:
+
+			<%= form_for(:user) do |f| %>
+
+			    <%= f.label "CPF" %><br>
+			    <%= f.text_field :cpf %>
+				<br>
+				
+			    <%= f.label "password" %><br>
+			    <%= f.text_field :password %>
+				<br>
+				
+			    <%= f.submit %>
+			<% end %>
+		</p>
+	<br><br>
+
+
+
+	<br><br><%= link_to 'Registrar-se', signup_path %>
+
+<% end %>

@@ -1,0 +1,22 @@
+<p id="notice"><%= notice %></p>
+
+<%= form_for(:user) do |f| %>
+
+  <%= f.label "CPF*" %><br>
+  <%= f.text_field :cpf %>
+  <br><br>
+
+  <%= f.label "Nome" %><br>
+  <%= f.text_field :name %>
+  <br><br>
+
+  <%= f.label "email*" %><br>
+  <%= f.text_field :email %>
+  <br><br>
+
+  <%= f.label "password*" %><br>
+  <%= f.text_field :password %>
+  <br><br>
+
+  <%= f.submit %>
+<% end %>
