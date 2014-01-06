@@ -1,0 +1,32 @@
+<header>
+  <div>
+    <div>
+      <%= link_to "Comunideia", root_path %>
+      <nav>
+        <ul>
+          <li><%= link_to "Home",    root_path %></li>
+          <% if signed_in? %>
+            <li>
+              <li><%= link_to current_user.name, '#' %></li>
+              <li><%= link_to "Settings", '#' %></li>
+              <li><%= link_to "Sign out",  signout_path, method: "delete" %></li>
+            </li>
+          <% else %>
+            <%= form_for(:session, url: sessions_path) do |f| %>
+
+              <%= f.label "CPF" %>
+              <%= f.text_field :cpf %>
+
+              <%= f.label "Senha" %>
+              <%= f.password_field :password %>
+
+              <%= f.submit "Sign in" %>
+
+              <%= link_to 'Registrar-se', signup_path %>
+            <% end %>
+          <% end %>
+        </ul>
+      </nav>
+    </div>
+  </div>
+</header>

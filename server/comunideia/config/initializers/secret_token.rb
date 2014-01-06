@@ -9,4 +9,19 @@
 
 # Make sure your secret_key_base is kept private
 # if you're sharing your code publicly.
-Comunideia::Application.config.secret_key_base = 'da52a4c9adcfb530f30d7318affe103622be0e7580471b93ab8b0c6db846e117e6280f7c1bba8a24aa0e6bdf608f4d2882799c888f9e21ba34913a3a53c9b51a'
+require 'securerandom'
+
+def secure_token
+  token_file = Rails.root.join('.secret')
+  if File.exist?(token_file)
+    # Use the existing token.
+    File.read(token_file).chomp
+  else
+    # Generate a new token and store it in token_file.
+    token = SecureRandom.hex(64)
+    File.write(token_file, token)
+    token
+  end
+end
+
+Comunideia::Application.config.secret_key_base = secure_token

@@ -1,4 +1,4 @@
-<p id="notice"><%= notice %></p>
+<%= render 'shared/error_messages' %>
 
 <%= form_for(:user) do |f| %>
 
@@ -10,7 +10,7 @@
   <%= f.text_field :name %>
   <br><br>
 
-  <%= f.label "email*" %><br>
+  <%= f.label "e-mail*" %><br>
   <%= f.text_field :email %>
   <br><br>
 
