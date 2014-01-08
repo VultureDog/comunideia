@@ -5,8 +5,6 @@ class User < ActiveRecord::Base
   validates :email, presence: true, format: { with: VALID_EMAIL_REGEX },
                     uniqueness: { case_sensitive: false }
 
-  attr_accessor :cpf, :birth_date, :address, :address_num, :complement, :district, :cep, :city, :region, :phone, :cell_phone
-
   before_save { self.email = email.downcase }
   before_create :create_remember_token
 
