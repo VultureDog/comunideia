@@ -19,22 +19,22 @@ ActiveRecord::Schema.define(version: 20140108215916) do
   create_table "users", force: true do |t|
     t.string   "name"
     t.string   "email"
-    t.string   "cpf"
-    t.string   "birth_date"
+    t.integer  "cpf"
+    t.integer  "birth_date"
     t.string   "address"
-    t.string   "address_num"
+    t.integer  "address_num"
     t.string   "complement"
     t.string   "district"
-    t.string   "cep"
+    t.integer  "cep"
     t.string   "city"
     t.string   "region"
-    t.string   "phone"
-    t.string   "cell_phone"
+    t.integer  "phone"
+    t.integer  "cell_phone"
+    t.boolean  "notifications",           default: false
     t.datetime "created_at"
     t.datetime "updated_at"
     t.string   "password_digest"
     t.string   "remember_token"
-    t.boolean  "notifications",   default: false
     t.boolean  "admin",           default: false
   end
 

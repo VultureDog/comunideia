@@ -16,7 +16,6 @@ class CreateUsers < ActiveRecord::Migration
       t.integer :phone
       t.integer :cell_phone
       t.boolean :notifications
-      t.boolean  :admin
 
       t.timestamps
     end
