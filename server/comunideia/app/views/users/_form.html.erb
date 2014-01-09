@@ -1,6 +1,6 @@
 <%= render 'shared/error_messages' %>
 
-<%= form_for(:user) do |f| %>
+<%= form_for(@user) do |f| %>
 
   <%= f.label "Nome" %><br>
   <%= f.text_field :name %>
@@ -10,12 +10,16 @@
   <%= f.text_field :email %>
   <br><br>
 
-  <%= f.label "Senha*" %><br>
-  <%= f.text_field :password %>
+  <%= f.label "E-mail: confirmação*" %><br>
+  <%= f.text_field :email_confirmation %>
   <br><br>
 
-  <%= f.label "Confirmação*" %><br>
-  <%= f.text_field :password_confirmation %>
+  <%= f.label "Senha*" %><br>
+  <%= f.password_field :password %>
+  <br><br>
+
+  <%= f.label "Senha: confirmação*" %><br>
+  <%= f.password_field :password_confirmation %>
   <br><br><br><br>
 
   <%= f.label "CPF" %>
@@ -54,6 +58,10 @@
 
   <%= f.label "Telefone" %>
   <%= f.text_field :phone %>
+  <br><br>
+
+  <%= f.check_box :notifications %>
+  <%= f.label "Gostaria de receber notificações e atualizações?" %>
   <br><br>
 
   <%= f.submit "Salvar" %>
