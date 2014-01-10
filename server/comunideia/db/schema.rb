@@ -11,10 +11,31 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20140108215916) do
+ActiveRecord::Schema.define(version: 20140109232759) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
+
+  create_table "ideas", force: true do |t|
+    t.string   "name"
+    t.integer  "user_id"
+    t.datetime "created_at"
+    t.datetime "updated_at"
+    t.string   "summary"
+    t.string   "local"
+    t.float    "financial_value"
+    t.float    "financial_value_sum_accumulated"
+    t.string   "img_card"
+    t.string   "video"
+    t.string   "img_pg_1"
+    t.string   "img_pg_2"
+    t.string   "img_pg_3"
+    t.string   "img_pg_4"
+    t.string   "idea_content"
+    t.string   "risks_challenges"
+  end
+
+  add_index "ideas", ["user_id", "created_at"], name: "index_ideas_on_user_id_and_created_at", using: :btree
 
   create_table "users", force: true do |t|
     t.string   "name"
@@ -30,7 +51,7 @@ ActiveRecord::Schema.define(version: 20140108215916) do
     t.string   "region"
     t.integer  "phone"
     t.integer  "cell_phone"
-    t.boolean  "notifications",           default: false
+    t.boolean  "notifications"
     t.datetime "created_at"
     t.datetime "updated_at"
     t.string   "password_digest"

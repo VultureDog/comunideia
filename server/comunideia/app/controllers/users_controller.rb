@@ -7,6 +7,11 @@ class UsersController < ApplicationController
     @users = User.paginate(page: params[:page])
   end
 
+  def show
+    @user = User.find(params[:id])
+    @ideas = @user.ideas.paginate(page: params[:page])
+  end
+
   def signup
     @user = User.new
   end
@@ -20,7 +25,7 @@ class UsersController < ApplicationController
     if @user.save
       sign_in @user
       flash[:success] = "Seja bem vindo a Comunideia!"
-      redirect_to root_path
+      redirect_to @user
     else
       render 'signup'
     end

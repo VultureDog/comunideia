@@ -1,0 +1,20 @@
+<% provide(:title, @user.name) %>
+<div>
+  <aside>
+    <section>
+      <h1>
+        <%= @user.name %>
+      </h1>
+        <%= @user.email %>
+    </section>
+  </aside>
+  <div>
+    <% if @user.ideas.any? %>
+      <h3>Ideas (<%= @user.ideas.count %>)</h3>
+      <ol>
+        <%= render @ideas %>
+      </ol>
+      <%= will_paginate @ideas %>
+    <% end %>
+  </div>
+</div>
