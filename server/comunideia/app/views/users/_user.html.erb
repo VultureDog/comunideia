@@ -3,7 +3,10 @@
   <br>
   <% if current_user.admin? && !current_user?(user) %>
   <%= link_to "delete", user, method: :delete,
-                                  data: { confirm: "You sure?" } %>
+                                  data: { confirm: "Você tem certeza que deseja apagar esse usuário?" } %>
   <% end %>
+	<span>
+	  <%= pluralize(current_user.ideas.count, "idéia") %>
+	</span>
   <br><br>
 </li>

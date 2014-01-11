@@ -24,6 +24,22 @@ module SessionsHelper
     user == current_user
   end
 
+  def signed_in_user
+    unless signed_in?
+      store_location
+      redirect_to root_path, notice: "Favor acessar como usuario do Comunideia."
+      # redirect_to signin_url, notice: "Favor acessar como usuário do Comunideia."
+    end
+  end
+
+  def show
+    @user = User.find(params[:id])
+    if signed_in?
+      @idea  = current_user.ideas.build
+    end
+    @feed_items = current_user.feed.paginate(page: params[:page])
+  end
+
   def sign_out
     current_user.update_attribute(:remember_token,
                                   User.encrypt(User.new_remember_token))

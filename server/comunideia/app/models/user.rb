@@ -13,6 +13,11 @@ class User < ActiveRecord::Base
 
   has_many :ideas, dependent: :destroy
 
+  def feed
+    # This is preliminary. See "Following users" for the full implementation.
+    Idea.where("user_id = ?", id)
+  end
+
   def User.new_remember_token
     SecureRandom.urlsafe_base64
   end

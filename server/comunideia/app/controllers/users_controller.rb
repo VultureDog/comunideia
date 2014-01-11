@@ -9,7 +9,10 @@ class UsersController < ApplicationController
 
   def show
     @user = User.find(params[:id])
-    @ideas = @user.ideas.paginate(page: params[:page])
+    if signed_in?
+      @idea  = current_user.ideas.build
+    end
+    @feed_items = current_user.feed.paginate(page: params[:page])
   end
 
   def signup
@@ -58,14 +61,6 @@ class UsersController < ApplicationController
     end
 
     # Before filters
-
-    def signed_in_user
-      unless signed_in?
-        store_location
-        redirect_to root_path, notice: "Favor acessar como usuario do Comunideia."
-        # redirect_to signin_url, notice: "Favor acessar como usuário do Comunideia."
-      end
-    end
 
     def correct_user
       @user = User.find(params[:id])

@@ -9,12 +9,8 @@
     </section>
   </aside>
   <div>
-    <% if @user.ideas.any? %>
-      <h3>Ideas (<%= @user.ideas.count %>)</h3>
-      <ol>
-        <%= render @ideas %>
-      </ol>
-      <%= will_paginate @ideas %>
-    <% end %>
+    <h2>Idéias</h2>
+    <%= render 'shared/idea_form' %>
+    <%= render 'shared/feed' %>
   </div>
 </div>

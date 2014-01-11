@@ -1,0 +1,18 @@
+<%= form_for(@idea) do |f| %>
+  <%= render 'shared/error_messages', object: f.object %>
+  <div>
+    <%= f.text_area :name, placeholder: "Nome da idéia brilhante" %><br>
+    <%= f.text_area :summary, placeholder: "Resumo" %><br>
+    <%= f.text_field :local, placeholder: "Local" %>
+    <%= f.text_field :financial_value, placeholder: "Valor pedido" %>
+    <%= f.text_field :img_card, placeholder: "Link da imagem do cartão" %><br>
+    <%= f.text_field :video, placeholder: "Link do vídeo" %><br>
+    <%= f.text_field :img_pg_1, placeholder: "Link da primeira imagem" %>
+    <%= f.text_field :img_pg_2, placeholder: "Link da segunda imagem" %>
+    <%= f.text_field :img_pg_3, placeholder: "Link da terceira imagem" %>
+    <%= f.text_field :img_pg_4, placeholder: "Link da quarta imagem" %><br>
+    <%= f.text_area :idea_content, placeholder: "Compartilhe aqui a descrição da sua idéia brilhante..." %><br>
+    <%= f.text_area :risks_challenges, placeholder: "Riscos e desafios. Ex:..." %><br><br>
+  </div>
+  <%= f.submit "Criar projeto para a Idéia" %>
+<% end %>

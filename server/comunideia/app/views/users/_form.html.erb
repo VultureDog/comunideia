@@ -1,17 +1,16 @@
-<%= render 'shared/error_messages' %>
-
 <%= form_for(@user) do |f| %>
+  <%= render 'shared/error_messages', object: f.object %>
 
   <%= f.label "Nome" %><br>
-  <%= f.text_field :name %>
+  <%= f.text_field :name, placeholder: "Nome" %>
   <br><br>
 
   <%= f.label "E-mail*" %><br>
-  <%= f.text_field :email %>
+  <%= f.text_field :email, placeholder: "E-mail" %>
   <br><br>
 
   <%= f.label "E-mail: confirmação*" %><br>
-  <%= f.text_field :email_confirmation %>
+  <%= f.text_field :email_confirmation, placeholder: "E-mail" %>
   <br><br>
 
   <%= f.label "Senha*" %><br>
@@ -22,42 +21,31 @@
   <%= f.password_field :password_confirmation %>
   <br><br><br><br>
 
-  <%= f.label "CPF" %>
-  <%= f.text_field :cpf %>
+  <%= f.text_field :cpf, placeholder: "CPF" %>
 
-  <%= f.label "Data de nascimento" %>
-  <%= f.text_field :birth_date %>
+  <%= f.text_field :birth_date, placeholder: "Data de nascimento" %>
   <br><br>
 
-  <%= f.label "Endereço" %>
-  <%= f.text_field :address %>
+  <%= f.text_field :address, placeholder: "Endereço" %>
 
-  <%= f.label ", num" %>
-  <%= f.text_field :address_num %>
+  <%= f.text_field :address_num, placeholder: "número" %>
 
-  <%= f.label "complemento" %>
-  <%= f.text_field :complement %>
+  <%= f.text_field :complement, placeholder: "complemento" %>
   <br><br>
 
-  <%= f.label "Bairro" %>
-  <%= f.text_field :district %>
+  <%= f.text_field :district, placeholder: "Bairro" %>
 
-  <%= f.label "Cidade" %>
-  <%= f.text_field :city %>
+  <%= f.text_field :city, placeholder: "Cidade" %>
 
-  <%= f.label "Estado" %>
-  <%= f.text_field :region %>
+  <%= f.text_field :region, placeholder: "Estado" %>
   <br><br>
 
-  <%= f.label "CEP" %>
-  <%= f.text_field :cep %>
+  <%= f.text_field :cep, placeholder: "CEP" %>
   <br><br>
 
-  <%= f.label "Celular" %>
-  <%= f.text_field :cell_phone %>
+  <%= f.text_field :cell_phone, placeholder: "Celular" %>
 
-  <%= f.label "Telefone" %>
-  <%= f.text_field :phone %>
+  <%= f.text_field :phone, placeholder: "Telefone fixo" %>
   <br><br>
 
   <%= f.check_box :notifications %>
