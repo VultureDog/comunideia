@@ -1,11 +1,7 @@
 <li>
-  <span class="content"><%= micropost.content %></span>
-  <span class="timestamp">
-    Posted <%= time_ago_in_words(micropost.created_at) %> ago.
-  </span>
-  <% if current_user?(micropost.user) %>
-    <%= link_to "delete", micropost, method: :delete,
-                                     data: { confirm: "You sure?" },
-                                     title: micropost.content %>
-  <% end %>
+  <p><%= recompense.title %></p>
+  <p><%= recompense.summary %></p>
+  <p>$<%= recompense.financial_value %></p>
+  <p><%= pluralize(recompense.quantity, "investimento") %></p>
+  <!--<p>Data de entrega: <%#= recompense.date_delivery %></p>-->
 </li>

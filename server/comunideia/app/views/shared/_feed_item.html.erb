@@ -28,9 +28,8 @@
     <% if feed_item.recompenses.any? %>
       <h3>Recompensas (<%= feed_item.recompenses.count %>)</h3>
       <ol>
-        <%= render @recompenses %>
+        <%= render feed_item.recompenses %>
       </ol>
-      <%= will_paginate @recompenses %>
     <% end %>
   </div>
   <br><br><br>
