@@ -1,7 +1,7 @@
 <% if object.errors.any? %>
   <div>
     <div>
-      The form contains <%= pluralize(object.errors.count, "error") %>.
+      O formulário não preenchido está adequadamente. Verifique os campos abaixo:
     </div>
     <ul>
     <% object.errors.full_messages.each do |msg| %>

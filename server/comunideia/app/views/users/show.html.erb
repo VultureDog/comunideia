@@ -10,7 +10,9 @@
   </aside>
   <div>
     <h2>Idéias</h2>
-    <%= render 'shared/idea_form' %>
+    <% if @user == current_user %>
+      <%= render 'shared/idea_form' %>
+    <% end %>
     <%= render 'shared/feed' %>
   </div>
 </div>

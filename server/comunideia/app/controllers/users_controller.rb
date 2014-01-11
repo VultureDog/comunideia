@@ -12,7 +12,7 @@ class UsersController < ApplicationController
     if signed_in?
       @idea  = current_user.ideas.build
     end
-    @feed_items = current_user.feed.paginate(page: params[:page])
+    @feed_items = @user.feed.paginate(page: params[:page])
   end
 
   def signup

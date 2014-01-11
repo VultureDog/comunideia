@@ -6,7 +6,7 @@
                                   data: { confirm: "Você tem certeza que deseja apagar esse usuário?" } %>
   <% end %>
 	<span>
-	  <%= pluralize(current_user.ideas.count, "idéia") %>
+	  <%= pluralize(user.ideas.count, "idéia") %>
 	</span>
   <br><br>
 </li>
