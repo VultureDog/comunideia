@@ -11,5 +11,6 @@ class Idea < ActiveRecord::Base
   validates :risks_challenges, presence: true
 
   has_many :recompenses, dependent: :destroy
+  has_many :donations, dependent: :destroy
 
 end
