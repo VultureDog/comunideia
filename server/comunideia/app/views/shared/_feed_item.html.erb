@@ -14,7 +14,7 @@
   <p>Riscos e desafios: <%= feed_item.risks_challenges %></p>
 
   <span>
-    Posted <%= time_ago_in_words(feed_item.created_at) %> ago.
+    Criado <%= time_ago_in_words(feed_item.created_at) %> atrás.
   </span>
 
   <br>
@@ -23,5 +23,15 @@
                                      data: { confirm: "Você tem certeza que deseja apagar essa idéia?" },
                                      title: feed_item.idea_content %>
   <% end %>
+
+  <div>
+    <% if feed_item.recompenses.any? %>
+      <h3>Recompensas (<%= feed_item.recompenses.count %>)</h3>
+      <ol>
+        <%= render @recompenses %>
+      </ol>
+      <%= will_paginate @recompenses %>
+    <% end %>
+  </div>
   <br><br><br>
 </li>

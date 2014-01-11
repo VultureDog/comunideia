@@ -13,6 +13,7 @@ class UsersController < ApplicationController
       @idea  = current_user.ideas.build
     end
     @feed_items = @user.feed.paginate(page: params[:page])
+    @recompenses = @feed_items.recompenses.paginate(page: params[:page])
   end
 
   def signup
