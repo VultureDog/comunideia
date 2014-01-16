@@ -9,8 +9,10 @@ class Idea < ActiveRecord::Base
   validates :img_card, presence: true
   validates :idea_content, presence: true
   validates :risks_challenges, presence: true
+  #validates :recompenses, presence: true
 
   has_many :recompenses, dependent: :destroy
+  accepts_nested_attributes_for :recompenses, :reject_if => lambda { |a| a[:title].blank? }, :allow_destroy => true
   has_many :donations, dependent: :destroy
 
 end

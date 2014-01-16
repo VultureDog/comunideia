@@ -1,4 +1,4 @@
-<%= form_for(@idea) do |f| %>
+<%= form_for @idea do |f| %>
   <%= render 'shared/error_messages', object: f.object %>
   <div>
     <%= f.text_area :name, placeholder: "Nome da idéia brilhante" %><br>
@@ -13,6 +13,15 @@
     <%= f.text_field :img_pg_4, placeholder: "Link da quarta imagem" %><br>
     <%= f.text_area :idea_content, placeholder: "Compartilhe aqui a descrição da sua idéia brilhante..." %><br>
     <%= f.text_area :risks_challenges, placeholder: "Riscos e desafios. Ex:..." %><br><br>
+
+    <%= f.fields_for :recompenses do |builder| %>
+      <%= render 'recompense_fields', :f => builder %>
+    <% end %>
+    
+    <p><%= link_to_add_fields "Adicionar recompensa", f, :recompenses %></p>
+    
+    <br><br>
   </div>
   <%= f.submit "Criar projeto para a Idéia" %>
+  <br><br><br><br>
 <% end %>

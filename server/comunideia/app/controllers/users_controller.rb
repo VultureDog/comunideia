@@ -10,7 +10,8 @@ class UsersController < ApplicationController
   def show
     @user = User.find(params[:id])
     if signed_in?
-      @idea  = current_user.ideas.build
+      @idea = current_user.ideas.new
+      @idea.recompenses.build
     end
     @feed_items = @user.feed.paginate(page: params[:page])
   end

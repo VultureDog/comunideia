@@ -3,8 +3,8 @@ class CreateIdeas < ActiveRecord::Migration
     create_table :ideas do |t|
       t.string :name
       t.integer :user_id
-      t.timestamps :date_start
-      t.timestamps :date_end
+      t.datetime :date_start
+      t.datetime :date_end
       t.string :summary
       t.string :local
       t.float :financial_value
