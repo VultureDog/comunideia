@@ -4,6 +4,7 @@
       <%= link_to "Comunideia", root_path %>
       <nav>
         <ul>
+          <li><%= link_to "Idéias",    ideas_path %></li>
           <li><%= link_to "Home",    root_path %></li>
           <% if signed_in? %>
             <li>

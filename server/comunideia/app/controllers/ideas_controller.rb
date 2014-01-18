@@ -2,6 +2,14 @@ class IdeasController < ApplicationController
   before_action :signed_in_user, only: [:create, :destroy]
   before_action :correct_user,   only: :destroy
 
+  def index
+    @ideas = Idea.paginate(page: params[:page])
+  end
+
+  def show
+    @idea = Idea.find(params[:id])
+  end
+
   def create
     @user = current_user
     @idea = current_user.ideas.new(idea_params)
