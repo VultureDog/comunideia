@@ -1,0 +1,16 @@
+<div>
+<% if @idea.recompenses.any? %>
+  <h3>Recompensas (<%= @idea.recompenses.count %>)</h3>
+  <ol>
+  <% for recompense in @idea.recompenses %>
+    <li>
+    <%= link_to recompense.title, recompense_path %>
+    <p><%= recompense.summary %></p>
+    <p>$<%= recompense.financial_value %></p>
+    <p><%= pluralize(recompense.quantity, "investimento") %></p>
+    </li>
+  <% end %>
+  </ol>
+<% end %>
+</div>
+<br><br>

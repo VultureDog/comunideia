@@ -26,21 +26,8 @@
                                      title: feed_item.idea_content %>
   <% end %>
 
-  <div>
-    <% if feed_item.recompenses.any? %>
-      <h3>Recompensas (<%= feed_item.recompenses.count %>)</h3>
-      <ol>
-      <% for recompense in feed_item.recompenses %>
-        <li>
-        <p><%= recompense.title %></p>
-        <p><%= recompense.summary %></p>
-        <p>$<%= recompense.financial_value %></p>
-        <p><%= pluralize(recompense.quantity, "investimento") %></p>
-        </li>
-      <% end %>
-        <%#= render feed_item.recompenses %>
-      </ol>
-    <% end %>
-  </div>
+  <br><br><br>
+  <%= render 'recompenses/show' %>
+  <br>
   <br><br><br>
 </li>

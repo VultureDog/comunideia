@@ -1,5 +1,9 @@
 class RecompensesController < ApplicationController
-  before_action :signed_in_user, only: [:create, :destroy]
+  before_action :signed_in_user, only: [:show, :create, :destroy]
+
+  def show
+    @idea = Idea.find(params[:id])
+  end
 
   def create
     @user = current_user
@@ -7,7 +11,7 @@ class RecompensesController < ApplicationController
 
     #@recompenses = @idea.recompenses.new(recompenses_params)
     @feed_items = current_user.feed.paginate(page: params[:page])
-    end
+    
   end
 
   def destroy

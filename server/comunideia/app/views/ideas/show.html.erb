@@ -19,21 +19,6 @@
 Criado <%= time_ago_in_words(@idea.created_at) %> atrás.
 </span>
 
-
-<div>
-<% if @idea.recompenses.any? %>
-  <h3>Recompensas (<%= @idea.recompenses.count %>)</h3>
-  <ol>
-  <% for recompense in @idea.recompenses %>
-    <li>
-    <p><%= recompense.title %></p>
-    <p><%= recompense.summary %></p>
-    <p>$<%= recompense.financial_value %></p>
-    <p><%= pluralize(recompense.quantity, "investimento") %></p>
-    </li>
-  <% end %>
-    <%#= render @idea.recompenses %>
-  </ol>
-<% end %>
-</div>
 <br><br><br>
+<%= render 'recompenses/show' %>
+<br>

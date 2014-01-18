@@ -11,7 +11,7 @@ Comunideia::Application.routes.draw do
   resources :users
   resources :sessions, only: [:new, :create, :destroy]
   resources :ideas, only: [:index, :show, :create, :destroy]
-  resources :recompenses, only: [:create, :destroy]
+  resources :recompenses, only: [:show, :create, :destroy]
   
   match '/signin',  to: 'sessions#new',         via: 'get'
   match '/signout', to: 'sessions#destroy',     via: 'delete'
