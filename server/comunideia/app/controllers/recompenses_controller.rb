@@ -1,9 +1,5 @@
 class RecompensesController < ApplicationController
-  before_action :signed_in_user, only: [:show, :create, :destroy]
-
-  def show
-    @idea = Idea.find(params[:id])
-  end
+  before_action :signed_in_user, only: [:create, :destroy]
 
   def create
     @user = current_user

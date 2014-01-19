@@ -4,7 +4,6 @@ class CreateDonations < ActiveRecord::Migration
       t.integer :idea_id
       t.integer :user_id
       t.float :financial_value
-      t.datetime :date
 
       t.timestamps
     end
