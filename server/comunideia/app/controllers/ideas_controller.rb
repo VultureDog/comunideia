@@ -1,9 +1,14 @@
 class IdeasController < ApplicationController
-  before_action :signed_in_user, only: [:create, :destroy]
+  before_action :signed_in_user, only: [:new, :create, :destroy]
   before_action :correct_user,   only: :destroy
 
   def index
     @ideas = Idea.paginate(page: params[:page])
+  end
+
+  def new
+    @idea = current_user.ideas.new
+    @idea.recompenses.build
   end
 
   def show
@@ -13,6 +18,7 @@ class IdeasController < ApplicationController
   def create
     @user = current_user
     @idea = current_user.ideas.new(idea_params)
+    @idea.financial_value_sum_accumulated = 0;
     @feed_items = current_user.feed.paginate(page: params[:page])
     if @idea.save
       redirect_to current_user

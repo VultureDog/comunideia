@@ -6,7 +6,7 @@ namespace :db do
                  password: "111111",
                  password_confirmation: "111111",
                  admin: true)
-    4.times do |n|
+    2.times do |n|
       name  = Faker::Name.name
       email = "example-#{n+1}@railstutorial.org"
       password  = "password"
@@ -15,7 +15,7 @@ namespace :db do
                    password: password,
                    password_confirmation: password)
       users = User.all(limit: 6)
-    6.times do
+    2.times do
 
       name = Faker::Lorem.sentence(4)
       summary = Faker::Lorem.sentence(10)
@@ -33,7 +33,7 @@ namespace :db do
 
       users.each { |user| user.ideas.create!(name: name, summary: summary, local: local, financial_value: financial_value, financial_value_sum_accumulated: financial_value_sum_accumulated, img_card: img_card, video: video, img_pg_1: img_pg_1, img_pg_2: img_pg_2, img_pg_3: img_pg_3, img_pg_4: img_pg_4, idea_content: idea_content, risks_challenges: risks_challenges) }
 
-    4.times do
+    2.times do
 
       title = Faker::Lorem.sentence(2)
       summary = Faker::Lorem.sentence(10)
@@ -42,7 +42,7 @@ namespace :db do
 
       users.each { |user| user.ideas.each { |idea| idea.recompenses.create!(title: title, summary: summary, financial_value: financial_value , quantity: quantity) } }
 
-    4.times do
+    2.times do
 
       financial_value = 50
 

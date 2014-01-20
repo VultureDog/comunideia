@@ -9,7 +9,6 @@ class DonationsController < ApplicationController
   def create
     @idea = Idea.find(params[:donation][:idea_id])
     @donation = @idea.donations.new(donation_params)
-    @donation.date = Time.now;
     @idea.financial_value_sum_accumulated += @donation.financial_value
 
     if @donation.save && @idea.save

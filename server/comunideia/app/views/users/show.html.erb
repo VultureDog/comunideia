@@ -12,7 +12,7 @@
   <div>
     <h2>Idéias</h2>
     <% if @user == current_user %>
-      <%= render 'shared/idea_form' %>
+      <%= link_to "Nova idéia", new_idea_path %>
     <% end %>
     <%= render 'shared/feed' %>
   </div>

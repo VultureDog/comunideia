@@ -10,7 +10,7 @@ Comunideia::Application.routes.draw do
 
   resources :users
   resources :sessions, only: [:new, :create, :destroy]
-  resources :ideas, only: [:index, :show, :create, :destroy]
+  resources :ideas, only: [:new, :index, :show, :create, :destroy]
   resources :recompenses, only: [:create, :destroy]
   resources :donations, only: [:show, :create]
   
