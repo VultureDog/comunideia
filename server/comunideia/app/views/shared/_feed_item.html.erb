@@ -2,10 +2,14 @@
   <h1><%= feed_item.name %></h1>
   <p><%= feed_item.summary %></p>
   <p>Local: <%= feed_item.local %></p>
-  <p>$ <%= feed_item.financial_value %></p>
-  <p>$! <%= feed_item.financial_value_sum_accumulated %></p>
+  $ <%= feed_item.financial_value %> | $! <%= feed_item.financial_value_sum_accumulated %>
   <p>Card: <%= link_to feed_item.img_card, feed_item.img_card %></p>
   <p>Video: <%= link_to feed_item.video, feed_item.video %></p>
+
+  <p><%= raw(youtube_embed(feed_item.video)) %></p>
+
+  <img src=<%=feed_item.img_pg_1%>  width="640" height="390"/><br>
+
   <p>Img_1: <%= link_to feed_item.img_pg_1, feed_item.img_pg_1 %></p>
   <p>Img_2: <%= link_to feed_item.img_pg_2, feed_item.img_pg_2 %></p>
   <p>Img_3: <%= link_to feed_item.img_pg_3, feed_item.img_pg_3 %></p>
