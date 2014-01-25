@@ -12,14 +12,21 @@ class InvestmentsController < ApplicationController
     @recompense = Recompense.find(investment_params[:recompense_id])
     @investment = @recompense.investments.new(investment_params)
   	@idea = Idea.find(@recompense.idea_id)
-    @idea.financial_value_sum_accumulated += @investment.financial_value
 
-    if @investment.save && @idea.save
-	    flash[:success] = "Investimento efetuado!"
-    	redirect_to @idea
-    else
-    	render 'investments/show'
-    end
+  	if @fin_value_input.blank? || (@fin_value_input.to_i < @recompense.financial_value.to_i)
+  		@recompenses = @idea.recompenses
+  		flash[:error] = "Valor invalido."
+  		render 'investments/show'
+  	else  		
+	    @idea.financial_value_sum_accumulated += @investment.financial_value
+
+	    if @investment.save && @idea.save
+		    flash[:success] = "Investimento efetuado!"
+	    	redirect_to @idea
+	    else
+	    	render 'investments/show'
+	    end
+  	end
 		
   end
 
