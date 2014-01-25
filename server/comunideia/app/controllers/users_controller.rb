@@ -9,7 +9,8 @@ class UsersController < ApplicationController
 
   def show
     @user = User.find(params[:id])
-    @feed_items = @user.feed.paginate(page: params[:page])
+    #@feed_items = @user.feed.paginate(page: params[:page])
+    @thumbnails = @user.feed
   end
 
   def signup
