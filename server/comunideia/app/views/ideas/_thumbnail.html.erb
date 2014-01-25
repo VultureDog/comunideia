@@ -1,0 +1,19 @@
+<a href= <%= url_for :controller => :ideas, :action => :show, :id=> thumbnail.id %> ><img src=<%=thumbnail.img_card%> width="200" height="300"/></a>
+
+<h3><%= thumbnail.name %></h3>
+<div style="max-width:200px; word-wrap:break-word;"><%= thumbnail.summary %></div>
+<br>
+Local: <%= thumbnail.local %>
+<br>
+
+R$
+<% if (thumbnail.financial_value_sum_accumulated < thumbnail.financial_value) %>
+	<%= thumbnail.financial_value - thumbnail.financial_value_sum_accumulated %> restante
+<% else %>
+	<%= thumbnail.financial_value_sum_accumulated %> alcançados
+<% end %>
+ (<%= (thumbnail.financial_value_sum_accumulated/thumbnail.financial_value*100).to_i %>%)
+<br>
+R$! <%= thumbnail.financial_value_sum_accumulated %> alcançados de R$ <%= thumbnail.financial_value %> 
+
+<br><br>

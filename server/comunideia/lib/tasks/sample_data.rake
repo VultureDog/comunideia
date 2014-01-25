@@ -15,13 +15,13 @@ namespace :db do
                    password: password,
                    password_confirmation: password)
       users = User.all(limit: 6)
-    2.times do
+    5.times do
 
       name = Faker::Lorem.sentence(4)
       summary = Faker::Lorem.sentence(10)
       local = Faker::Lorem.sentence(2)
-      financial_value = rand(100..1000)
-      financial_value_sum_accumulated = rand(800..1300)
+      financial_value = rand(10..100)*100
+      financial_value_sum_accumulated = rand(200..1300)*10
       img_card = "http://envolverde.com.br/portal/wp-content/uploads/2011/10/1156.jpg"
       video = "http://www.youtube.com/watch?v=QRh_30C8l6Y"
       img_pg_1 = "http://envolverde.com.br/portal/wp-content/uploads/2011/10/1156.jpg"
@@ -37,7 +37,7 @@ namespace :db do
 
       title = Faker::Lorem.sentence(2)
       summary = Faker::Lorem.sentence(10)
-      financial_value = rand(10..100)
+      financial_value = rand(10..100)*10
       quantity = rand(1..10)
 
       users.each { |user| user.ideas.each { |idea| idea.recompenses.create!(title: title, summary: summary, financial_value: financial_value , quantity: quantity) } }

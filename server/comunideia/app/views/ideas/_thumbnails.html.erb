@@ -1,0 +1,12 @@
+<% provide(:title, 'Miniaturas') %>
+<h1>Miniaturas</h1>
+
+<div>
+<% if @thumbnails.any? %>
+  <% for thumbnail in @thumbnails %>
+    	<%= render 'ideas/thumbnail', :thumbnail => thumbnail %>
+  <% end %>
+  </ol>
+<% end %>
+</div>
+<br><br>
