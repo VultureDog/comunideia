@@ -8,4 +8,6 @@ class Recompense < ActiveRecord::Base
   #validates :summary, presence: true
   
   #validates :date_delivery, presence: true
+  has_many :investments, dependent: :destroy
+
 end

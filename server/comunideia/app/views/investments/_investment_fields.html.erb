@@ -1,0 +1,11 @@
+<%= form_for @investment do |f| %>
+  <%= render 'shared/error_messages', object: f.object %>
+
+	<%= f.label "Qual é o valor do seu investimento?" %><br>
+  R$ <%= f.text_field :financial_value, :value => @fin_value_input, :id => :financial_value_input %>
+
+  <%= f.hidden_field :user_id, :value => @investment.user_id %>
+  <%= f.hidden_field :recompense_id, :value => @investment.recompense_id, :id => :recompense_id_radio  %>
+
+  <%= f.submit "Investir" %>
+<% end %>

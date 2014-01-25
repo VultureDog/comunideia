@@ -20,10 +20,10 @@ namespace :db do
       name = Faker::Lorem.sentence(4)
       summary = Faker::Lorem.sentence(10)
       local = Faker::Lorem.sentence(2)
-      financial_value = 150
-      financial_value_sum_accumulated = 170
+      financial_value = rand(100..1000)
+      financial_value_sum_accumulated = rand(800..1300)
       img_card = "http://envolverde.com.br/portal/wp-content/uploads/2011/10/1156.jpg"
-      video = "http://www.youtube.com/watch?v=KtprX8i2k-Q"
+      video = "http://www.youtube.com/watch?v=QRh_30C8l6Y"
       img_pg_1 = "http://envolverde.com.br/portal/wp-content/uploads/2011/10/1156.jpg"
       img_pg_2 = "http://envolverde.com.br/portal/wp-content/uploads/2011/10/1156.jpg"
       img_pg_3 = "http://envolverde.com.br/portal/wp-content/uploads/2011/10/1156.jpg"
@@ -37,18 +37,10 @@ namespace :db do
 
       title = Faker::Lorem.sentence(2)
       summary = Faker::Lorem.sentence(10)
-      financial_value = 50
-      quantity = 3
+      financial_value = rand(10..100)
+      quantity = rand(1..10)
 
       users.each { |user| user.ideas.each { |idea| idea.recompenses.create!(title: title, summary: summary, financial_value: financial_value , quantity: quantity) } }
-
-    2.times do
-
-      financial_value = 50
-
-      users.each { |user| user.ideas.each { |idea| idea.donations.create!(financial_value: financial_value) } }
-
-    end
     end
     end
     end

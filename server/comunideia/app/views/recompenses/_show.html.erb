@@ -4,7 +4,7 @@
   <ol>
   <% for recompense in @idea.recompenses %>
     <li>
-    <%#= link_to recompense.title, donation_path %>
+    <%#= link_to recompense.title, investment_path %>
     <p><%= recompense.title %></p>
     <p><%= recompense.summary %></p>
     <p>$<%= recompense.financial_value %></p>

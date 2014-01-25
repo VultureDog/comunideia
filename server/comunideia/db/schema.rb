@@ -11,27 +11,16 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20140111203648) do
+ActiveRecord::Schema.define(version: 20140124192710) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
 
-  create_table "donations", force: true do |t|
-    t.integer  "idea_id"
-    t.integer  "user_id"
-    t.float    "financial_value"
-    t.datetime "created_at"
-    t.datetime "updated_at"
-  end
-
-  add_index "donations", ["idea_id", "created_at"], name: "index_donations_on_idea_id_and_created_at", using: :btree
-  add_index "donations", ["user_id", "created_at"], name: "index_donations_on_user_id_and_created_at", using: :btree
-
   create_table "ideas", force: true do |t|
     t.string   "name"
     t.integer  "user_id"
-    t.datetime "created_at"
-    t.datetime "updated_at"
+    t.datetime "date_start"
+    t.datetime "date_end"
     t.string   "summary"
     t.string   "local"
     t.float    "financial_value"
@@ -44,9 +33,22 @@ ActiveRecord::Schema.define(version: 20140111203648) do
     t.string   "img_pg_4"
     t.string   "idea_content"
     t.string   "risks_challenges"
+    t.datetime "created_at"
+    t.datetime "updated_at"
   end
 
   add_index "ideas", ["user_id", "created_at"], name: "index_ideas_on_user_id_and_created_at", using: :btree
+
+  create_table "investments", force: true do |t|
+    t.integer  "recompense_id"
+    t.integer  "user_id"
+    t.float    "financial_value"
+    t.datetime "created_at"
+    t.datetime "updated_at"
+  end
+
+  add_index "investments", ["recompense_id", "created_at"], name: "index_investments_on_recompense_id_and_created_at", using: :btree
+  add_index "investments", ["user_id", "created_at"], name: "index_investments_on_user_id_and_created_at", using: :btree
 
   create_table "recompenses", force: true do |t|
     t.string   "title"

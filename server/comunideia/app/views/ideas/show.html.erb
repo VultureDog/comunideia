@@ -1,6 +1,6 @@
 <h1><%= @idea.name %></h1>
 <p><%= @idea.summary %></p>
-<p><%= link_to "Investir", donation_path %></p>
+<p><%= link_to "Investir", investment_path %></p>
 <p>Local: <%= @idea.local %></p>
 $ <%= @idea.financial_value %> | $! <%= @idea.financial_value_sum_accumulated %>
 <p>Card: <%= link_to @idea.img_card, @idea.img_card %></p>

@@ -1,0 +1,29 @@
+<ul>
+  <% for recompense in @recompenses %>
+    <li>
+      <%= radio_button_tag "recompense_ids[]", recompense.id, false, :checked => (recompense == @recompenses.first), :onclick => "recompenseFinancialValue(" + recompense.financial_value.to_s + ");
+        setRecompenseId(" + recompense.id.to_s + ");"%>
+      <%= recompense.title %>
+      <p><%= recompense.summary %></p>
+      <p>$<%= recompense.financial_value %></p>
+      <p><%= pluralize(recompense.quantity, "investimento") %></p>
+    </li>
+  <% end %>
+  <!--<li>
+    <%#= radio_button_tag "recompense_ids[]", -1, false,
+      :onclick => "setRecompenseId(-1);"%>
+    Investir sem recompensas.
+    <p>Quero ver o projeto realizado e nao e necessario receber para incentivar!</p>
+    </li>
+  -->
+</ul>
+
+<script type="text/javascript">
+  function recompenseFinancialValue(financialValue) {
+    document.getElementById('financial_value_input').value = financialValue;
+  }
+
+  function setRecompenseId(recompenseId) {
+    document.getElementById('recompense_id_radio').value = recompenseId;
+  }
+</script>

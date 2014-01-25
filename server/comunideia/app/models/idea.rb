@@ -13,6 +13,5 @@ class Idea < ActiveRecord::Base
 
   has_many :recompenses, dependent: :destroy
   accepts_nested_attributes_for :recompenses, :reject_if => lambda { |a| a[:title].blank? }, :allow_destroy => true
-  has_many :donations, dependent: :destroy
 
 end
