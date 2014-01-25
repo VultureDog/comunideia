@@ -7,7 +7,6 @@ class IdeasController < ApplicationController
   end
 
   def new
-    flash[:error] = params
     @idea = current_user.ideas.new
     @idea.recompenses.build
   end
