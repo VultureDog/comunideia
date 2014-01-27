@@ -1,18 +1,26 @@
 <%= form_for @idea do |f| %>
   <%= render 'shared/error_messages', object: f.object %>
   <div>
-    <%= f.text_area :name, placeholder: "Nome da idéia brilhante" %><br>
-    <%= f.text_area :summary, placeholder: "Resumo" %><br>
-    <%= f.text_field :local, placeholder: "Local" %>
-    <%= f.text_field :financial_value, placeholder: "Valor pedido" %>
-    <%= f.text_field :img_card, placeholder: "Link da imagem do cartão" %><br>
-    <%= f.text_field :video, placeholder: "Link do vídeo" %><br>
-    <%= f.text_field :img_pg_1, placeholder: "Link da primeira imagem" %>
-    <%= f.text_field :img_pg_2, placeholder: "Link da segunda imagem" %>
-    <%= f.text_field :img_pg_3, placeholder: "Link da terceira imagem" %>
-    <%= f.text_field :img_pg_4, placeholder: "Link da quarta imagem" %><br>
-    <%= f.text_area :idea_content, placeholder: "Compartilhe aqui a descrição da sua idéia brilhante..." %><br>
-    <%= f.text_area :risks_challenges, placeholder: "Riscos e desafios. Ex:..." %><br><br>
+
+    <%= f.text_area :name, value: "Nome da idéia brilhante" %><br>
+    <%= f.text_area :summary, value: "Resumo" %><br>
+    <%= f.text_field :local, value: "Local" %><br>
+
+    <%= label :date_start, "Data de início: " %>
+    <%= f.date_field :date_start, value: Date.today %>
+
+    <%= label :date_end, "Data de término: " %>
+    <%= f.date_field :date_end, value: Date.today + 40 %><br>
+
+    <%= f.text_field :financial_value, value: 1000 %>
+    <%= f.text_field :img_card, value: "http://envolverde.com.br/portal/wp-content/uploads/2011/10/1156.jpg" %><br>
+    <%= f.text_field :video, value: "http://www.youtube.com/watch?v=QRh_30C8l6Y" %><br>
+    <%= f.text_field :img_pg_1, value: "http://envolverde.com.br/portal/wp-content/uploads/2011/10/1156.jpg" %>
+    <%= f.text_field :img_pg_2, value: "http://envolverde.com.br/portal/wp-content/uploads/2011/10/1156.jpg" %>
+    <%= f.text_field :img_pg_3, value: "http://envolverde.com.br/portal/wp-content/uploads/2011/10/1156.jpg" %>
+    <%= f.text_field :img_pg_4, value: "http://envolverde.com.br/portal/wp-content/uploads/2011/10/1156.jpg" %><br>
+    <%= f.text_area :idea_content, value: "Compartilhe aqui a descrição da sua idéia brilhante..." %><br>
+    <%= f.text_area :risks_challenges, value: "Riscos e desafios. Ex:..." %><br><br>
 
     <%= f.fields_for :recompenses do |builder| %>
       <%= render 'recompense_fields', :f => builder %>
@@ -21,6 +29,38 @@
     <p><%= link_to_add_fields "Adicionar recompensa", f, :recompenses %></p>
     
     <br><br>
+
+
+
+
+
+
+
+
+
+
+
+
+
+    <%#= f.text_area :name, placeholder: "Nome da idéia brilhante" %><br>
+    <%#= f.text_area :summary, placeholder: "Resumo" %><br>
+    <%#= f.text_field :local, placeholder: "Local" %><br>
+
+    <%#= label :date_start, "Data de início: " %>
+    <%#= f.date_field :date_start, value: Date.today %>
+
+    <%#= label :date_end, "Data de término: " %>
+    <%#= f.date_field :date_end, value: Date.today + 40 %><br>
+
+    <%#= f.text_field :financial_value, placeholder: "Valor pedido" %>
+    <%#= f.text_field :img_card, placeholder: "Link da imagem do cartão" %><br>
+    <%#= f.text_field :video, placeholder: "Link do vídeo" %><br>
+    <%#= f.text_field :img_pg_1, placeholder: "Link da primeira imagem" %>
+    <%#= f.text_field :img_pg_2, placeholder: "Link da segunda imagem" %>
+    <%#= f.text_field :img_pg_3, placeholder: "Link da terceira imagem" %>
+    <%#= f.text_field :img_pg_4, placeholder: "Link da quarta imagem" %><br>
+    <%#= f.text_area :idea_content, placeholder: "Compartilhe aqui a descrição da sua idéia brilhante..." %><br>
+    <%#= f.text_area :risks_challenges, placeholder: "Riscos e desafios. Ex:..." %><br><br>
   </div>
   <%= f.submit "Criar projeto para a Idéia" %>
   <br><br><br><br>

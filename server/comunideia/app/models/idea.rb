@@ -9,6 +9,8 @@ class Idea < ActiveRecord::Base
   validates :img_card, presence: true
   validates :idea_content, presence: true
   validates :risks_challenges, presence: true
+  validates :date_start, presence: true
+  validates :date_end, presence: true
   #validates :recompenses, presence: true
 
   has_many :recompenses, dependent: :destroy

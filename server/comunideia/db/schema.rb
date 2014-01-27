@@ -56,6 +56,7 @@ ActiveRecord::Schema.define(version: 20140124192710) do
     t.float    "quantity"
     t.float    "financial_value"
     t.string   "summary"
+    t.datetime "date_delivery"
     t.datetime "created_at"
     t.datetime "updated_at"
   end

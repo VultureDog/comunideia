@@ -20,6 +20,8 @@ namespace :db do
       name = Faker::Lorem.sentence(4)
       summary = Faker::Lorem.sentence(10)
       local = Faker::Lorem.sentence(2)
+      date_start = Date.today
+      date_end = Date.today + 40
       financial_value = rand(10..100)*100
       financial_value_sum_accumulated = rand(200..1300)*10
       img_card = "http://envolverde.com.br/portal/wp-content/uploads/2011/10/1156.jpg"
@@ -31,7 +33,7 @@ namespace :db do
       idea_content = Faker::Lorem.sentence(15)
       risks_challenges = Faker::Lorem.sentence(10)
 
-      users.each { |user| user.ideas.create!(name: name, summary: summary, local: local, financial_value: financial_value, financial_value_sum_accumulated: financial_value_sum_accumulated, img_card: img_card, video: video, img_pg_1: img_pg_1, img_pg_2: img_pg_2, img_pg_3: img_pg_3, img_pg_4: img_pg_4, idea_content: idea_content, risks_challenges: risks_challenges) }
+      users.each { |user| user.ideas.create!(name: name, summary: summary, local: local, date_start: date_start, date_end: date_end, financial_value: financial_value, financial_value_sum_accumulated: financial_value_sum_accumulated, img_card: img_card, video: video, img_pg_1: img_pg_1, img_pg_2: img_pg_2, img_pg_3: img_pg_3, img_pg_4: img_pg_4, idea_content: idea_content, risks_challenges: risks_challenges) }
 
     2.times do
 
@@ -39,6 +41,7 @@ namespace :db do
       summary = Faker::Lorem.sentence(10)
       financial_value = rand(10..100)*10
       quantity = rand(1..10)
+      date_delivery = Date.today + 40
 
       users.each { |user| user.ideas.each { |idea| idea.recompenses.create!(title: title, summary: summary, financial_value: financial_value , quantity: quantity) } }
     end

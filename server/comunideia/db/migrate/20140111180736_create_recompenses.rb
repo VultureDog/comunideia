@@ -6,7 +6,7 @@ class CreateRecompenses < ActiveRecord::Migration
       t.float :quantity
       t.float :financial_value
       t.string :summary
-      #t.datetime :date_delivery
+      t.datetime :date_delivery
 
       t.timestamps
     end

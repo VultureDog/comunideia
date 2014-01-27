@@ -19,7 +19,10 @@ class IdeasController < ApplicationController
     @user = current_user
     @idea = current_user.ideas.new(idea_params)
     @idea.financial_value_sum_accumulated = 0;
+    @idea.date_start = @idea.date_start + Time.now.hour*3600
+    @idea.date_end = @idea.date_end + Time.now.hour*3600
     @feed_items = current_user.feed.paginate(page: params[:page])
+
     if @idea.save
       redirect_to current_user
     else
@@ -35,7 +38,7 @@ class IdeasController < ApplicationController
   private
 
     def idea_params
-      params.require(:idea).permit(:name, :summary, :local, :financial_value, :financial_value_sum_accumulated, :img_card, :video, :img_pg_1, :img_pg_2, :img_pg_3, :img_pg_4, :idea_content, :risks_challenges, :recompenses_attributes => [:title, :summary, :quantity, :financial_value] )
+      params.require(:idea).permit(:name, :summary, :local, :date_start, :date_end, :financial_value, :financial_value_sum_accumulated, :img_card, :video, :img_pg_1, :img_pg_2, :img_pg_3, :img_pg_4, :idea_content, :risks_challenges, :recompenses_attributes => [:title, :summary, :quantity, :financial_value, :date_delivery] )
     end
 
     def correct_user
