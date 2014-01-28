@@ -26,7 +26,8 @@
       <%= render 'recompense_fields', :f => builder %>
     <% end %>
     
-    <p><%= link_to_add_fields "Adicionar recompensa", f, :recompenses %></p>
+    <p id="recompenseCounter" style="visibility:visible" onclick="incrementRecompenseCounter()" value="1" ><%= link_to_add_fields("Adicionar recompensa", f, :recompenses)
+     %></p>
     
     <br><br>
 

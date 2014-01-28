@@ -28,3 +28,24 @@ function add_fields(link, association, content) {
     before: content.replace(regexp, new_id)
   });
 }
+
+var recompenseCounter = 1;
+
+function incrementRecompenseCounter(){    
+  document.getElementById('recompenseCounter').value = ++recompenseCounter;
+  if (recompenseCounter == <%= Idea::MAX_RECOMPENSES %>)
+  {
+      document.getElementById('recompenseCounter').style.visibility = "hidden";
+  }
+}
+
+function decrementRecompenseCounter(){
+	if (recompenseCounter > 1) {
+		document.getElementById('recompenseCounter').value = --recompenseCounter;	
+	}
+	
+  if (recompenseCounter < <%= Idea::MAX_RECOMPENSES %>)
+  {
+     document.getElementById('recompenseCounter').style.visibility = "visible";
+  }
+}

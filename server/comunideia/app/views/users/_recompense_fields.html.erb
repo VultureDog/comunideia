@@ -1,12 +1,22 @@
-<div>
+<div class="fields">
   <p>
-    <%= f.text_area :title, placeholder: "Título da recompensa" %><br>
-    <%= f.text_area :summary, placeholder: "Resumo" %><br>
-    <%= f.text_area :quantity, placeholder: "Quantidade" %><br>
-    <%= f.text_area :financial_value, placeholder: "$" %><br>
-    <%#= f.text_area :date_delivery, placeholder: "Data de entrega" %>
+
+    <%= f.text_area :title, value: "Título da recompensa" %><br>
+    <%= f.text_area :summary, value: "Resumo" %><br>
+    <%= f.text_field :quantity, value: 10 %><br>
+    <%= f.text_field :financial_value, value: 20 %><br>
+    <%= f.date_field :date_delivery, value: Date.today + 40 %>
+    <p onclick="decrementRecompenseCounter()"><%= link_to_remove_fields "remover", f %></p>
+
+<!--
+    <%#= f.text_area :title, placeholder: "Título da recompensa" %><br>
+    <%#= f.text_area :summary, placeholder: "Resumo" %><br>
+    <%#= f.text_field :quantity, placeholder: "Quantidade" %><br>
+    <%#= f.text_field :financial_value, placeholder: "$" %><br>
+    <%#= f.date_field :date_delivery, value: Date.today + 40 %><br>
 
     <br>
-    <%= link_to_remove_fields "remover", f %><br>
+-->
+    <%#= link_to_remove_fields "remover", f %><br>
   </p>
 </div>
