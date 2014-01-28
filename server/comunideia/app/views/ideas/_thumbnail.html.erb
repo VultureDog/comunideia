@@ -1,23 +1,7 @@
 <a href= <%= url_for :controller => :ideas, :action => :show, :id=> thumbnail.id %> ><img src=<%=thumbnail.img_card%> width="200" height="300"/></a>
 
 <br>
-<% reached_financial_value = (thumbnail.financial_value_sum_accumulated < thumbnail.financial_value) %>
-
-<% remainder_time = ((thumbnail.date_end - thumbnail.date_start)/1.hour).ceil %>
-<% if remainder_time < 24 %>
-	<% if remainder_time > 0 %>
-		<%= remainder_time %>	horas restantes <br>
-	<% else %>
-		<% if reached_financial_value %>
-			Não financiado <br>
-		<% else %> <br>
-			Financiado <br>
-		<% end%>
-	<% end %>
-<% else %>
-	<% remainder_time = (thumbnail.date_end.to_date - thumbnail.date_start.to_date).to_i %>
-	<%= remainder_time %>	dias restantes <br>
-<% end %>
+<%= render 'ideas/status', :object => thumbnail %>
 
 <h3><%= thumbnail.name %></h3>
 <div style="max-width:200px; word-wrap:break-word;"><%= thumbnail.summary %></div>
@@ -26,7 +10,7 @@ Local: <%= thumbnail.local %>
 <br>
 
 R$
-<% if reached_financial_value %>
+<% if (thumbnail.financial_value_sum_accumulated < thumbnail.financial_value) %>
 	<%= thumbnail.financial_value - thumbnail.financial_value_sum_accumulated %> restante
 <% else %>
 	<%= thumbnail.financial_value_sum_accumulated %> alcançados
@@ -45,4 +29,4 @@ R$! <%= thumbnail.financial_value_sum_accumulated %> alcançados de R$ <%= thumb
 
 
 
-<br><br>
+<br><br><br>

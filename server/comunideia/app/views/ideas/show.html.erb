@@ -3,29 +3,12 @@
 <p><%= link_to "Investir", investment_path %></p>
 <p>Local: <%= @idea.local %></p>
 
+<%= render 'ideas/status', :object => @idea %>
 
-<% reached_financial_value = (thumbnail.financial_value_sum_accumulated < thumbnail.financial_value) %>
-
-<% remainder_time = ((thumbnail.date_end - thumbnail.date_start)/1.hour).ceil %>
-<% if remainder_time < 24 %>
-	<% if remainder_time > 0 %>
-		<%= remainder_time %>	horas restantes <br>
-	<% else %>
-		<% if reached_financial_value %>
-			Não financiado <br>
-		<% else %> <br>
-			Financiado <br>
-		<% end%>
-	<% end %>
-<% else %>
-	<% remainder_time = (thumbnail.date_end.to_date - thumbnail.date_start.to_date).to_i %>
-	<%= remainder_time %>	dias restantes <br>
-<% end %>
-
-<h3><%= thumbnail.name %></h3>
-<div style="max-width:200px; word-wrap:break-word;"><%= thumbnail.summary %></div>
+<h3><%= @idea.name %></h3>
+<div style="max-width:200px; word-wrap:break-word;"><%= @idea.summary %></div>
 <br>
-Local: <%= thumbnail.local %>
+Local: <%= @idea.local %>
 <br>
 
 $ <%= @idea.financial_value %> | $! <%= @idea.financial_value_sum_accumulated %>

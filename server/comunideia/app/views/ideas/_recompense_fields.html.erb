@@ -6,6 +6,7 @@
     <%= f.text_area :quantity, value: 10 %><br>
     <%= f.text_area :financial_value, value: 20 %><br>
     <%= f.date_field :date_delivery, value: Date.today + 40 %><br>
+    <%= link_to_remove_fields "remover", f %><br>
 
     <%#= f.text_area :title, placeholder: "Título da recompensa" %><br>
     <%#= f.text_area :summary, placeholder: "Resumo" %><br>
@@ -14,6 +15,6 @@
     <%#= f.date_field :date_delivery, value: Date.today %><br>
 
     <br>
-    <%= link_to_remove_fields "remover", f %><br>
+    <%#= link_to_remove_fields "remover", f %><br>
   </p>
 </div>
