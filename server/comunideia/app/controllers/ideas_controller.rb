@@ -26,7 +26,7 @@ class IdeasController < ApplicationController
     if @idea.save
       redirect_to current_user
     else
-      render 'users/show'
+      render 'new'
     end
   end
 
