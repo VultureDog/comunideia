@@ -8,7 +8,7 @@
     <p><%= recompense.title %></p>
     <p><%= recompense.summary %></p>
     <p>$<%= recompense.financial_value %></p>
-    <p><%= pluralize(recompense.quantity.to_i, "investimento") %></p>
+    <p><%= pluralize(recompense.quantity.to_i, Investment::INVESTMENT_STRING) %></p>
     <p><%= recompense.investments.count %>/<%= recompense.quantity.to_i %></p>
     <p><%= recompense.date_delivery.to_date.strftime("%B, %Y") %></p>
     </li>

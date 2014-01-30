@@ -2,6 +2,6 @@
   <p><%= recompense.title %></p>
   <p><%= recompense.summary %></p>
   <p>$<%= recompense.financial_value %></p>
-  <p><%= pluralize(recompense.quantity, "investimento") %></p>
+  <p><%= pluralize(recompense.quantity, Investment::INVESTMENT_STRING) %></p>
   <!--<p>Data de entrega: <%#= recompense.date_delivery %></p>-->
 </li>

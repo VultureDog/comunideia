@@ -22,6 +22,8 @@
     <%= f.text_area :idea_content, value: "Compartilhe aqui a descrição da sua idéia brilhante..." %><br>
     <%= f.text_area :risks_challenges, value: "Riscos e desafios. Ex:..." %><br><br>
 
+    <p>Recompensas:</p>
+
     <%= f.fields_for :recompenses do |builder| %>
       <%= render 'recompense_fields', :f => builder %>
     <% end %>

@@ -37,6 +37,7 @@ class Idea < ActiveRecord::Base
   validates :date_end, presence: { message: "#{DATE_END} (a data de termino nao esta definida.)" }
 
   CREATE_IDEA_STRING = "Criar projeto para a ideia"
+  IDEA_STRING = "ideia"
 
   #validates :recompenses, presence: true
 

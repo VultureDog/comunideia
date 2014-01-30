@@ -16,13 +16,11 @@
           <% else %>
             <%= form_for(:session, url: sessions_path) do |f| %>
 
-              <%= f.label "E-mail" %>
-              <%= f.text_field :email %>
+              <%= f.text_field :email, placeholder:  User::EMAIL %>
 
-              <%= f.label "Senha" %>
-              <%= f.password_field :password %>
+              <%= f.password_field :password, placeholder: User::PASSWORD %>
 
-              <%= f.submit "Acessar" %>
+              <%= f.submit User::ENTER_STRING %>
 
               <%= link_to 'Registrar-se', signup_path %>
             <% end %>

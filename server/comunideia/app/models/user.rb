@@ -35,6 +35,7 @@ class User < ActiveRecord::Base
   NOTIFICATIONS_AND_UPDATES = "Gostaria de receber notificacoes e atualizacoes?"
   #NOTIFICATIONS_AND_UPDATES = "Gostaria de receber notificações e atualizações?"
   SAVE_STRING = "Salvar"
+  ENTER_STRING = "Acessar"
 
 
 

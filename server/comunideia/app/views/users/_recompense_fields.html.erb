@@ -1,22 +1,22 @@
 <div class="fields">
   <p>
 
-    <%= f.text_area :title, value: "Título da recompensa" %><br>
-    <%= f.text_area :summary, value: "Resumo" %><br>
+    <%= f.text_area :title, value: Recompense::TITLE %><br>
+    <%= f.text_area :summary, value: Recompense::SUMMARY %><br>
     <%= f.text_field :quantity, value: 10 %><br>
     <%= f.text_field :financial_value, value: 20 %><br>
     <%= f.date_field :date_delivery, value: Date.today + 40 %>
-    <p onclick="decrementRecompenseCounter()"><%= link_to_remove_fields "remover", f %></p>
+    <p onclick="decrementRecompenseCounter()"><%= link_to_remove_fields Recompense::RECOMPENSE_REMOVE, f %></p>
 
 <!--
-    <%#= f.text_area :title, placeholder: "Título da recompensa" %><br>
-    <%#= f.text_area :summary, placeholder: "Resumo" %><br>
-    <%#= f.text_field :quantity, placeholder: "Quantidade" %><br>
-    <%#= f.text_field :financial_value, placeholder: "$" %><br>
+    <%#= f.text_area :title, placeholder: Recompense::TITLE %><br>
+    <%#= f.text_area :summary, placeholder: Recompense::SUMMARY %><br>
+    <%#= f.text_field :quantity, placeholder: Recompense::QUANTITY %><br>
+    <%#= f.text_field :financial_value, placeholder: Recompense::FINANCIAL_VALUE %><br>
     <%#= f.date_field :date_delivery, value: Date.today + 40 %><br>
 
     <br>
+    <p onclick="decrementRecompenseCounter()"><%#= link_to_remove_fields Recompense::RECOMPENSE_REMOVE, f %></p>
 -->
-    <%#= link_to_remove_fields "remover", f %><br>
   </p>
 </div>
