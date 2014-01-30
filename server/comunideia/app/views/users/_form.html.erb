@@ -1,56 +1,56 @@
 <%= form_for(@user) do |f| %>
   <%= render 'shared/error_messages', object: f.object %>
 
-  <%= f.label "Nome" %><br>
-  <%= f.text_field :name, placeholder: "Nome" %>
+  <%= f.label User::NAME %><br>
+  <%= f.text_field :name, placeholder: User::NAME %>
   <br><br>
 
-  <%= f.label "E-mail*" %><br>
-  <%= f.text_field :email, placeholder: "E-mail" %>
+  <%= f.label "#{User::EMAIL}*" %><br>
+  <%= f.text_field :email, placeholder: User::EMAIL %>
   <br><br>
 
-  <%= f.label "E-mail: confirmação*" %><br>
-  <%= f.text_field :email_confirmation, placeholder: "E-mail" %>
+  <%= f.label "#{User::EMAIL_CONFIRMATION}*" %><br>
+  <%= f.text_field :email_confirmation, placeholder: User::EMAIL %>
   <br><br>
 
-  <%= f.label "Senha*" %><br>
+  <%= f.label "#{User::PASSWORD}*" %><br>
   <%= f.password_field :password %>
   <br><br>
 
-  <%= f.label "Senha: confirmação*" %><br>
+  <%= f.label "#{User::PASSWORD_CONFIRMATION}*" %><br>
   <%= f.password_field :password_confirmation %>
   <br><br><br><br>
 
-  <%= f.text_field :cpf, placeholder: "CPF" %>
+  <%= f.text_field :cpf, placeholder: User::CPF %>
 
-  <%= f.text_field :birth_date, placeholder: "Data de nascimento" %>
+  <%= f.text_field :birth_date, placeholder: User::BIRTH_DATE %>
   <br><br>
 
-  <%= f.text_field :address, placeholder: "Endereço" %>
+  <%= f.text_field :address, placeholder: User::ADDRESS %>
 
-  <%= f.text_field :address_num, placeholder: "número" %>
+  <%= f.text_field :address_num, placeholder: User::ADDRESS_NUMBER %>
 
-  <%= f.text_field :complement, placeholder: "complemento" %>
+  <%= f.text_field :complement, placeholder: User::ADDRESS_COMPLEMENT %>
   <br><br>
 
-  <%= f.text_field :district, placeholder: "Bairro" %>
+  <%= f.text_field :district, placeholder: User::ADDRESS_NEIGHBORHOOD %>
 
-  <%= f.text_field :city, placeholder: "Cidade" %>
+  <%= f.text_field :city, placeholder: User::ADDRESS_CITY %>
 
-  <%= f.text_field :region, placeholder: "Estado" %>
+  <%= f.text_field :region, placeholder: User::ADDRESS_STATE %>
   <br><br>
 
-  <%= f.text_field :cep, placeholder: "CEP" %>
+  <%= f.text_field :cep, placeholder: User::ADDRESS_CEP %>
   <br><br>
 
-  <%= f.text_field :cell_phone, placeholder: "Celular" %>
+  <%= f.text_field :cell_phone, placeholder: User::ADDRESS_CELLPHONE %>
 
-  <%= f.text_field :phone, placeholder: "Telefone fixo" %>
+  <%= f.text_field :phone, placeholder: User::ADDRESS_PHONE %>
   <br><br>
 
   <%= f.check_box :notifications %>
-  <%= f.label "Gostaria de receber notificações e atualizações?" %>
+  <%= f.label User::NOTIFICATIONS_AND_UPDATES %>
   <br><br>
 
-  <%= f.submit "Salvar" %>
+  <%= f.submit User::SAVE_STRING %>
 <% end %>

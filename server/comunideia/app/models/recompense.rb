@@ -8,6 +8,8 @@ class Recompense < ActiveRecord::Base
   validates :financial_value, presence: true
   validates :summary, presence: true
   validates :date_delivery, presence: true
+
+  RECOMPENSE_ADD = "Adicionar recompensa"
   
   has_many :investments, dependent: :destroy
 

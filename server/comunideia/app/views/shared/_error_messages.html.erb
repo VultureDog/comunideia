@@ -4,8 +4,10 @@
       O formulário não preenchido está adequadamente. Verifique os campos abaixo:
     </div>
     <ul>
-    <% object.errors.full_messages.each do |msg| %>
-      <li>* <%= msg %></li>
+    <% object.errors.messages.values.each do |msg| %>
+        <% msg.each do  |m| %>
+          <li><%= m %></li>
+        <%end %>
     <% end %>
     </ul>
   </div>

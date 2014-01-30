@@ -46,6 +46,96 @@ function decrementRecompenseCounter(){
 	
   if (recompenseCounter < <%= Idea::MAX_RECOMPENSES %>)
   {
-     document.getElementById('recompenseCounter').style.visibility = "visible";
+    document.getElementById('recompenseCounter').style.visibility = "visible";
   }
 }
+
+var minValue = 1;
+var maxValue = 1000;
+var recompensesMaxValue = 1000;
+var defaultValue = 10;
+var valueToUpdateMaxFactor = 0.99;
+var updateMaxValueFactor = 1.01;
+var valueToUpdateMax = maxValue*valueToUpdateMaxFactor;
+var separator =  " ----------------------------------------------------------------------------------------------------------------------- ";
+
+function setMaxValue(value){
+  maxValue = parseInt(value);
+  valueToUpdateMax = parseInt(maxValue*valueToUpdateMaxFactor);
+  document.getElementById('amount_min').innerText = minValue + separator;
+  document.getElementById('amount_mid').innerText = parseInt(maxValue/2) + separator;
+  document.getElementById('amount_max').innerText = maxValue + " ++++";
+}
+
+function setRecompensesMaxValue(value){
+  recompensesMaxValue = parseInt(value);
+}
+
+function setDefaultValue(value){
+  defaultValue = parseInt(value);
+}
+
+function setMaxValueHigherConditional(){
+  value = document.getElementById('financial_value_input').value;
+  if (value > 1) {
+    if (value > maxValue) setMaxValue(value);
+    setDefaultValue(value);
+    setSlider();
+    refreshSliderBackgroudColor();
+  }
+}
+
+function setSlider(){
+  $( "#slider-range-min" ).slider({
+    range: "min",
+    value: defaultValue,
+    min: minValue,
+    max: maxValue,
+    slide: function( event, ui ) {
+      $( "#financial_value_input" ).val( ui.value );
+      refreshSliderBackgroudColor();
+      
+      if (ui.value > valueToUpdateMax) {
+        setMaxValue(maxValue*updateMaxValueFactor);
+        setDefaultValue(maxValue);
+        setSlider();
+      }
+    }
+  });
+  $( "#financial_value_input" ).val( $( "#slider-range-min" ).slider( "value" ) );
+}
+
+function hexFromRGB(r, g, b) {
+  var hex = [
+    r.toString( 16 ),
+    g.toString( 16 ),
+    b.toString( 16 )
+  ];
+  $.each( hex, function( nr, val ) {
+    if ( val.length === 1 ) {
+      hex[ nr ] = "0" + val;
+    }
+  });
+  return hex.join( "" ).toUpperCase();
+}
+
+function refreshSliderBackgroudColor() {
+  var sliderValue = $( "#slider-range-min" ).slider( "value" ),
+    red = Math.max(0, parseInt(256 - (256/(recompensesMaxValue/sliderValue)))),
+    green = 255,
+    blue = Math.max(0, parseInt(110 - (145/(recompensesMaxValue/sliderValue)))),
+
+    hex = hexFromRGB( red, green, blue );
+
+  //document.getElementById('amount_min').innerText = red + separator;
+  //document.getElementById('amount_mid').innerText = green + separator;
+  //document.getElementById('amount_max').innerText = blue;
+  $( "#slider-range-min .ui-slider-range" ).css('background', "#" + hex);
+
+
+  $( "#amount" ).val( hex ); 
+}
+
+$(function () {
+  setSlider();
+});
