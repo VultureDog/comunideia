@@ -6,7 +6,7 @@
 	<%= f.label Investment::INVESTMENT_VALUE_STRING %><br>
   R$ <%= f.text_field :financial_value, :value => @fin_value_input,
   			:id => :financial_value_input,
-  			:onKeyUp => "setMaxValueHigherConditional();"
+  			:onKeyUp => "updateFinancialValues();"
   		%>
 
   <%= f.hidden_field :user_id, :value => @investment.user_id %>

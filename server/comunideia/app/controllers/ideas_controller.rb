@@ -19,8 +19,9 @@ class IdeasController < ApplicationController
     @user = current_user
     @idea = current_user.ideas.new(idea_params)
     @idea.financial_value_sum_accumulated = 0;
-    @idea.date_start = @idea.date_start + Time.now.hour*3600
-    @idea.date_end = @idea.date_end + Time.now.hour*3600
+    @idea.date_start = @idea.date_start + (Time.now.hour + 1)*3600
+    @idea.date_end = @idea.date_end + (Time.now.hour + 1)*3600
+    @idea.createEmptyRecompense
     @feed_items = current_user.feed.paginate(page: params[:page])
 
     if @idea.save

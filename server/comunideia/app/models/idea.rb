@@ -44,4 +44,10 @@ class Idea < ActiveRecord::Base
   has_many :recompenses, dependent: :destroy
   accepts_nested_attributes_for :recompenses, :reject_if => lambda { |a| a[:title].blank? }, :allow_destroy => true
 
+  def createEmptyRecompense
+    
+    recompenses.new(title:"Investimento altruista.", summary:"Quero ver o projeto realizado e nao e necessario receber para incentivar!", quantity:-1, financial_value:1, date_delivery:Date.today)
+
+  end
+
 end

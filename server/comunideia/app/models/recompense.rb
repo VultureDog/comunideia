@@ -24,6 +24,7 @@ class Recompense < ActiveRecord::Base
 
   RECOMPENSE_ADD = "Adicionar recompensa"
   RECOMPENSE_REMOVE = "remover"
+  RECOMPENSE_ID_PREFIX = 999
   
   has_many :investments, dependent: :destroy
 

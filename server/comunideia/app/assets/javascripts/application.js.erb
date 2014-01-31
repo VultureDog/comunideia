@@ -75,14 +75,34 @@ function setDefaultValue(value){
   defaultValue = parseInt(value);
 }
 
-function setMaxValueHigherConditional(){
+var altruisticDocElement = "";
+
+function setAltruisticDocElement(elementID){
+  altruisticDocElement = elementID;
+}
+
+function updateFinancialValues(){
   value = document.getElementById('financial_value_input').value;
   if (value > 1) {
-    if (value > maxValue) setMaxValue(value);
-    setDefaultValue(value);
-    setSlider();
-    refreshSliderBackgroudColor();
+    updateFinancialValue(value);
   }
+}
+
+function recompenseFinancialValue(financialValue) {
+  document.getElementById('financial_value_input').value = financialValue;
+  updateFinancialValue(financialValue);
+}
+
+function setRecompenseId(recompenseId) {
+  document.getElementById('recompense_id_radio').value = recompenseId;
+}
+
+function updateFinancialValue(financialValue){
+  document.getElementById(altruisticDocElement).innerText = financialValue;
+  if (financialValue > maxValue) setMaxValue(financialValue);
+  setDefaultValue(financialValue);
+  setSlider();
+  refreshSliderBackgroudColor();
 }
 
 function setSlider(){
@@ -94,6 +114,7 @@ function setSlider(){
     slide: function( event, ui ) {
       $( "#financial_value_input" ).val( ui.value );
       refreshSliderBackgroudColor();
+      document.getElementById(altruisticDocElement).innerText = ui.value;
       
       if (ui.value > valueToUpdateMax) {
         setMaxValue(maxValue*updateMaxValueFactor);
