@@ -2,7 +2,7 @@
   <%= link_to user.name, user %> | <%= link_to user.email, user %>
   <br>
   <% if current_user.admin? && !current_user?(user) %>
-  <%= link_to "delete", user, method: :delete,
+    <%= link_to "delete", user, method: :delete,
                                   data: { confirm: "Você tem certeza que deseja apagar esse usuário?" } %>
   <% end %>
 	<span>

@@ -3,5 +3,12 @@
 <%= render 'form' %>
 
 <br><br>
+
+<% if current_user?(@user) %>
+  <%= link_to "Apagar conta", @user, method: :delete,
+                                data: { confirm: "Você tem certeza que deseja apagar sua conta? Todos os seus dados serão perdidos." } %>
+<% end %>
+
+<br><br>
 <%= link_to 'Voltar', '/' %>
 

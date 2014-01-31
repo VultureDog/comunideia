@@ -2,7 +2,7 @@
 class UsersController < ApplicationController
   before_action :signed_in_user, only: [:index, :edit, :update, :destroy]
   before_action :correct_user,   only: [:edit, :update]
-  before_action :admin_user,     only: [:index, :destroy]
+  before_action :admin_user,     only: [:index]
 
   def index
     @users = User.paginate(page: params[:page])
@@ -49,7 +49,12 @@ class UsersController < ApplicationController
   def destroy
     User.find(params[:id]).destroy
     flash[:success] = "Usuário apagado."
-    redirect_to users_url
+
+    if current_user.admin?
+      redirect_to users_url
+    else
+      redirect_to root_path
+    end
   end
 
   private
