@@ -94,6 +94,7 @@ function recompenseFinancialValue(financialValue) {
 }
 
 function setRecompenseId(recompenseId) {
+  alert(recompenseId);
   document.getElementById('recompense_id_radio').value = recompenseId;
 }
 
@@ -101,8 +102,8 @@ function updateFinancialValue(financialValue){
   document.getElementById(altruisticDocElement).innerText = financialValue;
   if (financialValue > maxValue) setMaxValue(financialValue);
   setDefaultValue(financialValue);
-  setSlider();
-  refreshSliderBackgroudColor();
+  //setSlider();
+  //refreshSliderBackgroudColor();
 }
 
 function setSlider(){
@@ -158,5 +159,5 @@ function refreshSliderBackgroudColor() {
 }
 
 $(function () {
-  setSlider();
+  //setSlider();
 });
