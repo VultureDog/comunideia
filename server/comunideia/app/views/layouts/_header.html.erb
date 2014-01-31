@@ -1,7 +1,7 @@
 <header>
   <div>
     <div>
-      <%= link_to "Comunideia", root_path %>
+      <%= link_to "Comunidéia", root_path %>
       <nav>
         <ul>
           <li><%= link_to "Idéias",    ideas_path %></li>
@@ -9,7 +9,7 @@
           <% if signed_in? %>
             <li>
               <li><%= link_to current_user.name, current_user %></li>
-              <li><%= link_to "Configuracoes", edit_user_path(current_user) %></li>
+              <li><%= link_to "Configurações", edit_user_path(current_user) %></li>
               <!--<li><%#= link_to "Configurações", '#' %></li>-->
               <li><%= link_to "Sign out",  signout_path, method: "delete" %></li>
             </li>

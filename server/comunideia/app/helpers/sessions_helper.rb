@@ -1,3 +1,4 @@
+# encoding: UTF-8
 module SessionsHelper
 
   def sign_in(user)
@@ -27,8 +28,7 @@ module SessionsHelper
   def signed_in_user
     unless signed_in?
       store_location
-      redirect_to root_path, notice: "Favor acessar como usuario do Comunideia."
-      # redirect_to signin_url, notice: "Favor acessar como usuário do Comunideia."
+      redirect_to root_path, notice: "Favor acessar como usuario do Comunidéia."
     end
   end
 

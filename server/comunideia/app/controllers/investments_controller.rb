@@ -1,3 +1,4 @@
+# encoding: UTF-8
 class InvestmentsController < ApplicationController
 	before_action :signed_in_user, only: [:show, :create]
 
@@ -20,7 +21,7 @@ class InvestmentsController < ApplicationController
   		render 'investments/show'
   	elsif (@fin_value_input.to_i < @recompense.financial_value.to_i)
       @recompenses = @idea.recompenses
-      flash[:error] = "Valor invalido. O valor financeiro que esta investindo e R$" + @fin_value_input.to_s + " e a recompensa selecionada e " + @recompense.title + " de valor financeiro R$" + @recompense.financial_value.to_i.to_s + "."
+      flash[:error] = "Valor inválido. O valor financeiro que está investindo é R$" + @fin_value_input.to_s + " e a recompensa selecionada é '" + @recompense.title + "' de valor financeiro R$" + @recompense.financial_value.to_i.to_s + "."
       render 'investments/show'
     else
 	    @idea.financial_value_sum_accumulated += @investment.financial_value

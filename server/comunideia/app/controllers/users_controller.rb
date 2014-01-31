@@ -1,3 +1,4 @@
+# encoding: UTF-8
 class UsersController < ApplicationController
   before_action :signed_in_user, only: [:index, :edit, :update, :destroy]
   before_action :correct_user,   only: [:edit, :update]
@@ -9,7 +10,7 @@ class UsersController < ApplicationController
 
   def show
     @user = User.find(params[:id])
-    #@feed_items = @user.feed.paginate(page: params[:page])
+    @feed_items = @user.feed.paginate(page: params[:page])
     @thumbnails = @user.feed
   end
 
@@ -25,7 +26,7 @@ class UsersController < ApplicationController
 
     if @user.save
       sign_in @user
-      flash[:success] = "Seja bem vindo a Comunideia!"
+      flash[:success] = "Seja bem vindo a Comunidéia!"
       redirect_to @user
     else
       render 'signup'
@@ -47,8 +48,7 @@ class UsersController < ApplicationController
 
   def destroy
     User.find(params[:id]).destroy
-    flash[:success] = "Usuario apagado."
-    #flash[:success] = "Usuário apagado."
+    flash[:success] = "Usuário apagado."
     redirect_to users_url
   end
 

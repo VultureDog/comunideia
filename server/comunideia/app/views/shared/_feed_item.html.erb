@@ -14,13 +14,13 @@
   <p>Img_2: <%= link_to feed_item.img_pg_2, feed_item.img_pg_2 %></p>
   <p>Img_3: <%= link_to feed_item.img_pg_3, feed_item.img_pg_3 %></p>
   <p>Img_4: <%= link_to feed_item.img_pg_4, feed_item.img_pg_4 %></p>
-  <p>Descricao da ideia: <%= feed_item.idea_content %></p>
+  <p>Descrição da idéia: <%= feed_item.idea_content %></p>
   <p>Riscos e desafios: <%= feed_item.risks_challenges %></p>
   <!--<p>Data inicial: <%#= feed_item.date_start %></p>-->
   <!--<p>Data final: <%#= feed_item.date_end %></p>-->
 
   <span>
-    Criado <%= time_ago_in_words(feed_item.created_at) %> atrás.
+    Criado em <%= feed_item.created_at.to_date.day %>/<%= feed_item.created_at.to_date.month %>/<%= feed_item.created_at.to_date.year %>.
   </span>
 
   <br>

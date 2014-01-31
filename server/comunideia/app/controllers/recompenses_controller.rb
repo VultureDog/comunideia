@@ -1,3 +1,4 @@
+# encoding: UTF-8
 class RecompensesController < ApplicationController
   before_action :signed_in_user, only: [:create, :destroy]
 

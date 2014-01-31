@@ -1,3 +1,4 @@
+# encoding: UTF-8
 class SessionsController < ApplicationController
 
 	def create
@@ -6,8 +7,7 @@ class SessionsController < ApplicationController
       sign_in user
       redirect_back_or root_path
     else
-      flash[:error] = 'Combinacao e-mail/password invalida'
-      #flash.now[:error] = 'Combinação e-mail/password inválida'
+      flash[:error] = 'Combinação e-mail/senha inválida'
       redirect_to root_path
     end
 	end
