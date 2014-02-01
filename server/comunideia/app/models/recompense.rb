@@ -6,7 +6,7 @@ class Recompense < ActiveRecord::Base
 
   TITLE = "Título"
   TITLE_MAX_CHARS = 30
-  validates :title, presence: { message: "#{TITLE} (título está em branco)" }#, length: { maximum: 80, message: "#{TITLE} (titulo está muito longo. Maximo de #{TITLE_MAX_CHARS} caracteres)" }
+  validates :title, presence: { message: "#{TITLE} (título está em branco)" }, length: { maximum: TITLE_MAX_CHARS, message: "#{TITLE} (titulo está muito longo. Maximo de #{TITLE_MAX_CHARS} caracteres)" }
 
   #validates :idea_id, presence: true
 

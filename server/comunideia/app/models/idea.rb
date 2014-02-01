@@ -43,7 +43,7 @@ class Idea < ActiveRecord::Base
   #validates :recompenses, presence: true
 
   has_many :recompenses, dependent: :destroy
-  accepts_nested_attributes_for :recompenses, :reject_if => lambda { |a| a[:title].blank? }, :allow_destroy => true
+  accepts_nested_attributes_for :recompenses
 
   def createEmptyRecompense
     
