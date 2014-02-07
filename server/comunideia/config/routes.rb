@@ -5,17 +5,18 @@ Comunideia::Application.routes.draw do
   
   match '/signup', to: 'users#signup', via: 'get'
   match '/signup', to: 'users#create', via: 'post'
+  match '/signin',  to: 'home#home',      via: 'get'
+  match '/signout', to: 'sessions#destroy',     via: 'delete'
 
   match '/', to: 'sessions#create', via: 'post'
+  match '/sessions', to: 'sessions#create', via: 'get'
 
   resources :users
-  resources :sessions, only: [:new, :create, :destroy]
+  resources :sessions, only: [:create, :destroy]
   resources :ideas, only: [:new, :index, :show, :create, :destroy]
   resources :recompenses, only: [:create, :destroy]
   resources :investments, only: [:show, :create]
 
-  match '/signin',  to: 'sessions#new',         via: 'get'
-  match '/signout', to: 'sessions#destroy',     via: 'delete'
 
 
   # The priority is based upon order of creation: first created -> highest priority.
