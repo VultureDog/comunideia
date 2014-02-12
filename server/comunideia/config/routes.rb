@@ -17,6 +17,12 @@ Comunideia::Application.routes.draw do
   resources :recompenses, only: [:create, :destroy]
   resources :investments, only: [:show, :create]
 
+  match '/get_token_oauth', to: 'images_videos#get_token_oauth', via: 'get'
+  match '/callback_token', to: 'images_videos#callback_token', via: 'get'
+  match '/upload_image', to: 'images_videos#upload_image', via: 'post'
+
+  get '/auth/:provider/callback' => 'sessions#create', as: :auth_callback
+  get '/auth/failure' => 'sessions#failure_facebook_login', as: :auth_failure
 
 
   # The priority is based upon order of creation: first created -> highest priority.

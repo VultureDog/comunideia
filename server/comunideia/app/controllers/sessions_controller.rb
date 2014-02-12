@@ -2,12 +2,19 @@
 class SessionsController < ApplicationController
 
 	def create
-    user = User.find_by(email: params[:session][:email].downcase)
-    if user && user.authenticate(params[:session][:password])
-      sign_in user
+    auth = request.env["omniauth.auth"]
+
+    user, notice = User.user_login(params, auth)
+
+    if user
+      if signed_in?
+        current_user.update_attribute(:facebook_association, true) unless current_user.facebook_association
+      else
+        sign_in user
+      end
       redirect_back_or root_path
     else
-      flash[:error] = 'Combinação e-mail/senha inválida'
+      flash[:notice] = notice
       redirect_to root_path
     end
 	end
@@ -17,4 +24,7 @@ class SessionsController < ApplicationController
     redirect_to root_path
   end
 
+  def failure_facebook_login
+    redirect_to root_url
+  end
 end

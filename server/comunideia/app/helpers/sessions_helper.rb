@@ -28,7 +28,7 @@ module SessionsHelper
   def signed_in_user
     unless signed_in?
       store_location
-      redirect_to root_path, notice: "Favor acessar como usuario do Comunidéia."
+      redirect_to root_path, notice: "Favor acessar como usuário do Comunidéia."
     end
   end
 

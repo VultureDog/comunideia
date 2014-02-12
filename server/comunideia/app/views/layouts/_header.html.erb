@@ -9,11 +9,16 @@
           <% if signed_in? %>
             <li>
               <li><%= link_to current_user.name, current_user %></li>
+              <% if current_user.admin? %><br>
+                <li><%= link_to "Usuários", users_path %></li>
+                <li><%= link_to "Autorizar Flickr uploads", get_token_oauth_path %></li><br>
+              <% end %>
               <li><%= link_to "Configurações", edit_user_path(current_user) %></li>
               <!--<li><%#= link_to "Configurações", '#' %></li>-->
               <li><%= link_to "Sign out",  signout_path, method: "delete" %></li>
             </li>
           <% else %>
+            <%= link_to "Login com Facebook", "/auth/facebook" %>
             <%= form_for(:session, url: sessions_path) do |f| %>
 
               <%= f.text_field :email, placeholder:  User::EMAIL %>

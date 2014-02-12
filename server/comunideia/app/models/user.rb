@@ -15,8 +15,9 @@ class User < ActiveRecord::Base
 
   PASSWORD = "Senha"
   PASSWORD_CONFIRMATION = "#{PASSWORD}: confirmação"
+  PASSWORD_MIN_CHARS = 8
   has_secure_password
-  validates :password, presence: { message: "#{PASSWORD} (senha está em branco, você pode inserir uma senha para sua segurança?)" }, length: { minimum: 6, message: "#{PASSWORD} (senha está curta, a senha precisa ter no mínimo 6 digitos)" }
+  validates :password, presence: { message: "#{PASSWORD} (senha está em branco, você pode inserir uma senha para sua segurança?)" }, length: { minimum: PASSWORD_MIN_CHARS, message: "#{PASSWORD} (senha está curta, a senha precisa ter no mínimo #{PASSWORD_MIN_CHARS} digitos)" }
 
   has_many :ideas, dependent: :destroy
 
@@ -32,6 +33,7 @@ class User < ActiveRecord::Base
   ADDRESS_CELLPHONE = "Celular"
   ADDRESS_PHONE = "Telefone fixo"
   NOTIFICATIONS_AND_UPDATES = "Gostaria de receber notificações e atualizações?"
+  FACEBOOK_ASSOCIATION = "Gostaria de associar sua conta do Facebook com sua conta do Comunidéia?"
   SAVE_STRING = "Salvar"
   ENTER_STRING = "Acessar"
 
@@ -48,6 +50,31 @@ class User < ActiveRecord::Base
 
   def User.encrypt(token)
     Digest::SHA1.hexdigest(token.to_s)
+  end
+
+  def User.user_login(create_params, auth)
+
+    # login with platform user
+    if create_params.has_key?(:session)
+      session_params = create_params[:session]
+      user = User.find_by_email(session_params[:email].downcase)
+      if user && user.authenticate(session_params[:password])
+        return user, ""
+      else
+        return nil, "Combinação e-mail/senha inválida"
+      end
+
+    # login with auth user
+    elsif !auth.blank?
+      user = User.find_by_email(auth.info.email)
+      if user
+        user.facebook_association = true
+      else
+        user = User.new(email: auth.info.email, name:auth.info.name, password: ('a'..'z').to_a.shuffle[0,20].join, facebook_association: true)
+      end
+      return user, ""
+    end
+
   end
 
   private

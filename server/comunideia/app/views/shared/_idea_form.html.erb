@@ -1,3 +1,14 @@
+
+<br><br><br>
+
+<%= form_tag({action: :upload_image, controller: :images_videos}, multipart: true ) do %>
+  <%= file_field_tag 'image' %>
+  <%= submit_tag "Enviar imagem" %> 
+<% end %>
+
+<br><br><br>
+
+
 <%= form_for @idea do |f| %>
   <%= render 'shared/error_messages', object: f.object %>
   <div>

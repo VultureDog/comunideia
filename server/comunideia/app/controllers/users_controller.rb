@@ -16,7 +16,7 @@ class UsersController < ApplicationController
   end
 
   def signup
-    @user = User.new
+    @user = params.has_key?(:user) ? User.new(user_params) : User.new
   end
 
   def settings
@@ -65,7 +65,7 @@ class UsersController < ApplicationController
   private
 
     def user_params
-      params.require(:user).permit(:name, :email, :email_confirmation, :password, :password_confirmation, :cpf, :birth_date, :address, :address_num, :complement, :district, :cep, :city, :region, :phone, :cell_phone, :notifications)
+      params.require(:user).permit(:name, :email, :email_confirmation, :password, :password_confirmation, :cpf, :birth_date, :address, :address_num, :complement, :district, :cep, :city, :region, :phone, :cell_phone, :notifications, :facebook_association)
     end
 
     # Before filters

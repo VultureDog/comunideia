@@ -1,6 +1,12 @@
 <%= form_for(@user) do |f| %>
   <%= render 'shared/error_messages', object: f.object %>
 
+  <% if !@user.facebook_association %>
+    <%= f.check_box :facebook_association, id:"facebook_association_check_box" , onclick:"show_facebook_login_confirmation()" %>
+    <%= f.label User::FACEBOOK_ASSOCIATION %>
+    <br><br>
+  <% end %>
+
   <%= f.label User::NAME %><br>
   <%= f.text_field :name, placeholder: User::NAME %>
   <br><br>
@@ -51,6 +57,6 @@
   <%= f.check_box :notifications %>
   <%= f.label User::NOTIFICATIONS_AND_UPDATES %>
   <br><br>
-
+  
   <%= f.submit User::SAVE_STRING %>
 <% end %>

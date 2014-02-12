@@ -66,6 +66,8 @@ ActiveRecord::Schema.define(version: 20140124192710) do
   create_table "users", force: true do |t|
     t.string   "name"
     t.string   "email"
+    t.string   "password_digest"
+    t.string   "remember_token"
     t.integer  "cpf"
     t.integer  "birth_date"
     t.string   "address"
@@ -78,14 +80,13 @@ ActiveRecord::Schema.define(version: 20140124192710) do
     t.integer  "phone"
     t.integer  "cell_phone"
     t.boolean  "notifications"
+    t.boolean  "admin",                default: false
+    t.boolean  "facebook_association", default: false
     t.datetime "created_at"
     t.datetime "updated_at"
-    t.string   "password_digest"
-    t.string   "remember_token"
-    t.boolean  "admin",           default: false
   end
 
-  add_index "users", ["email"], name: "index_users_on_email", unique: true, using: :btree
-  add_index "users", ["remember_token"], name: "index_users_on_remember_token", using: :btree
+  add_index "users", ["email", "created_at"], name: "index_users_on_email_and_created_at", unique: true, using: :btree
+  add_index "users", ["remember_token", "created_at"], name: "index_users_on_remember_token_and_created_at", using: :btree
 
 end

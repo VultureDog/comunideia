@@ -4,6 +4,9 @@ class CreateUsers < ActiveRecord::Migration
       t.string :name
       t.string :email
 
+      t.string :password_digest
+      t.string :remember_token
+
       t.integer :cpf
       t.integer :birth_date
       t.string :address
@@ -16,8 +19,12 @@ class CreateUsers < ActiveRecord::Migration
       t.integer :phone
       t.integer :cell_phone
       t.boolean :notifications
+      t.boolean :admin, default: false
+      t.boolean :facebook_association, default: false
 
       t.timestamps
     end
+    add_index :users, [:remember_token, :created_at]
+    add_index :users, [:email, :created_at], unique: true
   end
 end
