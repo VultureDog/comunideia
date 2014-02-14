@@ -80,8 +80,9 @@ ActiveRecord::Schema.define(version: 20140124192710) do
     t.integer  "phone"
     t.integer  "cell_phone"
     t.boolean  "notifications"
-    t.boolean  "admin",                default: false
-    t.boolean  "facebook_association", default: false
+    t.boolean  "admin",                   default: false
+    t.boolean  "facebook_association",    default: false
+    t.boolean  "google_plus_association", default: false
     t.datetime "created_at"
     t.datetime "updated_at"
   end

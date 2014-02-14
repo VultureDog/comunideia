@@ -22,7 +22,7 @@ Comunideia::Application.routes.draw do
   match '/upload_image', to: 'images_videos#upload_image', via: 'post'
 
   get '/auth/:provider/callback' => 'sessions#create', as: :auth_callback
-  get '/auth/failure' => 'sessions#failure_facebook_login', as: :auth_failure
+  get '/auth/failure' => 'sessions#failure', as: :auth_failure
 
 
   # The priority is based upon order of creation: first created -> highest priority.

@@ -8,7 +8,11 @@ class SessionsController < ApplicationController
 
     if user
       if signed_in?
-        current_user.update_attribute(:facebook_association, true) unless current_user.facebook_association
+        if auth.provider = "google_oauth2"
+          current_user.update_attribute(:google_plus_association, true) unless current_user.google_plus_association
+        elsif auth.provider = "facebook"
+          current_user.update_attribute(:facebook_association, true) unless current_user.facebook_association
+        end
       else
         sign_in user
       end
@@ -24,7 +28,7 @@ class SessionsController < ApplicationController
     redirect_to root_path
   end
 
-  def failure_facebook_login
+  def failure
     redirect_to root_url
   end
 end

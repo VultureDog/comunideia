@@ -21,6 +21,7 @@ class CreateUsers < ActiveRecord::Migration
       t.boolean :notifications
       t.boolean :admin, default: false
       t.boolean :facebook_association, default: false
+      t.boolean :google_plus_association, default: false
 
       t.timestamps
     end

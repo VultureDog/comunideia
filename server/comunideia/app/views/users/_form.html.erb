@@ -7,6 +7,12 @@
     <br><br>
   <% end %>
 
+  <% if !@user.google_plus_association %>
+    <%= f.check_box :google_plus_association, id:"google_association_check_box" , onclick:"show_google_plus_login_confirmation()" %>
+    <%= f.label User::GOOGLE_PLUS_ASSOCIATION %>
+    <br><br>
+  <% end %>
+
   <%= f.label User::NAME %><br>
   <%= f.text_field :name, placeholder: User::NAME %>
   <br><br>

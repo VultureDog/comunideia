@@ -16,6 +16,7 @@ gem "flickraw", "0.9.7"
 
 gem 'omniauth'
 gem 'omniauth-facebook', '1.4.0'
+gem 'omniauth-google-oauth2'
 
 gem 'execjs'
 gem 'therubyracer'

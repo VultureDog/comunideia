@@ -22,6 +22,13 @@ function show_facebook_login_confirmation() {
   }
 }
 
+function show_google_plus_login_confirmation() {
+  var checked = document.getElementById('google_association_check_box').checked
+  if (checked) {
+    window.location.replace("/auth/google_oauth2");
+  }
+}
+
 function remove_fields(link) {
   //alert($(link).up(".fields"));
   $(link).previous("input[type=hidden]").value = "1";

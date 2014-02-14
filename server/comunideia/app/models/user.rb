@@ -34,6 +34,7 @@ class User < ActiveRecord::Base
   ADDRESS_PHONE = "Telefone fixo"
   NOTIFICATIONS_AND_UPDATES = "Gostaria de receber notificações e atualizações?"
   FACEBOOK_ASSOCIATION = "Gostaria de associar sua conta do Facebook com sua conta do Comunidéia?"
+  GOOGLE_PLUS_ASSOCIATION = "Gostaria de associar sua conta do Google+ com sua conta do Comunidéia?"
   SAVE_STRING = "Salvar"
   ENTER_STRING = "Acessar"
 
@@ -68,9 +69,19 @@ class User < ActiveRecord::Base
     elsif !auth.blank?
       user = User.find_by_email(auth.info.email)
       if user
-        user.facebook_association = true
+        if auth.provider = "google_oauth2"
+          user.google_plus_association = true
+        elsif auth.provider = "facebook"
+          user.facebook_association = true
+        end
       else
-        user = User.new(email: auth.info.email, name:auth.info.name, password: ('a'..'z').to_a.shuffle[0,20].join, facebook_association: true)
+        attribute_association = 
+        if auth.provider = "google_oauth2"
+          attribute_association = :google_plus_association
+        elsif auth.provider = "facebook"
+          attribute_association = :facebook_association
+        end
+        user = User.new(email: auth.info.email, name:auth.info.name, password: ('a'..'z').to_a.shuffle[0,20].join, attribute_association => true)
       end
       return user, ""
     end
