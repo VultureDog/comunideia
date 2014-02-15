@@ -13,8 +13,8 @@ Comunideia::Application.routes.draw do
 
   resources :users
   resources :sessions, only: [:create, :destroy]
-  resources :ideas, only: [:new, :index, :show, :create, :destroy]
-  resources :recompenses, only: [:create, :destroy]
+  resources :ideas
+  resources :recompenses, only: [:create, :edit, :update, :destroy]
   resources :investments, only: [:show, :create]
 
   match '/get_token_oauth', to: 'images_videos#get_token_oauth', via: 'get'

@@ -37,13 +37,13 @@ class Idea < ActiveRecord::Base
   DATE_END = "Data de término"
   validates :date_end, presence: { message: "#{DATE_END} (a data de término nao está definida.)" }
 
-  CREATE_IDEA_STRING = "Criar projeto para a idéia"
+  SAVE_IDEA_STRING = "Salvar projeto para a idéia"
   IDEA_STRING = "idéia"
 
   #validates :recompenses, presence: true
 
   has_many :recompenses, dependent: :destroy
-  accepts_nested_attributes_for :recompenses
+  accepts_nested_attributes_for :recompenses, :allow_destroy => true
 
   def createEmptyRecompense
     

@@ -35,3 +35,8 @@ Criado em <%= @idea.created_at.to_date.day %>/<%= @idea.created_at.to_date.month
 <br><br><br>
 <%= render 'recompenses/show' %>
 <br>
+
+<br><br>
+<% if current_user?(@user) %>
+	<p><%= link_to "Editar", edit_idea_path %></p>
+<% end %>
