@@ -47,7 +47,7 @@ class Idea < ActiveRecord::Base
 
   def createEmptyRecompense
     
-    recompenses.new(title:"Investimento altruísta.", summary:"Quero ver o projeto realizado e não é necessário receber para incentivar!", quantity:-1, financial_value:1, date_delivery:Date.today)
+    recompenses.build(title:"Investimento altruísta.", summary:"Quero ver o projeto realizado e não é necessário receber para incentivar!", quantity:-1, financial_value:1, date_delivery:Date.today)
 
   end
 

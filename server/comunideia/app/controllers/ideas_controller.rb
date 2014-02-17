@@ -9,6 +9,7 @@ class IdeasController < ApplicationController
 
   def new
     @idea = current_user.ideas.new
+    @idea.createEmptyRecompense
     @idea.recompenses.build
   end
 
@@ -23,7 +24,6 @@ class IdeasController < ApplicationController
     @idea.financial_value_sum_accumulated = 0;
     @idea.date_start = @idea.date_start + (Time.now.hour + 1)*3600
     @idea.date_end = @idea.date_end + (Time.now.hour + 1)*3600
-    @idea.createEmptyRecompense
     @feed_items = current_user.feed.paginate(page: params[:page])
 
     if @idea.save
@@ -37,8 +37,14 @@ class IdeasController < ApplicationController
   end
   
   def update
+    @idea.recompenses.clear
+    if !@idea.save
+      flash[:error] = "Ocorreu um erro, favor atualizar projeto novamente."
+    end
+
     if @idea.update_attributes(idea_params)
       flash[:success] = "Dados atualizados."
+      
       redirect_to edit_idea_path(@idea)
     else
       render 'edit'
