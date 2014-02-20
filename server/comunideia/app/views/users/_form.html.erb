@@ -8,7 +8,7 @@
   <% end %>
 
   <% if !@user.google_plus_association %>
-    <%= f.check_box :google_plus_association, id:"google_association_check_box" , onclick:"show_google_plus_login_confirmation()" %>
+    <%= f.check_box :google_plus_association, id:"google_association_check_box", onclick:"show_google_plus_login_confirmation()" %>
     <%= f.label User::GOOGLE_PLUS_ASSOCIATION %>
     <br><br>
   <% end %>
@@ -51,6 +51,8 @@
 
   <%= f.text_field :region, placeholder: User::ADDRESS_STATE %>
   <br><br>
+
+  <%= f.hidden_field :country, value: User::COUNTRY_BRA %>
 
   <%= f.text_field :cep, placeholder: User::ADDRESS_CEP %>
   <br><br>

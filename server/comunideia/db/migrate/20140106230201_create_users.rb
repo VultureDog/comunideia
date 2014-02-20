@@ -16,6 +16,7 @@ class CreateUsers < ActiveRecord::Migration
       t.integer :cep
       t.string :city
       t.string :region
+      t.string :country
       t.integer :phone
       t.integer :cell_phone
       t.boolean :notifications
