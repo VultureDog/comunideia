@@ -30,15 +30,48 @@ class User < ActiveRecord::Base
   ADDRESS_CITY = "Cidade"
   ADDRESS_STATE = "Estado"
   ADDRESS_CEP = "CEP"
-  ADDRESS_CELLPHONE = "Celular"
+  CELLPHONE = "Celular"
   ADDRESS_PHONE = "Telefone fixo"
   NOTIFICATIONS_AND_UPDATES = "Gostaria de receber notificações e atualizações?"
   FACEBOOK_ASSOCIATION = "Gostaria de associar sua conta do Facebook com sua conta do Comunidéia?"
   GOOGLE_PLUS_ASSOCIATION = "Gostaria de associar sua conta do Google+ com sua conta do Comunidéia?"
   SAVE_STRING = "Salvar"
   ENTER_STRING = "Acessar"
+  COUNTRY_BRA = "BRA"
 
+  BRA_STATES_LIST = [
 
+    [User::ADDRESS_STATE+':', ''],
+    ['Acre', 'AC'],
+    ['Alagoas', 'AL'],
+    ['Amapá', 'AP'],
+    ['Amazonas', 'AM'],
+    ['Bahia', 'BA'],
+    ['Ceará', 'CE'],
+    ['Distrito Federal', 'DF'],
+    ['Espírito Santo', 'ES'],
+    ['Goiás', 'GO'],
+
+    ['Maranhão', 'MA'],
+    ['Mato Grosso', 'MT'],
+    ['Mato Grosso do Sul', 'MS'],
+    ['Minas Gerais', 'MG'],
+    ['Pará', 'PA'],
+    ['Paraíba', 'PB'],
+    ['Paraná', 'PR'],
+    ['Pernambuco', 'PE'],
+    ['Piauí', 'PI'],
+
+    ['Rio de Janeiro', 'RJ'],
+    ['Rio Grande do Norte', 'RN'],
+    ['Rio Grande do Sul', 'RS'],
+    ['Rondônia', 'RO'],
+    ['Roraima', 'RR'],
+    ['Santa Catarina', 'SC'],
+    ['São Paulo', 'SP'],
+    ['Sergipe', 'SE'],
+    ['Tocantins', 'TO']
+  ]
 
 
   def feed
@@ -51,6 +84,14 @@ class User < ActiveRecord::Base
 
   def User.encrypt(token)
     Digest::SHA1.hexdigest(token.to_s)
+  end
+
+  def auth_provider_association(auth_provider)
+    if auth_provider = "google_oauth2"
+      self.google_plus_association = true
+    elsif auth.provider = "facebook"
+      self.facebook_association = true
+    end
   end
 
   def User.user_login(create_params, auth)
@@ -68,21 +109,12 @@ class User < ActiveRecord::Base
     # login with auth user
     elsif !auth.blank?
       user = User.find_by_email(auth.info.email)
-      if user
-        if auth.provider = "google_oauth2"
-          user.google_plus_association = true
-        elsif auth.provider = "facebook"
-          user.facebook_association = true
-        end
-      else
-        attribute_association = 
-        if auth.provider = "google_oauth2"
-          attribute_association = :google_plus_association
-        elsif auth.provider = "facebook"
-          attribute_association = :facebook_association
-        end
-        user = User.new(email: auth.info.email, name:auth.info.name, password: ('a'..'z').to_a.shuffle[0,20].join, attribute_association => true)
+      if !user
+        user = User.new(email: auth.info.email, name:auth.info.name, password: ('a'..'z').to_a.shuffle[0,20].join)
       end
+
+      user.auth_provider_association(auth.provider)
+      
       return user, ""
     end
 
