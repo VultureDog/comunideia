@@ -2,6 +2,7 @@
 class UsersController < ApplicationController
   before_action :signed_in_user, only: [:index, :edit, :update, :destroy]
   before_action :correct_user,   only: [:edit, :update]
+  before_action :set_start_step,   only: [:edit, :update]
   before_action :admin_user,     only: [:index]
   before_action :correct_user_for_destroying, only: [:destroy]
 
@@ -16,14 +17,14 @@ class UsersController < ApplicationController
   end
 
   def signup
-    @user = params.has_key?(:user) ? User.new(user_params) : User.new
+    @user = params.has_key?(:user) ? User.new(user_params).start : User.new.start
   end
 
   def settings
   end
 
   def create
-    @user = User.new(user_params)
+    @user = User.new(user_params).start
 
     if @user.save
       sign_in @user
@@ -63,6 +64,10 @@ class UsersController < ApplicationController
   end
 
   private
+
+    def set_start_step
+      @user.start
+    end
 
     def user_params
       params.require(:user).permit(:name, :email, :email_confirmation, :password, :password_confirmation, :cpf, :birth_date, :address, :address_num, :complement, :district, :cep, :city, :region, :phone, :cell_phone, :notifications, :facebook_association)

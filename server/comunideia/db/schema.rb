@@ -77,6 +77,7 @@ ActiveRecord::Schema.define(version: 20140124192710) do
     t.integer  "cep"
     t.string   "city"
     t.string   "region"
+    t.string   "country"
     t.integer  "phone"
     t.integer  "cell_phone"
     t.boolean  "notifications"

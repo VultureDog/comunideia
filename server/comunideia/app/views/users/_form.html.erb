@@ -13,13 +13,7 @@
     <br><br>
   <% end %>
 
-  <%= f.label User::NAME %><br>
-  <%= f.text_field :name, placeholder: User::NAME %>
-  <br><br>
-
-  <%= f.label "#{User::EMAIL}*" %><br>
-  <%= f.text_field :email, placeholder: User::EMAIL %>
-  <br><br>
+  <%= render 'form_essencial', object: f, email_disabled: false %>
 
   <%= f.label "#{User::EMAIL_CONFIRMATION}*" %><br>
   <%= f.text_field :email_confirmation, placeholder: User::EMAIL %>
@@ -33,34 +27,9 @@
   <%= f.password_field :password_confirmation %>
   <br><br><br><br>
 
-  <%= f.text_field :cpf, placeholder: User::CPF %>
-
-  <%= f.text_field :birth_date, placeholder: User::BIRTH_DATE %>
-  <br><br>
-
-  <%= f.text_field :address, placeholder: User::ADDRESS %>
-
-  <%= f.text_field :address_num, placeholder: User::ADDRESS_NUMBER %>
-
-  <%= f.text_field :complement, placeholder: User::ADDRESS_COMPLEMENT %>
-  <br><br>
-
-  <%= f.text_field :district, placeholder: User::ADDRESS_NEIGHBORHOOD %>
-
-  <%= f.text_field :city, placeholder: User::ADDRESS_CITY %>
-
-  <%= f.select :region, options_for_select(User::BRA_STATES_LIST, :selected => f.object.region) %>
-  <br><br>
-
-  <%= f.hidden_field :country, value: User::COUNTRY_BRA %>
-
-  <%= f.text_field :cep, placeholder: User::ADDRESS_CEP %>
-  <br><br>
-
-  <%= f.text_field :cell_phone, placeholder: User::CELLPHONE %>
-
-  <%= f.text_field :phone, placeholder: User::ADDRESS_PHONE %>
-  <br><br>
+  <% if edit %>
+    <%= render 'form_user_data', object: f %>
+  <% end %>
 
   <%= f.check_box :notifications %>
   <%= f.label User::NOTIFICATIONS_AND_UPDATES %>

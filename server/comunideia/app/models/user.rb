@@ -1,27 +1,32 @@
 # encoding: UTF-8
 class User < ActiveRecord::Base
 	
+  include MultiStepModel
+
   NAME = "Nome"
   NAME_MAX_CHARS = 50
-  validates :name,  presence: { message: "#{NAME} (nome está em branco, você pode nos contar qual é seu nome? Ex: João Silva)" }, length: { maximum: NAME_MAX_CHARS, message: "#{NAME} (nome está muito longo, se preciso pode inserir apenas abreviações de sobrenome. Máximo de #{NAME_MAX_CHARS} caracteres)" }
+  validates :name,  presence: { message: "#{NAME} (nome está em branco, você pode nos contar qual é seu nome? Ex: João Silva)" }, length: { maximum: NAME_MAX_CHARS, message: "#{NAME} (nome está muito longo, se preciso pode inserir apenas abreviações de sobrenome. Máximo de #{NAME_MAX_CHARS} caracteres)" }, if: :step1?
   VALID_EMAIL_REGEX = /\A[\w+\-.]+@[a-z\d\-.]+\.[a-z]+\z/i
   EMAIL = "E-mail"
   EMAIL_CONFIRMATION = "#{EMAIL}: confirmação"
   validates :email, presence: { message: "#{EMAIL} (e-mail está em branco, você pode nos contar qual e-mail você usa? Ex: atendimento@vulturedog.com)" }, format: { with: VALID_EMAIL_REGEX, message: "#{EMAIL} (e-mail está em um formato que não consideramos válido. Ex: atendimento@vulturedog.com)" },
-                    uniqueness: { case_sensitive: false, message: "#{EMAIL} (já existe esse e-mail cadastrado, você usa algum outro que poderia cadastrar?)" }, confirmation: { message: "#{EMAIL} (os campos '#{EMAIL}' e '#{EMAIL_CONFIRMATION}' precisam ser exatamente iguais)" }
+                    uniqueness: { case_sensitive: false, message: "#{EMAIL} (já existe esse e-mail cadastrado, você usa algum outro que poderia cadastrar?)" }, confirmation: { message: "#{EMAIL} (os campos '#{EMAIL}' e '#{EMAIL_CONFIRMATION}' precisam ser exatamente iguais)" }, if: :step1?
   
-  before_save { self.email = email.downcase }
   before_create :create_remember_token
 
   PASSWORD = "Senha"
   PASSWORD_CONFIRMATION = "#{PASSWORD}: confirmação"
   PASSWORD_MIN_CHARS = 8
-  has_secure_password
-  validates :password, presence: { message: "#{PASSWORD} (senha está em branco, você pode inserir uma senha para sua segurança?)" }, length: { minimum: PASSWORD_MIN_CHARS, message: "#{PASSWORD} (senha está curta, a senha precisa ter no mínimo #{PASSWORD_MIN_CHARS} digitos)" }
+  if(:step1?)
+    has_secure_password
+  end
+  validates :password, length: { minimum: PASSWORD_MIN_CHARS, message: "#{PASSWORD} (senha está curta, a senha precisa ter no mínimo #{PASSWORD_MIN_CHARS} digitos)" }, if: :step1?
 
   has_many :ideas, dependent: :destroy
 
-  CPF = "CPF"
+  CPF = "CPF"  
+  validates :cpf, presence: { message: "#{CPF} (nome está em branco)" }, if: :step2?
+
   BIRTH_DATE = "Data de nascimento"
   ADDRESS = "Endereço"
   ADDRESS_NUMBER = "número"
@@ -110,7 +115,7 @@ class User < ActiveRecord::Base
     elsif !auth.blank?
       user = User.find_by_email(auth.info.email)
       if !user
-        user = User.new(email: auth.info.email, name:auth.info.name, password: ('a'..'z').to_a.shuffle[0,20].join)
+        user = User.new(email: auth.info.email, name:auth.info.name, password: ('a'..'z').to_a.shuffle[0,20].join).start
       end
 
       user.auth_provider_association(auth.provider)
@@ -120,10 +125,22 @@ class User < ActiveRecord::Base
 
   end
 
+  # start method must be included on models that includes MultiStepModels
+  # start method must be called after new method for steps works
+  def start
+    self.current_step = 0
+    self
+  end
+
   private
 
     def create_remember_token
       self.remember_token = User.encrypt(User.new_remember_token)
+    end
+
+    # total_steps method must be included on models that includes MultiStepModels
+    def total_steps
+      2
     end
 
 end

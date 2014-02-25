@@ -1,0 +1,7 @@
+<%= object.label User::NAME %><br>
+<%= object.text_field :name, placeholder: User::NAME %>
+<br><br>
+
+<%= object.label "#{User::EMAIL}*" %><br>
+<%= object.text_field :email, placeholder: User::EMAIL, disabled: email_disabled %>
+<br><br>

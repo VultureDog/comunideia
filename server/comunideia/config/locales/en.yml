@@ -21,3 +21,14 @@
 
 en:
   hello: "Hello world"
+
+  activerecord:
+    errors:
+      models:
+        user:
+          attributes:
+            password:
+              blank: "Senha: (senha está em branco, você pode inserir uma senha para sua segurança?)"
+            password_confirmation:
+              blank: "Senha: confirmação (confirmação de senha está em branco)"
+              confirmation: "Senha: confirmação (confirmação de senha não corresponde a senha digitada)"

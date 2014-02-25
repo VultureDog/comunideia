@@ -1,0 +1,28 @@
+<%= object.text_field :cpf, placeholder: User::CPF %>
+
+<%= object.text_field :birth_date, placeholder: User::BIRTH_DATE %>
+<br><br>
+
+<%= object.text_field :address, placeholder: User::ADDRESS %>
+
+<%= object.text_field :address_num, placeholder: User::ADDRESS_NUMBER %>
+
+<%= object.text_field :complement, placeholder: User::ADDRESS_COMPLEMENT %>
+<br><br>
+
+<%= object.text_field :district, placeholder: User::ADDRESS_NEIGHBORHOOD %>
+
+<%= object.text_field :city, placeholder: User::ADDRESS_CITY %>
+
+<%= object.select :region, options_for_select(User::BRA_STATES_LIST, :selected => object.object.region) %>
+<br><br>
+
+<%= object.hidden_field :country, value: User::COUNTRY_BRA %>
+
+<%= object.text_field :cep, placeholder: User::ADDRESS_CEP %>
+<br><br>
+
+<%= object.text_field :cell_phone, placeholder: User::CELLPHONE %>
+
+<%= object.text_field :phone, placeholder: User::ADDRESS_PHONE %>
+<br><br>
