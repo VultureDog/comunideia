@@ -4,7 +4,7 @@ class RecompensesController < ApplicationController
 
   def create
     @user = current_user
-    @idea = current_user.ideas.new(idea_params)
+    @idea = current_user.ideas.new(idea_params).start
 
     #@recompenses = @idea.recompenses.new(recompenses_params)
     @feed_items = current_user.feed.paginate(page: params[:page])
@@ -12,9 +12,11 @@ class RecompensesController < ApplicationController
   end
 
   def edit
+
   end
   
   def update
+    
   end
 
   def destroy
@@ -24,7 +26,7 @@ class RecompensesController < ApplicationController
   private
 
     def idea_params
-      params.require(:idea).permit(:name, :summary, :local, :date_start, :date_end, :financial_value, :financial_value_sum_accumulated, :img_card, :video, :img_pg_1, :img_pg_2, :img_pg_3, :img_pg_4, :idea_content, :risks_challenges, :recompenses_attributes => [:title, :summary, :quantity, :financial_value, :date_delivery, :_destroy] )
+      params.require(:idea).permit(:current_step, :name, :status, :summary, :local, :date_start, :date_end, :financial_value, :financial_value_sum_accumulated, :img_card, :video, :img_pg_1, :img_pg_2, :img_pg_3, :img_pg_4, :idea_content, :risks_challenges, :consulting_project, :consulting_creativity, :consulting_financial_structure, :consulting_specific, :recompenses_attributes => [:title, :summary, :quantity, :financial_value, :date_delivery, :_destroy] )
     end
 
 end

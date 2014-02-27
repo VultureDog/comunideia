@@ -12,6 +12,7 @@ class User < ActiveRecord::Base
   validates :email, presence: { message: "#{EMAIL} (e-mail está em branco, você pode nos contar qual e-mail você usa? Ex: atendimento@vulturedog.com)" }, format: { with: VALID_EMAIL_REGEX, message: "#{EMAIL} (e-mail está em um formato que não consideramos válido. Ex: atendimento@vulturedog.com)" },
                     uniqueness: { case_sensitive: false, message: "#{EMAIL} (já existe esse e-mail cadastrado, você usa algum outro que poderia cadastrar?)" }, confirmation: { message: "#{EMAIL} (os campos '#{EMAIL}' e '#{EMAIL_CONFIRMATION}' precisam ser exatamente iguais)" }, if: :step1?
   
+  before_save { self.email = email.downcase }
   before_create :create_remember_token
 
   PASSWORD = "Senha"

@@ -1,30 +1,58 @@
 <h1><%= @idea.name %></h1>
 <p><%= @idea.summary %></p>
 <p><%= link_to "Investir", investment_path %></p>
-<p>Local: <%= @idea.local %></p>
+
+<% if !@idea.local.nil? %>
+	<p>Local: <%= @idea.local %></p>
+<% end %>
 
 <%= render 'ideas/status', :object => @idea %>
 
 <h3><%= @idea.name %></h3>
 <div style="max-width:200px; word-wrap:break-word;"><%= @idea.summary %></div>
 <br>
-Local: <%= @idea.local %>
+
+<% if !@idea.local.nil? %>
+	Local: <%= @idea.local %>
+<% end %>
 <br>
+<% if !@idea.financial_value.nil? %>
+	$ <%= @idea.financial_value %> | $! <%= @idea.financial_value_sum_accumulated %>
+<% end %>
 
-$ <%= @idea.financial_value %> | $! <%= @idea.financial_value_sum_accumulated %>
-<p>Card: <%= link_to @idea.img_card, @idea.img_card %></p>
-<p>Video: <%= link_to @idea.video, @idea.video %></p>
+<% if !@idea.img_card.nil? %>
+	<p>Card: <%= link_to @idea.img_card, @idea.img_card %></p>
+<% end %>
+<% if !@idea.video.nil? %>
+	<p>Video: <%= link_to @idea.video, @idea.video %></p>
+<% end %>
 
-<p><%= raw(youtube_embed(@idea.video)) %></p>
+<% if !@idea.video.nil? %>
+	<p><%= raw(youtube_embed(@idea.video)) %></p>
+<% end %>
 
-<img src=<%=@idea.img_pg_1%>  width="640" height="390"/><br>
+<% if !@idea.img_pg_1.nil? %>
+	<img src=<%=@idea.img_pg_1%>  width="640" height="390"/><br>
+<% end %>
+<% if !@idea.img_pg_1.nil? %>
+	<p>Img_1: <%= link_to @idea.img_pg_1, @idea.img_pg_1 %></p>
+<% end %>
+<% if !@idea.img_pg_2.nil? %>
+	<p>Img_2: <%= link_to @idea.img_pg_2, @idea.img_pg_2 %></p>
+<% end %>
+<% if !@idea.img_pg_3.nil? %>
+	<p>Img_3: <%= link_to @idea.img_pg_3, @idea.img_pg_3 %></p>
+<% end %>
+<% if !@idea.img_pg_4.nil? %>
+	<p>Img_4: <%= link_to @idea.img_pg_4, @idea.img_pg_4 %></p>
+<% end %>
 
-<p>Img_1: <%= link_to @idea.img_pg_1, @idea.img_pg_1 %></p>
-<p>Img_2: <%= link_to @idea.img_pg_2, @idea.img_pg_2 %></p>
-<p>Img_3: <%= link_to @idea.img_pg_3, @idea.img_pg_3 %></p>
-<p>Img_4: <%= link_to @idea.img_pg_4, @idea.img_pg_4 %></p>
-<p>Descrição da idéia: <%= @idea.idea_content %></p>
-<p>Riscos e desafios: <%= @idea.risks_challenges %></p>
+<% if !@idea.idea_content.nil? %>
+	<p>Descrição da idéia: <%= @idea.idea_content %></p>
+<% end %>
+<% if !@idea.risks_challenges.nil? %>
+	<p>Riscos e desafios: <%= @idea.risks_challenges %></p>
+<% end %>
 <!--<p>Data inicial: <%#= @idea.date_start %></p>-->
 <!--<p>Data final: <%#= @idea.date_end %></p>-->
 
@@ -38,5 +66,5 @@ Criado em <%= @idea.created_at.to_date.day %>/<%= @idea.created_at.to_date.month
 
 <br><br>
 <% if current_user?(@user) %>
-	<p><%= link_to "Editar", edit_idea_path %></p>
+	<p><%= link_to "Editar", edit_idea_path(all: 1) %></p>
 <% end %>

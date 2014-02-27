@@ -11,11 +11,11 @@
       <%= f.hidden_field :date_delivery, value: f.object.date_delivery %>
       <br>
     <% else %>
-      <%= f.text_area :title, placeholder: Recompense::TITLE %><br>
-      <%= f.text_area :summary, placeholder: Recompense::SUMMARY %><br>
-      <%= f.text_field :quantity, placeholder: 10 %><br>
-      <%= f.text_field :financial_value, placeholder: 20 %><br>
-      <%= f.date_field :date_delivery, placeholder: Date.today + 40 %>
+      <%= f.text_area :title, value: Recompense::TITLE %><br>
+      <%= f.text_area :summary, value: Recompense::SUMMARY %><br>
+      <%= f.text_field :quantity, value: 10 %><br>
+      <%= f.text_field :financial_value, value: 20 %><br>
+      <%= f.date_field :date_delivery, value: Date.today + 40 %>
 
       <p onclick="decrementRecompenseCounter()"><%= link_to_remove_fields Recompense::RECOMPENSE_REMOVE, f %></p>
 

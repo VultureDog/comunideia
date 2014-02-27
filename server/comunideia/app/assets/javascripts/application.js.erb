@@ -16,17 +16,22 @@
 //= require_tree .
 
 function show_facebook_login_confirmation() {
-  var checked = document.getElementById('facebook_association_check_box').checked
+  var checked = document.getElementById('facebook_association_check_box').checked;
   if (checked) {
     window.location.replace("/auth/facebook");
   }
 }
 
 function show_google_plus_login_confirmation() {
-  var checked = document.getElementById('google_association_check_box').checked
+  var checked = document.getElementById('google_association_check_box').checked;
   if (checked) {
     window.location.replace("/auth/google_oauth2");
   }
+}
+
+function toggle_checkbox_and_element(checkbox, element_to_toggle) {
+  var checked = document.getElementById(checkbox).checked;
+  document.getElementById(element_to_toggle).disabled = !checked;
 }
 
 function remove_fields(link) {

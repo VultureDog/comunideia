@@ -1,0 +1,42 @@
+<%= form_for @idea do |f| %>
+  <%= render 'shared/error_messages', object: f.object %>
+  <div>
+
+  <% unless params[:all] %>
+
+    <%= f.hidden_field :current_step, value: @idea.current_step %>
+
+    <%= render "ideas/idea_steps/page#{@idea.current_step + 1}", f: f %>
+
+    <br><br>
+
+  <% else %>
+
+    <%# all the fields on one page... %>
+    <%= hidden_field_tag :all, 1 %>
+    <%= render "ideas/idea_steps/page1", f: f %>
+    <%= render "ideas/idea_steps/page2", f: f %>
+
+  <% end %>
+
+
+
+  </div>
+  
+  <%= f.submit Idea::SAVE_IDEA_STRING, :id => "save_button" %>
+  <br><br><br><br>
+
+  <% unless @idea.id.blank? %>
+    <script> toggle_checkbox_and_element('terms_of_use', 'save_button'); </script>
+  <% end %>
+
+<% end %>
+
+<br><br>
+
+<%#= form_tag({action: :upload_image, controller: :images_videos}, multipart: true ) do %>
+  <%#= file_field_tag 'image' %>
+  <%#= submit_tag "Enviar imagem" %> 
+<%# end %>
+
+<br>

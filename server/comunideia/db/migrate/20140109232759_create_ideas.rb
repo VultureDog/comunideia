@@ -2,6 +2,7 @@ class CreateIdeas < ActiveRecord::Migration
   def change
     create_table :ideas do |t|
       t.string :name
+      t.integer :status, default: 1
       t.integer :user_id
       t.datetime :date_start
       t.datetime :date_end
@@ -17,6 +18,10 @@ class CreateIdeas < ActiveRecord::Migration
       t.string :img_pg_4
       t.string :idea_content
       t.string :risks_challenges
+      t.boolean :consulting_project, default: false
+      t.boolean :consulting_creativity, default: false
+      t.boolean :consulting_financial_structure, default: false
+      t.string :consulting_specific
 
       t.timestamps
     end

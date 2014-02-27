@@ -1,0 +1,14 @@
+
+<%= f.text_area :name, value: Idea::NAME %><br><br>
+
+<%= f.select :status, options_for_select(Idea::STATUSES.invert, :selected => f.object.status) %>
+<br><br>
+
+<%= f.text_area :idea_content, value: "Compartilhe aqui a descrição da sua idéia brilhante..." %><br>
+
+<%= f.text_area :summary, value: Idea::SUMMARY %><br>
+
+
+<%#= f.text_area :name, placeholder: "Nome da idéia brilhante" %><br>
+<%#= f.text_area :idea_content, placeholder: Idea::IDEA_CONTENT %><br>
+<%#= f.text_area :summary, placeholder: "Resumo" %><br>

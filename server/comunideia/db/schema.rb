@@ -18,6 +18,7 @@ ActiveRecord::Schema.define(version: 20140124192710) do
 
   create_table "ideas", force: true do |t|
     t.string   "name"
+    t.integer  "status",                          default: 1
     t.integer  "user_id"
     t.datetime "date_start"
     t.datetime "date_end"
@@ -33,6 +34,10 @@ ActiveRecord::Schema.define(version: 20140124192710) do
     t.string   "img_pg_4"
     t.string   "idea_content"
     t.string   "risks_challenges"
+    t.boolean  "consulting_project",              default: false
+    t.boolean  "consulting_creativity",           default: false
+    t.boolean  "consulting_financial_structure",  default: false
+    t.string   "consulting_specific"
     t.datetime "created_at"
     t.datetime "updated_at"
   end

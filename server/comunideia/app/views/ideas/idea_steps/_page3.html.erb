@@ -1,0 +1,50 @@
+<%= f.text_field :local, value: Idea::PLACE %><br>
+
+<br><br><br><br>
+<%= f.check_box :consulting_project, checked: false %>
+<%= f.label Idea::CONSULTING_PROJECT_STRING %>
+<br><br>
+
+<%= f.check_box :consulting_creativity, checked: false %>
+<%= f.label Idea::CONSULTING_CREATIVITY_STRING %>
+<br><br>
+
+<%= f.check_box :consulting_financial_structure, checked: false %>
+<%= f.label Idea::CONSULTING_FINANCIAL_STRUCTURE_STRING %>
+<br><br>
+
+<%= f.check_box :consulting_specific_checkbox, checked: false, :id => "consulting_specific_checkbox", :onclick => "toggle_checkbox_and_element('consulting_specific_checkbox', 'consulting_specific_text');" %>
+<%= f.label Idea::CONSULTING_SPECIFIC_STRING %>
+
+<%= f.text_area :consulting_specific, :id => "consulting_specific_text", disabled: true %><br>
+
+<br><br><br><br>
+
+<%= render 'recompenses/edit', :f => f %>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+<%#= f.text_field :local, placeholder: "Local" %><br>
+
+<br><br><br><br>
+<%= f.check_box :terms_of_use, checked: false, :id => "terms_of_use", :onclick => "toggle_checkbox_and_element('terms_of_use', 'save_button');" %>
+<%= f.label "Estou de acordo com os termos de uso" %>
+
+
+
+
+
+
+

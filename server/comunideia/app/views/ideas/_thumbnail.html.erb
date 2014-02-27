@@ -6,25 +6,28 @@
 <h3><%= thumbnail.name %></h3>
 <div style="max-width:200px; word-wrap:break-word;"><%= thumbnail.summary %></div>
 <br>
-Local: <%= thumbnail.local %>
-<br>
-
-R$
-<% if (thumbnail.financial_value_sum_accumulated < thumbnail.financial_value) %>
-	<%= thumbnail.financial_value - thumbnail.financial_value_sum_accumulated %> restante
-<% else %>
-	<%= thumbnail.financial_value_sum_accumulated %> alcançados
+<% if !thumbnail.local.nil? %>
+	Local: <%= thumbnail.local %>
 <% end %>
- (<%= (thumbnail.financial_value_sum_accumulated/thumbnail.financial_value*100).to_i %>%)
 <br>
-R$! <%= thumbnail.financial_value_sum_accumulated %> alcançados de R$ <%= thumbnail.financial_value %> 
 
+<% if !thumbnail.financial_value.nil? %>
+	R$
+	<% if (thumbnail.financial_value_sum_accumulated < thumbnail.financial_value) %>
+		<%= thumbnail.financial_value - thumbnail.financial_value_sum_accumulated %> restante
+	<% else %>
+		<%= thumbnail.financial_value_sum_accumulated %> alcançados
+	<% end %>
+	 (<%= (thumbnail.financial_value_sum_accumulated/thumbnail.financial_value*100).to_i %>%)
+	<br>
+	R$! <%= thumbnail.financial_value_sum_accumulated %> alcançados de R$ <%= thumbnail.financial_value %> 
+<% end %>
 
 <br><br>
   <% if current_user?(thumbnail.user) %>
     <%= link_to "delete", thumbnail, method: :delete,
                                      data: { confirm: "Você tem certeza que deseja apagar essa idéia?" },
-                                     title: thumbnail.idea_content %>
+                                     title: thumbnail.name %>
   <% end %>
 
 
