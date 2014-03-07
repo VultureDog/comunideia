@@ -1,6 +1,6 @@
 <link rel="stylesheet" href="http://code.jquery.com/ui/1.10.4/themes/smoothness/jquery-ui.css">
 
-<%= form_for @investment do |f| %>
+<%= form_for @investment, :url => url_for(:controller => 'investments', :action => 'new') do |f| %>
   <%= render 'shared/error_messages', object: f.object %>
 
 	<%= f.label Investment::INVESTMENT_VALUE_STRING %><br>
@@ -9,7 +9,6 @@
   			:onKeyUp => "updateFinancialValues();"
   		%>
 
-  <%= f.hidden_field :user_id, :value => @investment.user_id %>
   <%= f.hidden_field :recompense_id, :value => @investment.recompense_id, :id => :recompense_id_radio  %>
 
   <%= f.submit Investment::INVEST_STRING %>
@@ -35,11 +34,13 @@
 
 
 <br><br><br>
+<!--
 <a type="text" id="amount_min" style="border:0; color:#000; font-weight:bold;"></a>
 <a type="text" id="amount_mid" style="border:0; color:#000; font-weight:bold;"></a>
 <a type="text" id="amount_max" style="border:0; color:#000; font-weight:bold;"></a>
 
+
 <script>setDefaultValue(<%= @recompenses.first.financial_value.to_i %>);</script>
 <script>setMaxValue(<%= @recompenses.last.financial_value.to_i %>);</script>
 <script>setRecompensesMaxValue(<%= @recompenses.last.financial_value.to_i %>);</script>
- 
+--> 

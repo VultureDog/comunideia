@@ -1,39 +1,45 @@
-<%= form_for(@user) do |f| %>
+<%= form_for(@user, :url => url_for(:controller => controller, :action => action), :method => method) do |f| %>
   <%= render 'shared/error_messages', object: f.object %>
 
-  <% if !@user.facebook_association %>
-    <%= f.check_box :facebook_association, id:"facebook_association_check_box" , onclick:"show_facebook_login_confirmation()" %>
-    <%= f.label User::FACEBOOK_ASSOCIATION %>
-    <br><br>
+  <% if @user.step1? %>
+    <% if !@user.facebook_association %>
+      <%= f.check_box :facebook_association, id:"facebook_association_check_box" , onclick:"show_facebook_login_confirmation()" %>
+      <%= f.label User::FACEBOOK_ASSOCIATION %>
+      <br><br>
+    <% end %>
+
+    <% if !@user.google_plus_association %>
+      <%= f.check_box :google_plus_association, id:"google_association_check_box", onclick:"show_google_plus_login_confirmation()" %>
+      <%= f.label User::GOOGLE_PLUS_ASSOCIATION %>
+      <br><br>
+    <% end %>
   <% end %>
 
-  <% if !@user.google_plus_association %>
-    <%= f.check_box :google_plus_association, id:"google_association_check_box", onclick:"show_google_plus_login_confirmation()" %>
-    <%= f.label User::GOOGLE_PLUS_ASSOCIATION %>
+  <%= render 'users/form_essencial', object: f, email_disabled: !@user.step1? %>
+
+  <% if @user.step1? %>
+    <%= f.label "#{User::EMAIL_CONFIRMATION}*" %><br>
+    <%= f.text_field :email_confirmation, placeholder: User::EMAIL %>
     <br><br>
+
+    <%= f.label "#{User::PASSWORD}*" %><br>
+    <%= f.password_field :password %>
+    <br><br>
+
+    <%= f.label "#{User::PASSWORD_CONFIRMATION}*" %><br>
+    <%= f.password_field :password_confirmation %>
+    <br><br><br><br>
   <% end %>
-
-  <%= render 'form_essencial', object: f, email_disabled: false %>
-
-  <%= f.label "#{User::EMAIL_CONFIRMATION}*" %><br>
-  <%= f.text_field :email_confirmation, placeholder: User::EMAIL %>
-  <br><br>
-
-  <%= f.label "#{User::PASSWORD}*" %><br>
-  <%= f.password_field :password %>
-  <br><br>
-
-  <%= f.label "#{User::PASSWORD_CONFIRMATION}*" %><br>
-  <%= f.password_field :password_confirmation %>
-  <br><br><br><br>
 
   <% if edit %>
-    <%= render 'form_user_data', object: f %>
+    <%= render 'users/form_user_data', object: f %>
   <% end %>
 
-  <%= f.check_box :notifications %>
-  <%= f.label User::NOTIFICATIONS_AND_UPDATES %>
-  <br><br>
+  <% if @user.step1? %>
+    <%= f.check_box :notifications %>
+    <%= f.label User::NOTIFICATIONS_AND_UPDATES %>
+    <br><br>
+  <% end %>
   
   <%= f.submit User::SAVE_STRING %>
 <% end %>

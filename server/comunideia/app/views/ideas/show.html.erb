@@ -1,6 +1,5 @@
 <h1><%= @idea.name %></h1>
 <p><%= @idea.summary %></p>
-<p><%= link_to "Investir", investment_path %></p>
 
 <% if !@idea.local.nil? %>
 	<p>Local: <%= @idea.local %></p>
@@ -61,10 +60,22 @@ Criado em <%= @idea.created_at.to_date.day %>/<%= @idea.created_at.to_date.month
 </span>
 
 <br><br><br>
-<%= render 'recompenses/show' %>
+
+<h1>E ae, curtiu? Então dá uma força! </h1>
+
+<%= render 'investments/investment_fields' %>
+
+<br><br><br>
+<%= render 'recompenses/show_radio' %>
 <br>
 
+<div id='address' hidden=true><%= @tab_address %></div>
+
+<% if !@tab_address.nil? %>
+	<script>open_tab();</script>	
+<% end %>
+
 <br><br>
-<% if current_user?(@user) %>
+<% if current_user?(@idea_user) %>
 	<p><%= link_to "Editar", edit_idea_path(all: 1) %></p>
 <% end %>

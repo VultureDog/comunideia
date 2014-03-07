@@ -15,7 +15,10 @@ Comunideia::Application.routes.draw do
   resources :sessions, only: [:create, :destroy]
   resources :ideas
   resources :recompenses, only: [:create, :edit, :update, :destroy]
-  resources :investments, only: [:show, :create]
+  resources :investments, only: [:create]
+  post '/new' => 'investments#new'
+  
+  get '/investment_first_step' => 'home#home'
 
   match '/get_token_oauth', to: 'images_videos#get_token_oauth', via: 'get'
   match '/callback_token', to: 'images_videos#callback_token', via: 'get'

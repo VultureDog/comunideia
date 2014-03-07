@@ -34,6 +34,11 @@ function toggle_checkbox_and_element(checkbox, element_to_toggle) {
   document.getElementById(element_to_toggle).disabled = !checked;
 }
 
+function open_tab() {
+  var tab_address = document.getElementById('address').innerText;
+  window.open(tab_address);
+}
+
 function remove_fields(link) {
   //alert($(link).up(".fields"));
   $(link).previous("input[type=hidden]").value = "1";

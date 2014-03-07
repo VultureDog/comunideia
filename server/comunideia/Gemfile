@@ -12,8 +12,8 @@ gem 'jquery-rails', '3.0.4'
 gem 'turbolinks', '1.1.1'
 gem 'jbuilder', '1.0.2'
 gem 'pg', '0.15.1'
-gem "flickraw", "0.9.7"
 
+gem "flickraw", "0.9.7"
 gem 'omniauth'
 gem 'omniauth-facebook', '1.4.0'
 gem 'omniauth-google-oauth2'

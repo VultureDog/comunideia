@@ -14,7 +14,15 @@ class IdeasController < ApplicationController
 
   def show
     @idea = Idea.find(params[:id])
-    @user = User.find(@idea.user_id)
+
+    @idea_user = User.find(@idea.user_id)
+
+    @recompenses = @idea.recompenses
+    @fin_value_input = @recompenses.first.financial_value.to_i
+    @investment = Investment.new(recompense_id: @recompenses.first.id)
+    @recompense = @recompenses.first
+
+    @tab_address = params.has_key?(:tab_address) ? params[:tab_address] : nil
   end
 
   def create

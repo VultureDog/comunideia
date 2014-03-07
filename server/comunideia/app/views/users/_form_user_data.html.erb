@@ -1,6 +1,13 @@
 <%= object.text_field :cpf, placeholder: User::CPF %>
 
-<%= object.text_field :birth_date, placeholder: User::BIRTH_DATE %>
+<%= object.label 'Data de nascimento:' %>
+<%= object.select :birthday_day, options_for_select(Idea::DAYS_DIA, :selected => @user.birth_date.nil? ? 0 : @user.birth_date.day) %>
+<%= object.label '/' %>
+<%= object.select :birthday_month, options_for_select(Idea::MONTHS_MES, :selected => @user.birth_date.nil? ? 0 : Idea::MONTHS_MES[@user.birth_date.month]) %>
+<%= object.label '/' %>
+<% current_year = Date.today.strftime('%Y').to_i %>
+<%= object.select :birthday_year, options_for_select(Idea::YEARS_ANO, :selected => @user.birth_date.nil? ? 0 : @user.birth_date.year) %>
+
 <br><br>
 
 <%= object.text_field :address, placeholder: User::ADDRESS %>

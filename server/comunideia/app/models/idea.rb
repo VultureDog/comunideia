@@ -3,6 +3,33 @@ class Idea < ActiveRecord::Base
   
   include MultiStepModel
 
+  DAY = ['Dia:']
+  DAYS = (1..31).to_a
+  DAYS_DIA = DAY + DAYS
+
+  MONTH = [['Mês:', '']]
+  MONTHS = [['01', '01'],
+    ['02', '02'],
+    ['03', '03'],
+    ['04', '04'],
+    ['05', '05'],
+    ['06', '06'],
+    ['07', '07'],
+    ['08', '08'],
+    ['09', '09'],
+    ['10', '10'],
+    ['11', '11'],
+    ['12', '12']
+  ]
+  MONTHS_MES = MONTH + MONTHS
+
+  current_Year = Date.today.strftime('%Y').to_i
+  current_year = Date.today.strftime('%y').to_i
+  YEAR = ['Ano:']
+  YEARS = ((current_Year-120)..current_Year).to_a.reverse
+  YEARS_ANO = YEAR + YEARS
+  YEARS_PLUS_15 = YEAR + (current_year..(current_year+15)).to_a
+  
   MAX_RECOMPENSES = 5
 
   belongs_to :user
