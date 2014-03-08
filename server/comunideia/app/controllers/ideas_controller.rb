@@ -3,6 +3,7 @@ class IdeasController < ApplicationController
   before_action :signed_in_user, only: [:new, :create, :edit, :update, :destroy]
   before_action :correct_user,   only: [:edit, :update, :destroy]
   before_action :set_start_step,   only: [:edit, :update]
+  before_action :_is_financial_idea?,   only: [:edit, :update]
 
   def index
     @ideas = Idea.paginate(page: params[:page])
@@ -18,9 +19,13 @@ class IdeasController < ApplicationController
     @idea_user = User.find(@idea.user_id)
 
     @recompenses = @idea.recompenses
-    @fin_value_input = @recompenses.first.financial_value.to_i
-    @investment = Investment.new(recompense_id: @recompenses.first.id)
-    @recompense = @recompenses.first
+    @is_financial_idea = is_financial_idea?
+      
+    if @is_financial_idea
+      @fin_value_input = @recompenses.first.financial_value.to_i
+      @investment = Investment.new(recompense_id: @recompenses.first.id)
+      @recompense = @recompenses.first
+    end
 
     @tab_address = params.has_key?(:tab_address) ? params[:tab_address] : nil
   end
@@ -32,12 +37,19 @@ class IdeasController < ApplicationController
     
     @feed_items = current_user.feed.paginate(page: params[:page])
 
-    @idea.createEmptyRecompense
+    @is_financial_idea = false
+    if is_financial_idea?
+      @is_financial_idea = is_financial_idea?
+      @idea.createEmptyRecompense
+    end
 
     if @idea.valid_and_set_steps && @idea.save
       @idea.step_forward
+
       recompenses = @idea.recompenses
-      recompenses.build.start
+      if @is_financial_idea
+        recompenses.build.start
+      end
     else
       flash[:error] = "Ocorreu um erro, tente criar novamente."
     end
@@ -49,7 +61,9 @@ class IdeasController < ApplicationController
   end
   
   def update
-    @idea.recompenses.clear
+    if @is_financial_idea
+      @idea.recompenses.clear
+    end
 
     if !@idea.save
       flash[:error] = "Ocorreu um erro, atualize o projeto novamente."
@@ -82,6 +96,14 @@ class IdeasController < ApplicationController
 
     def set_start_step
       @idea.start
+    end
+
+    def _is_financial_idea?
+      @is_financial_idea = is_financial_idea?
+    end
+
+    def is_financial_idea?
+       @idea.status == Idea::COMUNIDEIA_EM_FINANCIAMENTO
     end
 
     def idea_params

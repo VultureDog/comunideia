@@ -61,13 +61,17 @@ Criado em <%= @idea.created_at.to_date.day %>/<%= @idea.created_at.to_date.month
 
 <br><br><br>
 
-<h1>E ae, curtiu? Então dá uma força! </h1>
+<% if @is_financial_idea %>
 
-<%= render 'investments/investment_fields' %>
+	<h1>E ae, curtiu? Então dá uma força! </h1>
 
-<br><br><br>
-<%= render 'recompenses/show_radio' %>
-<br>
+	<%= render 'investments/investment_fields' %>
+
+	<br><br><br>
+	<%= render 'recompenses/show_radio' %>
+	<br>
+
+<% end %>
 
 <div id='address' hidden=true><%= @tab_address %></div>
 

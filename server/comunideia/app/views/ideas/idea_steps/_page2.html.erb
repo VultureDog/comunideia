@@ -18,7 +18,11 @@
 
 <br><br><br><br>
 
-<%= render 'recompenses/edit', :f => f %>
+
+<% if @is_financial_idea %>
+	<%= render 'recompenses/recompense_form', :f => f %>
+<% end %>
+
 
 
 
