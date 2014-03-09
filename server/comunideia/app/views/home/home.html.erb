@@ -1,7 +1,445 @@
-<%# provide(:title, 'Home') %>
-<div>
-  <h1>Comunidéia</h1>
-	<p>Bem => Bem</p>
+<section id="home-carousel" class="home-carousel clearfix">
+    <div class="item ff-droid-sans" id="item-1">
+        <article class="container text-center">
+          <span class="icon-sprite-lamp icon-no-margin"></span>
+          <header>
+              <h2>Compartilhe sua <span class="no-weight">(boa)</span> idéia</h2>
+          </header>
+          <form action="#" class='overflow-form'>
+              <div class="input-group input-group-lg col-md-6 col-md-offset-3 col-xs-12">
+                  <input type="text" class='no-bg-input form-control' placeholder="Começe dando um nome à sua idéia(ex: Projeto Saia do Sofá)">
+              </div><br />
 
-	<%= render 'ideas/thumbnails', :thumbnails => @thumbnails %>
-</div>
+              <div class="col-md-8 col-md-offset-2 col-xs-12">
+                  <button type="submit" class="no-bg-button col-md-offset-2 col-md-4">
+                      <i class="icon-sprite-money"></i>Preciso de dinheiro
+                  </button>
+                  <button type="submit" class="no-bg-button col-md-4">
+                      <i class="icon-sprite-bolt"></i>Preciso de recursos
+                  </button>
+              </div>
+          </form>
+          <br />
+          <p class='banner-desc col-md-8 col-md-offset-2'>
+              Nós do Comunidéia estamos aqui para apoiar e realizar boas idéias.<br />
+              Se você tem uma, <a href="#new">mande para nós</a>, você pode conseguir o dinheiro que precisa, ou o toque que está faltando para a sua idéia  ser valorizada e virar realidade.
+          </p>
+        </article>
+    </div>
+</section>
+<section id="home-projects" class='clearfix home-projects'>
+    <article class="container">
+        <header class='text-left'>
+            <h1><i class="icon-sprite-money-black"></i>aposte nessa ideia</h1>
+            <p class="sub-header">Idéias do bem que precisam de investimento</p>
+        </header>
+        <div class="projects-carousel">
+            <div class="nav row">
+                <div class="project col-md-3 col-sm-3 col-xs-6">
+                    <div class="project-thumb">
+                        <%= image_tag("users-uploads/ideias/ideia-1.png", alt: "nome do projeto", class: 'img-responsive') %>
+                        <div class="project-remaining-time text-left">
+                            <span class="days"><strong>10 dias</strong></span>
+                            <span class="time"><span class="remaining-time">20:18:59</span> restantes</span>
+
+                            <div class="project-location">
+                                <span class="glyphicon glyphicon-map-marker"></span>
+                                <span class='location'><i>São Paulo, SP</i></span>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="project-stats">
+                        <div class="project-completion-bar">
+                            <span class="percent-bar" style="width:90%;"></span>
+                        </div>
+                        <div class="project-stats-status">
+                            <div class="total-current">R$2.7000 restante(32%)</div>
+                            <small class='project-total'>total R$7.300</small><small class='project-current'>R$4.600 alcançado</small>
+                        </div>
+                    </div>
+                    <div class="project-desc">
+                        <header><h1>Projeto Batuque Brasil</h1></header>
+                        <p class="project-desc-inner">
+                            Space, the final frontier. These are the voyages of the Starship Enterprise. Its five-year mission: to explore strange new worlds, new life and civilizations, to boldly go where no man has before.
+                        </p>
+                        <div class="project-bottom">
+                            <div class="share-icons pull-left">
+                                <ul class="list-inline project-share">
+                                    <li>
+                                        <a href="mailto:" class='icon-sprite-mail-small icon-no-margin'></a>
+                                    </li>
+                                    <li>
+                                        <a href="#facebook-share" class='icon-sprite-fb-small icon-no-margin'></a>
+                                    </li>
+                                    <li>
+                                        <a href="#facebook-share" class='icon-sprite-twitter-small icon-no-margin'></a>
+                                    </li>
+                                </ul>
+                            </div>
+                            <div class="see-project pull-right">
+                                <a href="#ver-projeto" class='text-uppercase'>ver projeto</a>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <div class="project col-md-3 col-sm-3 col-xs-6">
+                    <div class="project-thumb">
+                        <%= image_tag("users-uploads/ideias/ideia-2.png", alt: "nome do projeto", class: 'img-responsive') %>
+                        <div class="project-remaining-time text-left">
+                            <span class="days"><strong>10 dias</strong></span>
+                            <span class="time"><span class="remaining-time">20:18:59</span> restantes</span>
+
+                            <div class="project-location">
+                                <span class="glyphicon glyphicon-map-marker"></span>
+                                <span class='location'><i>Curitiba, PR</i></span>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="project-stats">
+                        <div class="project-completion-bar">
+                            <span class="percent-bar" style="width:10%;"></span>
+                        </div>
+                        <div class="project-stats-status">
+                            <div class="total-current">R$2.7000 restante(32%)</div>
+                            <small class='project-total'>total R$7.300</small><small class='project-current'>R$4.600 alcançado</small>
+                        </div>
+                    </div>
+                    <div class="project-desc">
+                        <header><h1>Projeto Batuque Brasil</h1></header>
+                        <p class="project-desc-inner">
+                            Space, the final frontier. These are the voyages of the Starship Enterprise. Its five-year mission: to explore strange new worlds, new life and civilizations, to boldly go where no man has before.
+                        </p>
+                        <div class="project-bottom">
+                            <div class="share-icons pull-left">
+                                <ul class="list-inline project-share">
+                                    <li>
+                                        <a href="mailto:" class='icon-sprite-mail-small icon-no-margin'></a>
+                                    </li>
+                                    <li>
+                                        <a href="#facebook-share" class='icon-sprite-fb-small icon-no-margin'></a>
+                                    </li>
+                                    <li>
+                                        <a href="#facebook-share" class='icon-sprite-twitter-small icon-no-margin'></a>
+                                    </li>
+                                </ul>
+                            </div>
+                            <div class="see-project pull-right">
+                                <a href="#ver-projeto" class='text-uppercase'>ver projeto</a>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <div class="project col-md-3 col-sm-3 col-xs-6">
+                    <div class="project-thumb">
+                        <%= image_tag("users-uploads/ideias/ideia-3.png", alt: "nome do projeto", class: 'img-responsive') %>
+                        <div class="project-remaining-time text-left">
+                            <span class="days"><strong>10 dias</strong></span>
+                            <span class="time"><span class="remaining-time">20:18:59</span> restantes</span>
+
+                            <div class="project-location">
+                                <span class="glyphicon glyphicon-map-marker"></span>
+                                <span class='location'><i>Varginha, MG</i></span>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="project-stats">
+                        <div class="project-completion-bar">
+                            <span class="percent-bar" style="width:50%;"></span>
+                        </div>
+                        <div class="project-stats-status">
+                            <div class="total-current">R$2.7000 restante(32%)</div>
+                            <small class='project-total'>total R$7.300</small><small class='project-current'>R$4.600 alcançado</small>
+                        </div>
+                    </div>
+                    <div class="project-desc">
+                        <header><h1>Projeto Batuque Brasil</h1></header>
+                        <p class="project-desc-inner">
+                            Space, the final frontier. These are the voyages of the Starship Enterprise. Its five-year mission: to explore strange new worlds, new life and civilizations, to boldly go where no man has before.
+                        </p>
+                        <div class="project-bottom">
+                            <div class="share-icons pull-left">
+                                <ul class="list-inline project-share">
+                                    <li>
+                                        <a href="mailto:" class='icon-sprite-mail-small icon-no-margin'></a>
+                                    </li>
+                                    <li>
+                                        <a href="#facebook-share" class='icon-sprite-fb-small icon-no-margin'></a>
+                                    </li>
+                                    <li>
+                                        <a href="#facebook-share" class='icon-sprite-twitter-small icon-no-margin'></a>
+                                    </li>
+                                </ul>
+                            </div>
+                            <div class="see-project pull-right">
+                                <a href="#ver-projeto" class='text-uppercase'>ver projeto</a>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <div class="project col-md-3 col-sm-3 col-xs-6">
+                    <div class="project-thumb">
+                        <%= image_tag("users-uploads/ideias/ideia-4.png", alt: "nome do projeto", class: 'img-responsive') %>
+                        <div class="project-remaining-time text-left">
+                            <span class="days"><strong>10 dias</strong></span>
+                            <span class="time"><span class="remaining-time">20:18:59</span> restantes</span>
+
+                            <div class="project-location">
+                                <span class="glyphicon glyphicon-map-marker"></span>
+                                <span class='location'><i>Rio das Ostras, RJ</i></span>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="project-stats">
+                        <div class="project-completion-bar">
+                            <span class="percent-bar" style="width:60%;"></span>
+                        </div>
+                        <div class="project-stats-status">
+                            <div class="total-current">R$2.7000 restante(32%)</div>
+                            <small class='project-total'>total R$7.300</small><small class='project-current'>R$4.600 alcançado</small>
+                        </div>
+                    </div>
+                    <div class="project-desc">
+                        <header><h1>Projeto Batuque Brasil</h1></header>
+                        <p class="project-desc-inner">
+                            Space, the final frontier. These are the voyages of the Starship Enterprise. Its five-year mission: to explore strange new worlds, new life and civilizations, to boldly go where no man has before.
+                        </p>
+                        <div class="project-bottom">
+                            <div class="share-icons pull-left">
+                                <ul class="list-inline project-share">
+                                    <li>
+                                        <a href="mailto:" class='icon-sprite-mail-small icon-no-margin'></a>
+                                    </li>
+                                    <li>
+                                        <a href="#facebook-share" class='icon-sprite-fb-small icon-no-margin'></a>
+                                    </li>
+                                    <li>
+                                        <a href="#facebook-share" class='icon-sprite-twitter-small icon-no-margin'></a>
+                                    </li>
+                                </ul>
+                            </div>
+                            <div class="see-project pull-right">
+                                <a href="#ver-projeto" class='text-uppercase'>ver projeto</a>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </article>
+</section>
+<section id="home-projects-waiting" class='home-projects-waiting clearfix'>
+    <article class="container">
+        <header class='text-left'>
+            <h1><i class="icon-sprite-bolt-black-circle"></i>comunideia em ação</h1>
+            <p class="sub-header">Idéias geniais que precisam de um empurrãozinho</p>
+        </header>
+        <div class="projects-carousel">
+            <div class="nav row">
+                <div class="project col-md-3 col-sm-3 col-xs-6">
+                    <div class="project-thumb">
+                        <%= image_tag("users-uploads/ideias/ideia-5.png", alt: "nome do projeto", class: 'img-responsive') %>
+                        <div class="project-remaining-time text-left">
+                            <span class="days"><strong>10 dias</strong></span>
+                            <span class="time"><span class="remaining-time">20:18:59</span> restantes</span>
+
+                            <div class="project-location">
+                                <span class="glyphicon glyphicon-map-marker"></span>
+                                <span class='location'><i>São Paulo, SP</i></span>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="project-stats">
+                        <div class="project-tags project-stats-status">
+                            <span class="label label-tag">logotipo</span>
+                            <span class="label label-tag">vídeo</span>
+                            <span class="label label-tag">papelaria</span>
+                            <span class="label label-tag">slogan</span>
+                            <span class="label label-tag">aplicativo</span>
+                            <span class="label label-more">...</span>
+                        </div>
+                    </div>
+                    <div class="project-desc">
+                        <header><h1>Projeto Batuque Brasil</h1></header>
+                        <p class="project-desc-inner">
+                            Space, the final frontier. These are the voyages of the Starship Enterprise. Its five-year mission: to explore strange new worlds, new life and civilizations, to boldly go where no man has before.
+                        </p>
+                        <div class="project-bottom">
+                            <div class="share-icons pull-left">
+                                <ul class="list-inline project-share">
+                                    <li>
+                                        <a href="mailto:" class='icon-sprite-mail-small icon-no-margin'></a>
+                                    </li>
+                                    <li>
+                                        <a href="#facebook-share" class='icon-sprite-fb-small icon-no-margin'></a>
+                                    </li>
+                                    <li>
+                                        <a href="#facebook-share" class='icon-sprite-twitter-small icon-no-margin'></a>
+                                    </li>
+                                </ul>
+                            </div>
+                            <div class="see-project pull-right">
+                                <a href="#ver-projeto" class='text-uppercase'>ver projeto</a>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <div class="project col-md-3 col-sm-3 col-xs-6">
+                    <div class="project-thumb">
+                        <%= image_tag("users-uploads/ideias/ideia-6.png", alt: "nome do projeto", class: 'img-responsive') %>
+                        <div class="project-remaining-time text-left">
+                            <span class="days"><strong>10 dias</strong></span>
+                            <span class="time"><span class="remaining-time">20:18:59</span> restantes</span>
+
+                            <div class="project-location">
+                                <span class="glyphicon glyphicon-map-marker"></span>
+                                <span class='location'><i>Curitiba, PR</i></span>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="project-stats">
+                        <div class="project-tags project-stats-status">
+                            <span class="label label-tag">logotipo</span>
+                            <span class="label label-tag">vídeo</span>
+                            <span class="label label-tag">papelaria</span>
+                            <span class="label label-tag">slogan</span>
+                            <span class="label label-tag">aplicativo</span>
+                            <span class="label label-more">...</span>
+                        </div>
+                    </div>
+                    <div class="project-desc">
+                        <header><h1>Projeto Batuque Brasil</h1></header>
+                        <p class="project-desc-inner">
+                            Space, the final frontier. These are the voyages of the Starship Enterprise. Its five-year mission: to explore strange new worlds, new life and civilizations, to boldly go where no man has before.
+                        </p>
+                        <div class="project-bottom">
+                            <div class="share-icons pull-left">
+                                <ul class="list-inline project-share">
+                                    <li>
+                                        <a href="mailto:" class='icon-sprite-mail-small icon-no-margin'></a>
+                                    </li>
+                                    <li>
+                                        <a href="#facebook-share" class='icon-sprite-fb-small icon-no-margin'></a>
+                                    </li>
+                                    <li>
+                                        <a href="#facebook-share" class='icon-sprite-twitter-small icon-no-margin'></a>
+                                    </li>
+                                </ul>
+                            </div>
+                            <div class="see-project pull-right">
+                                <a href="#ver-projeto" class='text-uppercase'>ver projeto</a>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <div class="project col-md-3 col-sm-3 col-xs-6">
+                    <div class="project-thumb">
+                        <%= image_tag("users-uploads/ideias/ideia-7.png", alt: "nome do projeto", class: 'img-responsive') %>
+                        <div class="project-remaining-time text-left">
+                            <span class="days"><strong>10 dias</strong></span>
+                            <span class="time"><span class="remaining-time">20:18:59</span> restantes</span>
+
+                            <div class="project-location">
+                                <span class="glyphicon glyphicon-map-marker"></span>
+                                <span class='location'><i>Curitiba, PR</i></span>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="project-stats">
+                        <div class="project-tags project-stats-status">
+                            <span class="label label-tag">logotipo</span>
+                            <span class="label label-tag">vídeo</span>
+                            <span class="label label-tag">papelaria</span>
+                            <span class="label label-tag">slogan</span>
+                            <span class="label label-tag">aplicativo</span>
+                            <span class="label label-more">...</span>
+                        </div>
+                    </div>
+                    <div class="project-desc">
+                        <header><h1>Projeto Batuque Brasil</h1></header>
+                        <p class="project-desc-inner">
+                            Space, the final frontier. These are the voyages of the Starship Enterprise. Its five-year mission: to explore strange new worlds, new life and civilizations, to boldly go where no man has before.
+                        </p>
+                        <div class="project-bottom">
+                            <div class="share-icons pull-left">
+                                <ul class="list-inline project-share">
+                                    <li>
+                                        <a href="mailto:" class='icon-sprite-mail-small icon-no-margin'></a>
+                                    </li>
+                                    <li>
+                                        <a href="#facebook-share" class='icon-sprite-fb-small icon-no-margin'></a>
+                                    </li>
+                                    <li>
+                                        <a href="#facebook-share" class='icon-sprite-twitter-small icon-no-margin'></a>
+                                    </li>
+                                </ul>
+                            </div>
+                            <div class="see-project pull-right">
+                                <a href="#ver-projeto" class='text-uppercase'>ver projeto</a>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <div class="project col-md-3 col-sm-3 col-xs-6">
+                    <div class="project-thumb">
+                        <%= image_tag("users-uploads/ideias/ideia-8.png", alt: "nome do projeto", class: 'img-responsive') %>
+                        <div class="project-remaining-time text-left">
+                            <span class="days"><strong>10 dias</strong></span>
+                            <span class="time"><span class="remaining-time">20:18:59</span> restantes</span>
+
+                            <div class="project-location">
+                                <span class="glyphicon glyphicon-map-marker"></span>
+                                <span class='location'><i>Curitiba, PR</i></span>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="project-stats">
+                        <div class="project-tags project-stats-status">
+                            <span class="label label-tag">logotipo</span>
+                            <span class="label label-tag">vídeo</span>
+                            <span class="label label-tag">papelaria</span>
+                            <span class="label label-tag">slogan</span>
+                            <span class="label label-tag">aplicativo</span>
+                            <span class="label label-more">...</span>
+                        </div>
+                    </div>
+                    <div class="project-desc">
+                        <header><h1>Projeto Batuque Brasil</h1></header>
+                        <p class="project-desc-inner">
+                            Space, the final frontier. These are the voyages of the Starship Enterprise. Its five-year mission: to explore strange new worlds, new life and civilizations, to boldly go where no man has before.
+                        </p>
+                        <div class="project-bottom">
+                            <div class="share-icons pull-left">
+                                <ul class="list-inline project-share">
+                                    <li>
+                                        <a href="mailto:" class='icon-sprite-mail-small icon-no-margin'></a>
+                                    </li>
+                                    <li>
+                                        <a href="#facebook-share" class='icon-sprite-fb-small icon-no-margin'></a>
+                                    </li>
+                                    <li>
+                                        <a href="#facebook-share" class='icon-sprite-twitter-small icon-no-margin'></a>
+                                    </li>
+                                </ul>
+                            </div>
+                            <div class="see-project pull-right">
+                                <a href="#ver-projeto" class='text-uppercase'>ver projeto</a>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <footer>
+            <a href="#ver-todos-os-projetos" class="pull-right text-uppercase">Ver todos os projetos</a>
+        </footer>
+    </article>
+</section>
+<section id="home-numbers" class='home-numbers clearfix'>
+    <header><h4 class='text-uppercase text-center'>Nossos números</h4></header>
+    <article class="numbers container">
+        <div class="dreamers"><strong>178</strong> sonhadores</div>
+        <div class="ideais"><strong>56</strong> idéias geniais ativas</div>
+        <div class="dreams"><strong>17</strong> sonhos realizados</div>
+        <div class="total-investment"><small>R$</small><strong>17.987,25</strong> muito bem investidos</div>
+    </article>
+</section>

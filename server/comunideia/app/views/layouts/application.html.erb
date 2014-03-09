@@ -1,26 +1,35 @@
-<!DOCTYPE html>
-<html>
-  <head>
-    <title><%= full_title(yield(:title)) %></title>
-    <%= stylesheet_link_tag "application", media: "all",
-                                           "data-turbolinks-track" => true %>
-    <%= javascript_include_tag "application", "data-turbolinks-track" => true %>
-    <%= javascript_include_tag "https://ajax.googleapis.com/ajax/libs/prototype/1.7.1.0/prototype.js" %>
-    <%#= javascript_include_tag "https://ajax.googleapis.com/ajax/libs/jquery/1.10.2/jquery.min.js" %>
-    <%#= javascript_include_tag "https://ajax.googleapis.com/ajax/libs/jqueryui/1.10.3/jquery-ui.min.js" %>
-    
-    <%= csrf_meta_tags %>
-    <%= render 'layouts/shim' %>
-  </head>
-  <body>
-    <%= render 'layouts/header' %>
-    <div>
-      <% flash.each do |key, value| %>
-        <div><%= value %></div>
-      <% end %>
-      <%= yield %>
-      <%= render 'layouts/footer' %>
-      <%= params if Rails.env.development? %>
+<!doctype html>
+<!--[if lt IE 7]>      <html class="no-js lt-ie9 lt-ie8 lt-ie7"> <![endif]-->
+<!--[if IE 7]>         <html class="no-js lt-ie9 lt-ie8"> <![endif]-->
+<!--[if IE 8]>         <html class="no-js lt-ie9"> <![endif]-->
+<!--[if gt IE 8]><!--> <html class="no-js"> <!--<![endif]-->
+    <head>
+        <meta charset="utf-8">
+        <meta http-equiv="X-UA-Compatible" content="IE=edge">
+        <title><%= full_title(yield(:title)) %></title>
+        <meta name="description" content="">
+        <%= csrf_meta_tags %>
+
+        <link href='http://fonts.googleapis.com/css?family=Source+Sans+Pro:200,300,400,600,700,900,300italic,400italic' rel='stylesheet' type='text/css'>
+        <link href='http://fonts.googleapis.com/css?family=Droid+Serif:400,700,400italic,700italic' rel='stylesheet' type='text/css'>
+
+        <%= stylesheet_link_tag "application", media: "all",
+                                                   "data-turbolinks-track" => true %>
+        <%= javascript_include_tag "application", "data-turbolinks-track" => true %>
+        <%= render 'layouts/shim' %>
+        
+    </head>
+    <body>
+    <!--[if lt IE 10]>
+        <p class="browsehappy">You are using an <strong>outdated</strong> browser. Please <a href="http://browsehappy.com/">upgrade your browser</a> to improve your experience.</p>
+    <![endif]-->
+    <div class="app-base clearfix">
+          <%= render 'layouts/header' %>
+        <div class="app-body">
+            <%= yield %>
+        </div>
+        <%= render 'layouts/footer' %>
+        <%= params if Rails.env.development? %>
     </div>
   </body>
 </html>
