@@ -47,8 +47,7 @@ class Idea < ActiveRecord::Base
 
   STATUSES = {
     COMUNIDEIA_EM_ACAO => 'comunidéia em ação',
-    COMUNIDEIA_EM_FINANCIAMENTO => 'comunidéia em financiamento',
-    PROJECT_FINANCED => 'projeto financiado'
+    COMUNIDEIA_EM_FINANCIAMENTO => 'comunidéia em financiamento'
   }
 
   SUMMARY = "Resumo"

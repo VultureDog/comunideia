@@ -12,6 +12,6 @@ class HomeController < ApplicationController
   def calculate_total_investments
   	total_investments = 0
     Investment.all[0..(Investment.count-1)].each do |f| total_investments += f.financial_value end
-    total_investments
+    total_investments.to_i
   end
 end
