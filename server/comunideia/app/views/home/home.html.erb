@@ -5,7 +5,7 @@
           <header>
               <h2>Compartilhe sua <span class="no-weight">(boa)</span> idéia</h2>
           </header>
-          <form action="#" class='overflow-form'>
+          <form action= <%= new_idea_path %> class='overflow-form'>
               <div class="input-group input-group-lg col-md-6 col-md-offset-3 col-xs-12">
                   <input type="text" class='no-bg-input form-control' placeholder="Começe dando um nome à sua idéia(ex: Projeto Saia do Sofá)">
               </div><br />
@@ -22,7 +22,7 @@
           <br />
           <p class='banner-desc col-md-8 col-md-offset-2'>
               Nós do Comunidéia estamos aqui para apoiar e realizar boas idéias.<br />
-              Se você tem uma, <a href="#new">mande para nós</a>, você pode conseguir o dinheiro que precisa, ou o toque que está faltando para a sua idéia  ser valorizada e virar realidade.
+              Se você tem uma, <a href= <%= new_idea_path %> >mande para nós</a>, você pode conseguir o dinheiro que precisa, ou o toque que está faltando para a sua idéia  ser valorizada e virar realidade.
           </p>
         </article>
     </div>
@@ -430,16 +430,16 @@
             </div>
         </div>
         <footer>
-            <a href="#ver-todos-os-projetos" class="pull-right text-uppercase">Ver todos os projetos</a>
+            <a href= <%= ideas_path %> class="pull-right text-uppercase">Ver todos os projetos</a>
         </footer>
     </article>
 </section>
 <section id="home-numbers" class='home-numbers clearfix'>
     <header><h4 class='text-uppercase text-center'>Nossos números</h4></header>
     <article class="numbers container">
-        <div class="dreamers"><strong>178</strong> sonhadores</div>
-        <div class="ideais"><strong>56</strong> idéias geniais ativas</div>
-        <div class="dreams"><strong>17</strong> sonhos realizados</div>
-        <div class="total-investment"><small>R$</small><strong>17.987,25</strong> muito bem investidos</div>
+        <div class="dreamers"><strong> <%= @user_count %> </strong> sonhadores</div>
+        <div class="ideais"><strong> <%= @ideas_count %> </strong> idéias geniais ativas</div>
+        <div class="dreams"><strong> <%= @dreams %> </strong> sonhos realizados</div>
+        <div class="total-investment"><small>R$</small><strong><%= @total_investments %>,00</strong> muito bem investidos</div>
     </article>
 </section>

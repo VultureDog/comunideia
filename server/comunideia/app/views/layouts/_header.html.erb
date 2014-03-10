@@ -1,3 +1,35 @@
+<nav style="background-color:#284f77;" >
+        <ul>
+          <li><%= link_to "Idéias",    ideas_path %></li>
+          <% if signed_in? %>
+            <li>
+              <li><%= link_to current_user.name, current_user %></li>
+              <% if current_user.admin? %><br>
+                <li><%= link_to "Usuários", users_path %></li>
+                <li><%= link_to "Autorizar Flickr uploads", get_token_oauth_path %></li><br>
+              <% end %>
+              <li><%= link_to "Configurações", edit_user_path(current_user) %></li>
+              <!--<li><%#= link_to "Configurações", '#' %></li>-->
+              <li><%= link_to "Sign out",  signout_path, method: "delete" %></li>
+            </li>
+          <% else %>
+            <%= link_to "Login com Facebook", "/auth/facebook" %><br>
+            <%= link_to "Login com g+", "/auth/google_oauth2" %>
+            <%= form_for(:session, url: sessions_path) do |f| %>
+
+              <%= f.text_field :email, placeholder:  User::EMAIL %>
+
+              <%= f.password_field :password, placeholder: User::PASSWORD %>
+
+              <%= f.submit User::ENTER_STRING %>
+
+  
+              
+            <% end %>
+          <% end %>
+        </ul>
+      </nav>
+
 <% unless flash.empty? %>
   <div class="flash-container">
     <% flash.each do |key, value| %>
@@ -23,7 +55,7 @@
                             <a href="#help" class='text-italic help-text'>Ajuda</a>
                         </li>
                         <li><a href="#login">Login</a></li>
-                        <li><a href="#signup">Cadastro</a></li>
+                        <li><a href= <%= signup_path %> >Cadastro</a></li>
                     </ul>
                 </div>
             </div>
@@ -38,7 +70,7 @@
                 <span class="icon-bar"></span>
                 <span class="icon-bar"></span>
               </button>
-              <a class="navbar-brand logo" href="#">
+              <a class="navbar-brand logo" href= <%= root_path %> >
                   <%= image_tag("common/logo-comunideia.png", alt: "Comunideia - idéias do bem para o bem") %>
               </a>
             </div>
