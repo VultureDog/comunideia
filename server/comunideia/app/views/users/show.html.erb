@@ -16,4 +16,11 @@
     <% end %>
     <%= render 'ideas/feed' %>
   </div>
+  <div>
+    <h2>Histórico</h2>
+      <ul>
+        <%#= render @timeline_activitys %>
+        <%= render partial: 'users/timeline_activity', collection: @timeline_activitys %>
+      </ul>
+  </div>
 </div>
