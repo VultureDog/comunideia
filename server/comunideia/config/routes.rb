@@ -14,6 +14,8 @@ Comunideia::Application.routes.draw do
   resources :users
   resources :sessions, only: [:create, :destroy]
   resources :ideas
+  get '/random_idea' => 'ideas#show'
+
   resources :recompenses, only: [:create, :edit, :update, :destroy]
   resources :investments, only: [:create]
   post '/new' => 'investments#new'

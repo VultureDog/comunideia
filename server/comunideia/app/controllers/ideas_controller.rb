@@ -14,7 +14,8 @@ class IdeasController < ApplicationController
   end
 
   def show
-    @idea = Idea.find(params[:id])
+    idea_id = params.has_key?(:id) ? params[:id] : random_idea_id
+    @idea = Idea.find(idea_id)
 
     @idea_user = User.find(@idea.user_id)
 
@@ -115,5 +116,9 @@ class IdeasController < ApplicationController
   	rescue
   	  redirect_to root_url
   	end
+
+    def random_idea_id
+      Idea.all[0 + Random.rand(Idea.count)].id
+    end
 
 end
