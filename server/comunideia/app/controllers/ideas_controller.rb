@@ -10,7 +10,7 @@ class IdeasController < ApplicationController
   end
 
   def new
-    @idea = current_user.ideas.new.start
+    @idea = params.has_key?(:idea) ? current_user.ideas.new(idea_params).start : current_user.ideas.new.start
   end
 
   def show

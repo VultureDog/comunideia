@@ -7,14 +7,14 @@
           </header>
           <form action= <%= new_idea_path %> class='overflow-form'>
               <div class="input-group input-group-lg col-md-6 col-md-offset-3 col-xs-12">
-                  <input type="text" class='no-bg-input form-control' placeholder="Começe dando um nome à sua idéia(ex: Projeto Saia do Sofá)">
+                  <input type="text" class='no-bg-input form-control' placeholder="Começe dando um nome à sua idéia(ex: Projeto Saia do Sofá)" name="idea[name]" >
               </div><br />
 
               <div class="col-md-8 col-md-offset-2 col-xs-12">
-                  <button type="submit" class="no-bg-button col-md-offset-2 col-md-4">
+                  <button type="submit" class="no-bg-button col-md-offset-2 col-md-4" name="idea[status]" value= <%= Idea::COMUNIDEIA_EM_FINANCIAMENTO %> >
                       <i class="icon-sprite-money"></i>Preciso de dinheiro
                   </button>
-                  <button type="submit" class="no-bg-button col-md-4">
+                  <button type="submit" class="no-bg-button col-md-4" name="idea[status]" value= <%= Idea::COMUNIDEIA_EM_ACAO %> >
                       <i class="icon-sprite-bolt"></i>Preciso de recursos
                   </button>
               </div>
