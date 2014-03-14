@@ -26,6 +26,9 @@ class IdeasController < ApplicationController
       @fin_value_input = @recompenses.first.financial_value.to_i
       @investment = Investment.new(recompense_id: @recompenses.first.id)
       @recompense = @recompenses.first
+
+      # chamar comunidea_investors apenas pra renderizar a aba de investidores
+      # @idea_investors = comunidea_investors
     end
 
     @tab_address = params.has_key?(:tab_address) ? params[:tab_address] : nil
@@ -72,12 +75,13 @@ class IdeasController < ApplicationController
 
     @idea.current_step = idea_params[:current_step].to_i
 
-    #paramenters = idea_params
-    #paramenters[:date_start] = paramenters.has_key?(:date_start) ? nil : (paramenters[:date_start] + (Time.now.hour + 1)*3600)
-    #paramenters[:date_end] = paramenters.has_key?(:date_end) ? nil : (paramenters[:date_end] + (Time.now.hour + 1)*3600)
+    parameters = idea_params
+    parameters[:date_start] = parameters.has_key?(:date_start) ? DateTime.parse(parameters[:date_start]) + (Time.now.hour + 1).hour : nil
+    parameters[:date_end] = parameters.has_key?(:date_end) ? DateTime.parse(parameters[:date_end]) + (Time.now.hour + 1).hour : nil
 
-    if @idea.update_attributes(idea_params)
+    if @idea.update_attributes(parameters)
       flash[:success] = "Dados atualizados."
+
       if (@idea.current_step.to_i == 1) || (@idea.current_step.to_i == 2)
         redirect_to idea_path(@idea)
       else
@@ -119,6 +123,12 @@ class IdeasController < ApplicationController
 
     def random_idea_id
       Idea.all[0 + Random.rand(Idea.count)].id
+    end
+
+    def comunidea_investors
+      recompenses_ids = Idea.find(@idea).recompenses.map(&:id)
+      investments_ids = Investment.where(recompense_id: recompenses_ids).map(&:user_id).uniq
+      User.where(id: investments_ids)
     end
 
 end

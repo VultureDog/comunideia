@@ -11,7 +11,9 @@ class HomeController < ApplicationController
 
   def calculate_total_investments
   	total_investments = 0
-    Investment.all[0..(Investment.count-1)].each do |f| total_investments += f.financial_value end
+    Idea.find(:all, :conditions => ["status = ?", Idea::PROJECT_FINANCED]).each do |financed_idea|
+        total_investments += financed_idea.financial_value_sum_accumulated
+      end
     total_investments.to_i
   end
 end
