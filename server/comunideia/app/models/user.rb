@@ -30,7 +30,8 @@ class User < ActiveRecord::Base
   has_many :ideas, dependent: :destroy
 
   CPF = "CPF"  
-  validates :cpf, presence: { message: "#{CPF} (CPF está em branco)" }, if: :valid_CPF?
+  validates :cpf, presence: { message: "#{CPF} (CPF está em branco)" }, if: :step2?
+  validate :valid_CPF
 
   ADDRESS = "Endereço"
   validates :address, presence: { message: "#{ADDRESS} (endereço está em branco)" }, if: :step2?
@@ -192,8 +193,10 @@ class User < ActiveRecord::Base
       self.step1? || self.step2?
     end
 
-    def valid_CPF?
-      self.step2? && check_cpf(self.cpf)
+    def valid_CPF
+      if !self.cpf.blank? && !User.check_cpf(self.cpf.to_s)
+        errors.add(:cpf, "#{CPF} (O CPF digitado não é válido)")
+      end
     end
     
 end

@@ -7,7 +7,7 @@ class CreateUsers < ActiveRecord::Migration
       t.string :password_digest
       t.string :remember_token
 
-      t.integer :cpf, :limit => 8
+      t.string :cpf, :limit => 8
       t.date :birth_date
       t.string :address
       t.integer :address_num
