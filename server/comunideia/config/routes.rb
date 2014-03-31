@@ -22,9 +22,9 @@ Comunideia::Application.routes.draw do
   
   get '/investment_first_step' => 'home#home'
 
-  match '/get_token_oauth', to: 'images_videos#get_token_oauth', via: 'get'
-  match '/callback_token', to: 'images_videos#callback_token', via: 'get'
-  match '/upload_image', to: 'images_videos#upload_image', via: 'post'
+  match '/get_token_oauth', to: 'images#get_token_oauth', via: 'get'
+  match '/callback_token', to: 'images#callback_token', via: 'get'
+  match '/upload_image', to: 'images#upload_image', via: 'post'
 
   get '/auth/:provider/callback' => 'sessions#create', as: :auth_callback
   get '/auth/failure' => 'sessions#failure', as: :auth_failure

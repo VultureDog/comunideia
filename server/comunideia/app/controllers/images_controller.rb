@@ -1,8 +1,8 @@
 # encoding: UTF-8
-class ImagesVideosController < ApplicationController
+class ImagesController < ApplicationController
 
-API_KEY=''
-SHARED_SECRET=''
+FLICKER_API_KEY=''
+FLICKER_SHARED_SECRET=''
 
 FlickRaw.api_key=API_KEY
 FlickRaw.shared_secret=SHARED_SECRET
