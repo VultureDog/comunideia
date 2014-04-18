@@ -26,6 +26,9 @@ gem 'omniauth-google-oauth2'
 gem 'execjs'
 gem 'therubyracer'
 
+gem 'youtube_it'
+gem 'inherited_resources'
+
 group :doc do
   gem 'sdoc', '0.3.20', require: false
 end

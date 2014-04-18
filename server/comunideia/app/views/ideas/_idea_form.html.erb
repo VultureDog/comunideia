@@ -34,9 +34,31 @@
 
 <br><br>
 
+
+
+
+
+
 <%#= form_tag({action: :upload_image, controller: :images}, multipart: true ) do %>
   <%#= file_field_tag 'image' %>
   <%#= submit_tag "Enviar imagem" %> 
 <%# end %>
+
+
+
+
+      <%= form_tag @upload_info[:url], :multipart => true do %>
+        <%= hidden_field_tag :token, @upload_info[:token] %>
+        <%= label_tag :file %>
+        <%= file_field_tag :file %>
+        <%= submit_tag "Upload video" %>
+      <% end %>
+
+
+
+
+
+
+
 
 <br>

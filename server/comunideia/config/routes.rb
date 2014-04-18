@@ -29,6 +29,11 @@ Comunideia::Application.routes.draw do
   get '/auth/:provider/callback' => 'sessions#create', as: :auth_callback
   get '/auth/failure' => 'sessions#failure', as: :auth_failure
 
+  resources :videos do
+    new do
+       get  :save_video
+     end
+  end
 
   # The priority is based upon order of creation: first created -> highest priority.
   # See how all your routes lay out with "rake routes".
