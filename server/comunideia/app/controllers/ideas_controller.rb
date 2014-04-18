@@ -13,15 +13,15 @@ class IdeasController < ApplicationController
     @idea = params.has_key?(:idea) ? current_user.ideas.new(idea_params).start : current_user.ideas.new.start
 
 
-    video_params = {title: 'titulo_vid', description: 'desc.'}
-
-    @video = Video.create(video_params)
-    if @video
-      @upload_info = Video.token_form(video_params, save_video_new_video_url(:video_id => @video.id))
-    else
-      respond_to do |format|
-        format.html { render "/ideas/new" }
-      end
+#    video_params = {title: 'titulo_vid', description: 'desc.'}
+#
+#    @video = Video.create(video_params)
+#    if @video
+#      @upload_info = Video.token_form(video_params, #save_video_new_video_url(:video_id => @video.id))
+#    else
+#      respond_to do |format|
+#        format.html { render "/ideas/new" }
+#      end
     end
 
   end
