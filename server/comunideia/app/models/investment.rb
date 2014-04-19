@@ -18,9 +18,12 @@ class Investment < ActiveRecord::Base
   FINANCIAL_VALUE = "Valor financeiro"
   validates :financial_value, presence: { message: "#{FINANCIAL_VALUE} (valor financeiro está em branco.)" }
 
+  INVESTMENT_UNDERSCORE = "_"
   INVESTMENT_VALUE_STRING = "Qual é o valor do seu investimento?"
   INVEST_STRING = "Investir"
   INVESTMENT_STRING = "investimento"
   INVESTMENT_en_STRING = "investiment"
+  INVESTMENT_PENDING = 0
+  INVESTMENT_NOT_PENDING = 10
 
 end

@@ -22,7 +22,7 @@ class IdeasController < ApplicationController
 #      respond_to do |format|
 #        format.html { render "/ideas/new" }
 #      end
-    end
+#    end
 
   end
 
