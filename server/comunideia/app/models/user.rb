@@ -12,9 +12,8 @@ class User < ActiveRecord::Base
   validates :name,  presence: { message: "#{NAME} (nome está em branco, você pode nos contar qual é seu nome? Ex: João Silva)" }, length: { maximum: NAME_MAX_CHARS, message: "#{NAME} (nome está muito longo, se preciso pode inserir apenas abreviações de sobrenome. Máximo de #{NAME_MAX_CHARS} caracteres)" }, if: :valid_steps_1_2?
   VALID_EMAIL_REGEX = /\A[\w+\-.]+@[a-z\d\-.]+\.[a-z]+\z/i
   EMAIL = "E-mail"
-  EMAIL_CONFIRMATION = "#{EMAIL}: confirmação"
   validates :email, presence: { message: "#{EMAIL} (e-mail está em branco, você pode nos contar qual e-mail você usa? Ex: atendimento@vulturedog.com)" }, format: { with: VALID_EMAIL_REGEX, message: "#{EMAIL} (e-mail está em um formato que não consideramos válido. Ex: atendimento@vulturedog.com)" },
-                    uniqueness: { case_sensitive: false, message: "#{EMAIL} (já existe esse e-mail cadastrado, você usa algum outro que poderia cadastrar?)" }, confirmation: { message: "#{EMAIL} (os campos '#{EMAIL}' e '#{EMAIL_CONFIRMATION}' precisam ser exatamente iguais)" }, if: :step1?
+                    uniqueness: { case_sensitive: false, message: "#{EMAIL} (já existe esse e-mail cadastrado, você usa algum outro que poderia cadastrar?)" }, if: :step1?
   
   before_save { self.email = email.downcase }
   before_create :create_remember_token
@@ -59,9 +58,10 @@ class User < ActiveRecord::Base
   BIRTH_DATE = "Data de nascimento"
   ADDRESS_COMPLEMENT = "complemento"
   CELLPHONE = "Celular"
-  NOTIFICATIONS_AND_UPDATES = "Gostaria de receber notificações e atualizações?"
+  NOTIFICATIONS_AND_UPDATES = "Quero receber novidades via email"
   FACEBOOK_ASSOCIATION = "Gostaria de associar sua conta do Facebook com sua conta do Comunidéia?"
   GOOGLE_PLUS_ASSOCIATION = "Gostaria de associar sua conta do Google+ com sua conta do Comunidéia?"
+  SIGNUP_STRING = "Cadastrar"
   SAVE_STRING = "Salvar"
   ENTER_STRING = "Acessar"
   UPDATED_DATA = "Dados atualizados."

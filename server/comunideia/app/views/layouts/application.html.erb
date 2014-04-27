@@ -4,6 +4,8 @@
     <title><%= full_title(yield(:title)) %></title>
     <%= stylesheet_link_tag "application", media: "all",
                                            "data-turbolinks-track" => true %>
+    <%= stylesheet_link_tag "normalize" %>
+    <%= stylesheet_link_tag "style" %>
     <%= javascript_include_tag "application", "data-turbolinks-track" => true %>
     <%= javascript_include_tag "https://ajax.googleapis.com/ajax/libs/prototype/1.7.1.0/prototype.js" %>
     <%#= javascript_include_tag "https://ajax.googleapis.com/ajax/libs/jquery/1.10.2/jquery.min.js" %>
@@ -20,7 +22,12 @@
       <% end %>
       <%= yield %>
       <%= render 'layouts/footer' %>
+      <%= render 'layouts/modal' %>
       <%= params if Rails.env.development? %>
     </div>
+
+    <%= javascript_include_tag "angular.min" %>
+    <script src="//ajax.googleapis.com/ajax/libs/jquery/1.11.0/jquery.min.js"></script>
+    <%= javascript_include_tag "main" %>
   </body>
 </html>

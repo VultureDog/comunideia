@@ -1,7 +1,65 @@
-<%# provide(:title, 'Home') %>
-<div>
-  <h1>Comunidéia</h1>
-	<p>Bem => Bem</p>
+<% provide(:title, 'Home') %>
 
-	<%= render 'ideas/thumbnails', :thumbnails => @thumbnails %>
-</div>
+    <section id="body">
+      <section id="home-carrousel" class="carrousel-container">
+        <article class="carrousel-item">
+          <header class="header wrapper">
+	          <form action= <%= new_idea_path %>>
+	            <span class="icon i-lamp"></span>
+	            <h2 class="title">Compartilhe sua <span class="no-weight">(boa)</span> ideia</h2>
+	            <div class="blend-box">
+	              <input type="text" id="home-idea-input" placeholder="Começe dando um nome à sua ideia(ex: Projeto Saia do Sofá)" name="idea[name]">
+	            </div>
+	            <div>
+	              <button type="submit" class="btn btn-wire" name="idea[status]" value= <%= Idea::COMUNIDEIA_EM_FINANCIAMENTO %> ><span class="icon i-money"></span><span>Preciso de Dinheiro</span></button>
+	              <button type="submit" class="btn btn-wire" value= <%= Idea::COMUNIDEIA_EM_ACAO %> ><span class="icon i-tbolt"></span><span>Preciso de uma Ajuda</span></button>
+	            </div>
+	          </form>
+          </header>
+          <div class="body wrapper">
+            <p class="text">
+              Nós do Comunideia estamos aqui para apoiar e realizar boas ideias.<br>
+              Se você tem uma, mande para nós, você pode conseguir o dinheiro que precisa, ou o<br>
+              toque que está faltando para a sua ideia ser valorizada e virar realidade.
+            </p>
+          </div>
+        </article>
+            <!--TODO
+        <div class="carrousel-paginator">
+          <ul class="list-unstyled">
+            <li class="page-item"></li>
+            <li class="page-item current"></li>
+            <li class="page-item"></li>
+            <li class="page-item"></li>
+          </ul>
+        </div>
+        -->
+      </section>
+      
+	<%= render 'ideas/thumbnails',
+		:thumbnails_id => "home-project-invest-index",
+		:thumbnails_class => "project-index project-invest-index bg-gray",
+		:thumbnails_icon => "icon i-money-black",
+		:thumbnails_title => "aposte nessa ideia",
+		:thumbnails_subtitle => "Ideias do bem que precisam de investimento",
+		:thumbnails => @ideas_COMUNIDEIA_EM_FINANCIAMENTO,
+		:thumbnails_type => Idea::COMUNIDEIA_EM_FINANCIAMENTO %>
+
+	<%= render 'ideas/thumbnails',
+		:thumbnails_id => "",
+		:thumbnails_class => "project-index project-help-index bg-white",
+		:thumbnails_icon => "icon i-tbolt-black",
+		:thumbnails_title => "comunideia em ação",
+		:thumbnails_subtitle => "Ideias geniais que precisam de um empurrãozinho",
+		:thumbnails => @ideas_COMUNIDEIA_EM_ACAO,
+		:thumbnails_type => Idea::COMUNIDEIA_EM_ACAO %>
+      
+    <section id="home-statistics">
+      <div class="wrapper">
+        <h2 class="title">NOSSOS NÚMEROS</h2>
+        <p class="indicator"><span class="number bold"> <%= @user_count %></span> sonhadores</p>
+        <p class="indicator"><span class="number bold"> <%= @ideas_count %></span> ideias geniais ativas</p>
+        <p class="indicator"><span class="number bold"> <%= @dreams %></span> sonhos realizados</p>
+        <p class="indicator"><span class="sub">R$ </span><span class="number bold"> <%= @total_investments %>,00</span> muito bem investidos</p>
+      </div>
+    </section>

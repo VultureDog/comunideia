@@ -14,6 +14,8 @@ class UsersController < ApplicationController
     @user = User.find(params[:id])
     #@feed_items = @user.feed.paginate(page: params[:page])
     @thumbnails = @user.feed
+ 
+    @timeline_activitys = timeline_activities(@user)
   end
 
   def signup
@@ -77,7 +79,7 @@ class UsersController < ApplicationController
     end
 
     def user_params
-      params.require(:user).permit(:name, :email, :email_confirmation, :password, :password_confirmation, :cpf, :birthday_day, :birthday_month, :birthday_year, :address, :address_num, :complement, :district, :cep, :city, :region, :country, :phone, :cell_phone, :notifications, :facebook_association)
+      params.require(:user).permit(:name, :email, :password, :password_confirmation, :cpf, :birthday_day, :birthday_month, :birthday_year, :address, :address_num, :complement, :district, :cep, :city, :region, :country, :phone, :cell_phone, :notifications, :facebook_association)
     end
 
     # Before filters
@@ -89,6 +91,13 @@ class UsersController < ApplicationController
 
     def admin_user
       redirect_to(root_url) unless current_user.admin?
+    end
+
+    def timeline_activities(user)
+      timeline_activitys_investment = Investment.where("user_id = ?", user.id)
+      timeline_activitys_idea = Idea.where("user_id = ?", user.id)
+      timeline_activitys_asc = timeline_activitys_investment + timeline_activitys_idea
+      timeline_activitys = (timeline_activitys_asc.sort_by &:updated_at).reverse
     end
 
 end

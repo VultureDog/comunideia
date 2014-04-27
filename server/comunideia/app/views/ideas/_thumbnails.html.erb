@@ -1,12 +1,64 @@
-<% provide(:title, 'Miniaturas') %>
-<h1>Miniaturas</h1>
+<%# provide(:title, 'Miniaturas') %>
 
-<div>
-<% if @thumbnails.any? %>
-  <% for thumbnail in @thumbnails %>
-    	<%= render 'ideas/thumbnail', :thumbnail => thumbnail %>
-  <% end %>
-  </ol>
+<section
+<% if !thumbnails_id.blank? %>
+  id= <%= thumbnails_id %>
+
+  class="project-index project-invest-index bg-gray"
+<% else %>
+  class="project-index project-help-index bg-white"
 <% end %>
+>
+<!--TODO ... -->
+<%# end %>
+<!--class= <%= thumbnails_class %>-->
+
+
+<header class="header wrapper">
+  <h2 class="title">
+    <% if thumbnails_type == Idea::COMUNIDEIA_EM_FINANCIAMENTO %>
+      <span class= "icon i-money-black" ></span>
+    <% else %>
+      <span class= "icon i-tbolt-black" ></span>
+    <% end %>
+        <%= thumbnails_title %>
+      </h2-->
+    <!--TODO
+    <span class= <%= thumbnails_icon %> ></span>
+      <%= thumbnails_title %>
+    </h2-->
+  <p class="subtitle"><%= thumbnails_subtitle %></p>
+</header>
+
+<div class="body wrapper">
+  <div class="container">
+
+
+  <% if thumbnails.any? %>
+    <%# thumbnail = @ideas_COMUNIDEIA_EM_ACAO.first %>
+    <%# for i in 0 ... 4 %>
+    <% for thumbnail in thumbnails %>
+        <%= render 'ideas/thumbnail', :thumbnail => thumbnail %>
+    <% end %>
+    </ol>
+  <% end %>
+    
+  </div>
+  <!--TODO ver projetos relativos ao thumbnails_type -->
+  <a href="/ideas" class="see-all-projects">VER TODOS OS PROJETOS</a>
+
+  <% if thumbnails_type == Idea::COMUNIDEIA_EM_ACAO %>
+<!--TODO
+    <div id="pj-help-social-button-box" class="social-button-box">
+        <a href="#" class="social-button icon facebook-button"></a>
+        <a href="#" class="social-button icon gplus-button"></a>
+        <a href="#" class="social-button icon youtube-button"></a>
+        <a href="#" class="social-button icon twitter-button"></a>
+    </div-->
+  <% end %>
+
 </div>
-<br><br>
+</section>
+
+
+

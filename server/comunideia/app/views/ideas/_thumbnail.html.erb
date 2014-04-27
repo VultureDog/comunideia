@@ -1,35 +1,59 @@
-<a href= <%= url_for :controller => :ideas, :action => :show, :id=> thumbnail.id %> ><img src=<%=thumbnail.img_card%> width="200" height="300"/></a>
+<article class="project-item">
+  <header class="header">
+    <a href= <%= url_for :controller => :ideas, :action => :show, :id=> thumbnail.id %> >
+      <img src=<%=thumbnail.img_card%> alt=<%= thumbnail.name %> class="thumb" width="220" height="280">
+    </a>
+    <div class="project-data">
 
-<br>
-<%= render 'ideas/status', :object => thumbnail %>
+      <% if thumbnail.check_status(thumbnail.status , Idea::COMUNIDEIA_EM_FINANCIAMENTO) %>
+        <p class="info time-info">
+          <%= render 'ideas/status', :object => thumbnail %>
+        </p>
+      <% end %>
 
-<h3><%= thumbnail.name %></h3>
-<div style="max-width:200px; word-wrap:break-word;"><%= thumbnail.summary %></div>
-<br>
-<% if !thumbnail.local.nil? %>
-	Local: <%= thumbnail.local %>
-<% end %>
-<br>
+      <% if !thumbnail.local.nil? %>
+        <p class="info location-info"><span class="icon i-location"></span><%= thumbnail.local %></p>
+      <% end %>
 
-<% if !thumbnail.financial_value.nil? %>
-	R$
-	<% if (thumbnail.financial_value_sum_accumulated < thumbnail.financial_value) %>
-		<%= thumbnail.financial_value - thumbnail.financial_value_sum_accumulated %> restante
-	<% else %>
-		<%= thumbnail.financial_value_sum_accumulated %> alcançados
-	<% end %>
-	 (<%= (thumbnail.financial_value_sum_accumulated/thumbnail.financial_value*100).to_i %>%)
-	<br>
-	R$! <%= thumbnail.financial_value_sum_accumulated %> alcançados de R$ <%= thumbnail.financial_value %> 
-<% end %>
+      <% if thumbnail.check_status(thumbnail.status , Idea::COMUNIDEIA_EM_FINANCIAMENTO) %>
 
-<br><br>
-  <% if current_user?(thumbnail.user) %>
-    <%= link_to "delete", thumbnail, method: :delete,
-                                     data: { confirm: "Você tem certeza que deseja apagar essa idéia?" },
-                                     title: thumbnail.name %>
-  <% end %>
+        <% if !thumbnail.financial_value.nil? %>
+          <div class="investment-metter"><div class="progress-bar"></div></div>
+          <p class="info investment-info">
+            <span class="bold">R$<%= thumbnail.financial_value - thumbnail.financial_value_sum_accumulated %></span>&nbsp;restante (<%= (thumbnail.financial_value_sum_accumulated/thumbnail.financial_value*100).to_i %>%)<br>
+            <span class="total left">total R$<%= thumbnail.financial_value %></span>
+            <span class="achieved right">R$<%= thumbnail.financial_value_sum_accumulated %> alcançado</span>
+          </p>
+        <% end %>
+
+      <% elsif thumbnail.check_status(thumbnail.status , Idea::COMUNIDEIA_EM_ACAO) %>
+
+<!--TODO
+        <p class="info request-info">
+          <span class="tag">logotipo</span>
+          <span class="tag">vídeo</span>
+          <span class="tag">papelaria</span>
+          <span class="tag">slogan</span>
+          <span class="tag">aplicativo</span>
+          <span class="tag more">...</span>
+        </p-->
+
+      <% end %>
+
+    </div>
+  </header>
+  <h3 class="title"><%= thumbnail.name %></h3>
+  <p class="body text"><%= thumbnail.summary %></p>
+  <footer class="footer">
+    <!--div class="left share-links">
+      <a href="#" class="icon i-email"></a>
+      <a href="#" class="icon i-facebook"></a>
+      <a href="#" class="icon i-twitter"></a>
+    </div-->
+    <a href=<%= url_for :controller => :ideas, :action => :show, :id=> thumbnail.id %> class="link right">VER PROJETO</a>
+  </footer>
+</article>
 
 
 
-<br><br><br>
+

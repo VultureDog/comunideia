@@ -1,7 +1,17 @@
-<%= object.label User::NAME %><br>
-<%= object.text_field :name, placeholder: User::NAME %>
-<br><br>
+<div class="form-item">
+	<label>
+		<span class="text">
+			<%= User::NAME %>
+		</span>
+		<%= object.text_field :name, type:"text", class: "text-input" %>
+	</label>
+</div>
 
-<%= object.label "#{User::EMAIL}*" %><br>
-<%= object.text_field :email, placeholder: User::EMAIL, disabled: email_disabled %>
-<br><br>
+<div class="form-item">
+	<label>
+		<span class="text">
+			<%= "#{User::EMAIL}*" %>
+		</span>
+		<%= object.text_field :email, disabled: email_disabled, type:"email", class: "text-input" %>
+	</label>
+</div>

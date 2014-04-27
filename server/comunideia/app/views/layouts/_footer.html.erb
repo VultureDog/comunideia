@@ -1,7 +1,52 @@
-<footer>
-<br>
-  <small>
-    <a>Comunidéia</a>
-    feito por ... todos nós
-  </small>
+<footer id="footer">
+  <section class="footer-part top-part wrapper">
+    <div class="wrapper">
+      <div class="link-block-wrapper">
+        <h2 class="title">Mantenha contato</h2>
+        <ul class="link-block">
+          <li class="link-item"><a href="#" class="link">Twitter</a></li>
+          <li class="link-item"><a href="#" class="link">Facebook</a></li>
+          <li class="link-item"><a href="#" class="link">Instagram</a></li>
+          <li class="link-item"><a href="https://github.com/VultureDog/comunideia/" class="link">Github</a></li>
+          <li class="link-item"><a href= <%= random_idea_path %> class="link">Blog</a></li>
+          <li class="link-item"><a href= <%= random_idea_path %> class="link">Contato</a></li>
+        </ul>
+      </div>
+      <div class="link-block-wrapper">
+        <h2 class="title">Sobre Nós</h2>
+        <ul class="link-block">
+          <li class="link-item"><a href= <%= random_idea_path %> class="link">Ajuda</a></li>
+          <!--TODO
+          <li class="link-item"><a href= <%= random_idea_path %> class="link">Feedback</a></li>
+          <li class="link-item"><a href= <%= random_idea_path %> class="link">Termos de uso</a></li>
+          <li class="link-item"><a href= <%= random_idea_path %> class="link">Privacidade</a></li>
+          -->
+        </ul>
+      </div>
+      <div class="link-block-wrapper">
+        <h2 class="title">Navegue</h2>
+        <ul class="link-block">
+          <li class="link-item"><a href= <%= new_idea_path %> class="link">Envie um projeto</a></li>
+          <li class="link-item"><a href="/ideas" class="link">Descubra projetos</a></li>
+          <li class="link-item"><a href="/ideas" class="link">Recomendados</a></li>
+          <li class="link-item"><a href="/ideas" class="link">Na reta final</a></li>
+          <li class="link-item"><a href="/ideas" class="link">Recentes</a></li>
+        </ul>
+      </div>
+      <div id="facebook-like-box">
+        
+      </div>
+    </div>
+  </section>
+  <section class="footer-part bottom-part">
+    <div class="wrapper">
+      <div id="copyright">&copy; Comunideia, 2014. Todos os direitos reservados.</div>
+      <div id="footer-social-button-box">
+        <a href="#" class="social-button icon facebook-button"></a>
+        <a href="#" class="social-button icon gplus-button"></a>
+        <a href="#" class="social-button icon youtube-button"></a>
+        <a href="#" class="social-button icon twitter-button"></a>
+      </div>
+    </div>
+  </section>
 </footer>

@@ -39,13 +39,15 @@ class Idea < ActiveRecord::Base
   NAME_MAX_CHARS = 80
   validates :name, presence: { message: "#{NAME} (nome está em branco, colocar um nome atrativo na idéia pode ser uma boa idéia! Ex: Comunidéia)" }, length: { maximum: NAME_MAX_CHARS, message: "#{NAME} (nome está muito longo, uma boa idéia consegue chamar a atenção com poucas palavras. Máximo de #{NAME_MAX_CHARS} caracteres)" }
   validates :user_id, presence: true, if: :step1?
-
-  COMUNIDEIA_EM_ACAO    = 1
-  COMUNIDEIA_EM_FINANCIAMENTO    = 2
-
+ 
+  # bit flag
+  COMUNIDEIA_EM_ACAO = 1
+  COMUNIDEIA_EM_FINANCIAMENTO = 2
+  PROJECT_FINANCED = 3
+  
   STATUSES = {
-    COMUNIDEIA_EM_ACAO    => 'comunidéia em ação',
-    COMUNIDEIA_EM_FINANCIAMENTO    => 'comunidéia em financiamento'
+    COMUNIDEIA_EM_ACAO => 'comunidéia em ação',
+    COMUNIDEIA_EM_FINANCIAMENTO => 'comunidéia em financiamento'
   }
 
   SUMMARY = "Resumo"
@@ -73,6 +75,7 @@ class Idea < ActiveRecord::Base
 
   DATE_END = "Data de término"
   validates :date_end, presence: { message: "#{DATE_END} (a data de término nao está definida.)" }, if: :step2?
+  DAYS_STRING = "dias"
 
   CONSULTING_PROJECT_STRING = "Quero uma consultoria geral, quero ajuda para colocar minha idéia em prática"
   CONSULTING_CREATIVITY_STRING = "Quero ajuda criativa, um nome matador, logotipo e coisas visualmente lindas!"
@@ -113,11 +116,17 @@ class Idea < ActiveRecord::Base
 
   def step_forward
     # step_forward
-    if self.status == Idea::COMUNIDEIA_EM_FINANCIAMENTO
+    # bit flag
+    if check_status(self.status , Idea::COMUNIDEIA_EM_FINANCIAMENTO)
       self.current_step = 1
-    elsif self.status == Idea::COMUNIDEIA_EM_ACAO
+    elsif check_status(self.status , Idea::COMUNIDEIA_EM_ACAO)
       self.current_step = 2
     end
+  end
+
+  def check_status(current_status, status_verification)
+    bit_position = status_verification - 1
+    current_status[bit_position] == (2 ** bit_position)[bit_position]
   end
 
   # total_steps method must be included on models that includes MultiStepModels

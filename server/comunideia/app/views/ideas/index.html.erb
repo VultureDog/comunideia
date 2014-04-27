@@ -1,10 +1,42 @@
 <% provide(:title, 'Idéias') %>
-<h1>Idéias</h1>
 
-<%= will_paginate %>
-
-<ul>
-  <%= render @ideas %>
-</ul>
-
-<%= will_paginate %>
+<section id="all-projects" ng-controller="allProjectsCtrl">
+  <header class="header wrapper">
+    <div id="project-type-switch">
+      <h2 class="name" ng-class="{active: projType == 0}" ng-click="projType = 0">Financiamento Coletivo</h2>
+      <div class="switch" ng-click="toggleProjType()">
+        <span class="ball" ng-class="{left: projType == 0, right: projType == 1}"></span>
+      </div>
+      <h2 class="name" ng-class="{active: projType == 1}" ng-click="projType = 1">Comunideia em Ação</h2>
+    </div>
+  </header>
+  <div class="body">
+    <section class="project-index project-invest-index bg-gray" ng-if="projType == 0">
+      <header class="header wrapper">
+        <h2 class="title"><span class="icon i-money-black"></span>aposte nessa ideia</h2>
+        <p class="subtitle">Idéias do bem que precisam de investimento</p>
+      </header>
+      <div class="body wrapper">
+        <div class="container">
+          <% for i in 0 ... 8 %>
+          <%#= snippet("project-invest-item") %>
+          <% end %>
+        </div>
+      </div>
+    </section>
+    <section class="project-index project-help-index bg-white" ng-if="projType == 1">
+      <header class="header wrapper">
+        <h2 class="title"><span class="icon i-tbolt-black"></span>comunideia em ação</h2>
+        <p class="subtitle">Idéias geniais que precisam de um empurrãozinho</p>
+      </header>
+      <div class="body wrapper">
+        <div class="container">
+          <% for i in 0 ... 8 %>
+          <%#= snippet("project-help-item") %>
+          <% end %>
+        </div>
+      </div>
+    </section>
+  </div>
+  <footer class="footer"></footer>
+</section>

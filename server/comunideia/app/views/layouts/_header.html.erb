@@ -1,38 +1,71 @@
-<header>
-  <div>
-    <div>
-      <%= link_to "Comunidéia", root_path %>
-      <nav>
-        <ul>
-          <li><%= link_to "Idéias",    ideas_path %></li>
-          <li><%= link_to "Home",    root_path %></li>
-          <% if signed_in? %>
+        
+        <% if signed_in? %>
+          <ul>
             <li>
               <li><%= link_to current_user.name, current_user %></li>
               <% if current_user.admin? %><br>
                 <li><%= link_to "Usuários", users_path %></li>
                 <li><%= link_to "Autorizar Flickr uploads", get_token_oauth_path %></li><br>
               <% end %>
-              <li><%= link_to "Configurações", edit_user_path(current_user) %></li>
-              <!--<li><%#= link_to "Configurações", '#' %></li>-->
               <li><%= link_to "Sign out",  signout_path, method: "delete" %></li>
             </li>
-          <% else %>
-            <%= link_to "Login com Facebook", "/auth/facebook" %><br>
-            <%= link_to "Login com g+", "/auth/google_oauth2" %>
-            <%= form_for(:session, url: sessions_path) do |f| %>
+          </ul>
+        <% end %>
 
-              <%= f.text_field :email, placeholder:  User::EMAIL %>
 
-              <%= f.password_field :password, placeholder: User::PASSWORD %>
 
-              <%= f.submit User::ENTER_STRING %>
+<!DOCTYPE html>
+<html lang="pt-BR" ng-app="comunideiaProto">
+  <head>
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Comunideia</title>
+    <!-- - - - - - - - - - - - - - - - -->
+    <link href='http://fonts.googleapis.com/css?family=Source+Sans+Pro:200,300,400,600,700,900,300italic,400italic' rel='stylesheet' type='text/css'>
+    <link href='http://fonts.googleapis.com/css?family=Droid+Serif:400,700,400italic,700italic' rel='stylesheet' type='text/css'>
+    <!-- - - - - - - - - - - - - - - - -->
+  </head>
+  <body>
+    <header id="header">
+      <section class="header-part top-part">
+        <div class="wrapper">
+          <div class="left">
+            <a href= <%= random_idea_path %> id="random-project-link" class="link"><span class="icon i-rand-proj"></span><span class="text">IR PARA UM PROJETO ALEATÓRIO</span></a>
+          </div>
+          <div class="right">
+            <nav class="menu">
+              <ul class="list-unstyled menu-list">
+                <li class="menu-item first"><a href= <%= random_idea_path %> class="link">Ajuda</a></li>
 
-              <%= link_to 'Registrar-se', signup_path %>
-            <% end %>
-          <% end %>
-        </ul>
-      </nav>
-    </div>
-  </div>
-</header>
+                <% if signed_in? %>
+                <% else %>
+                  <li class="menu-item"><a class="link">Login</a></li>
+                  <li class="menu-item"><a class="link" >Cadastro</a></li>
+                <% end %>
+              </ul>
+            </nav>
+          </div>
+        </div>
+      </section>
+      <section class="header-part bottom-part">
+        <div class="wrapper">
+          <div id="site-logo">
+            <a href="/"><img src="/assets/logo-comunideia.png" alt="Comunideia" class="image"></a>
+          </div>
+          <div id="header-bottom-nav">
+            <a href="/" class="link"><span class="text">O que é<br><strong>Comunideia?</strong></span></a>
+            <a href= <%= random_idea_path %> class="link decorated"><span class="text">Investir<br>Comunideia em Ação</span></a>
+          </div>
+          <div class="right">
+            <a href= <%= new_idea_path %> >
+              <button id="submit-my-ideia-btn" class="btn btn-blue">Mandar minha ideia</button>
+            </a>
+            <!--TODO
+            button id="get-help-btn" class="btn btn-red"><span class="icon i-search"></span></button-->
+          </div>
+        </div>
+      </section>
+    </header>
+
+

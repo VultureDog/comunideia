@@ -81,5 +81,5 @@ Criado em <%= @idea.created_at.to_date.day %>/<%= @idea.created_at.to_date.month
 
 <br><br>
 <% if current_user?(@idea_user) %>
-	<p><%= link_to "Editar", edit_idea_path(all: 1) %></p>
+	<p><%= link_to "Editar", edit_idea_path(@idea, all: 1) %></p>
 <% end %>
