@@ -1,0 +1,31 @@
+<% if !object.date_end.nil? %>
+	<% remainder_time = ((object.date_end - DateTime.now)/1.hour).ceil %>
+	<% if remainder_time < 24 %>
+		<% if remainder_time > 0 %>
+			<span class="value gray">
+				<%= (object.date_end.hour - DateTime.now.hour).ceil %>
+			</span>
+			<span class="sub-text">
+				horas restantes
+			</span>
+		<% else %>
+			<% if (object.financial_value_sum_accumulated < object.financial_value) %>
+				<span class="value gray">
+					Não financiado
+				</span>
+			<% else %>
+				<span class="value gray">
+					Financiado
+				</span>
+			<% end%>
+		<% end %>
+	<% else %>
+		<% remainder_time = (object.date_end.to_date - Date.today).to_i %>
+		<span class="value gray">
+			<%= remainder_time %>
+		</span>
+	  <span class="sub-text">
+			dias restantes
+				</span>
+	<% end %>
+<% end %>

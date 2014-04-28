@@ -16,6 +16,7 @@ class CreateIdeas < ActiveRecord::Migration
       t.string :img_pg_2
       t.string :img_pg_3
       t.string :img_pg_4
+      t.string :img_pg_5
       t.string :idea_content
       t.string :risks_challenges
       t.boolean :consulting_project, default: false

@@ -17,6 +17,15 @@ class IdeasController < ApplicationController
     idea_id = params.has_key?(:id) ? params[:id] : random_idea_id
     @idea = Idea.find(idea_id)
 
+    @idea_content_paragraphs = @idea.idea_content.split("\r\n", 6)
+
+    @img_pgs = []
+    @img_pgs[0] = @idea.img_pg_1 unless @idea.img_pg_1.nil?
+    @img_pgs[1] = @idea.img_pg_2 unless @idea.img_pg_2.nil?
+    @img_pgs[2] = @idea.img_pg_3 unless @idea.img_pg_3.nil?
+    @img_pgs[3] = @idea.img_pg_4 unless @idea.img_pg_4.nil?
+    @img_pgs[4] = @idea.img_pg_5 unless @idea.img_pg_5.nil?
+
     @idea_user = User.find(@idea.user_id)
 
     @recompenses = @idea.recompenses

@@ -1,77 +1,146 @@
-<h1><%= @idea.name %></h1>
-<p><%= @idea.summary %></p>
+<section id="project-details" ng-controller="projectSingleCtrl">
+  <header class="header wrapper">
+		<% if !@idea.img_pg_1.nil? %>
+    	<img src=<%=@idea.img_pg_1%> alt="" class="image project-banner" width="940" height="372">
+    <% end %>
+    <div>
+      <div class="main-info">
+        <img src="/assets/proj-icon.png" alt="" class="proj-icon">
+        <h1 class="project-name"><%= @idea.name %></h1>
+        <div class="author-info">
+          por <span class="author-name"><%= @idea.user.name %></span>
+					<% if !@idea.local.nil? %>
+           - <span class="author-locality"><%= @idea.local %></span>
+          <% end %>
+        </div>
+      </div>
+      <div class="social-action-buttons"></div>
+    </div>
+    <div>
+      <div class="proj-data-metter" id="project-remaining-time">
+        <span class="text">TEMPO RESTANTE</span>
+      </div>
+      <div class="proj-data-metter" id="project-achieved-resources">
+        <span class="text">RECURSOS RESTANTE</span>
+      </div>
+    </div>
+    <div id="project-values-info">
+	    <% if !@idea.financial_value.nil? %>
+	      <div class="v-info"><span class="value">R$ <%= number_with_delimiter(@idea.financial_value.to_i, delimiter: ".") %></span><span class="sub-text">total</span></div>
+	      <div class="v-info"><span class="value green">R$ <%= number_with_delimiter(@idea.financial_value_sum_accumulated.to_i, delimiter: ".") %></span><span class="sub-text">alcançados</span></div>
+	      <div class="v-info"><span class="value gray">R$ <%= number_with_delimiter(@idea.financial_value.to_i - @idea.financial_value_sum_accumulated.to_i, delimiter: ".") %></span><span class="sub-text">restantes</span></div>
+	      <div class="v-info">
+	      	<%= render 'ideas/idea_status', :object => @idea %>
+	      </div>
+			<% end %>
+    </div>
+  </header>
+  <section class="body wrapper">
+    <div id="project-tabs">
+      <header class="tab-items-header">
+        <div class="tab-item" ng-class="{current: currentTab == 0}" ng-click="currentTab = 0">Projeto</div>
+        <!--TODO
+        <div class="tab-item" ng-class="{current: currentTab == 1}" ng-click="currentTab = 1">Atualizações (7)</div-->
+        <div class="tab-item" ng-class="{current: currentTab == 2}" ng-click="currentTab = 2">Apoiadores (142)</div>
+      </header>
+      <section class="tab-items-body">
+        <article id="proj-info-tab" class="tab-item" ng-class="{current: currentTab == 0}">
+          <h2 class="title"><%= @idea.name %></h2>
 
-<% if !@idea.local.nil? %>
-	<p>Local: <%= @idea.local %></p>
-<% end %>
+						<% if !@idea.video.nil? && !@idea.video.blank? %>
+							<p><%= raw(youtube_embed(@idea.video)) %></p>
+							<br><br>
+						<% end %>
 
-<%= render 'ideas/status', :object => @idea %>
+            <% for i in 0 ... @idea_content_paragraphs.count %>
+            	<% if !@idea_content_paragraphs[i].nil? %>
+	            	<p>
+	            		<%= @idea_content_paragraphs[i] %>
+									<% if !@img_pgs[i].nil? && !@img_pgs[i].blank? %>
+	            			<br><br>
+										<img src=<%= @img_pgs[i] %>  width="640" height="390"/><br>
+										<br><br>
+									<% end %>
+	            	</p>
+	            	<br>
+							<% end %>
+            <% end %>
 
-<h3><%= @idea.name %></h3>
-<div style="max-width:200px; word-wrap:break-word;"><%= @idea.summary %></div>
-<br>
+        </article>
+        <aside id="project-comment-sidebar" ng-if="currentTab == 0">
+        </aside>
+        <!--TODO
+        <article class="tab-item" ng-class="{current: currentTab == 1}" >
+          <article class="project-news">
+            <h2 class="title">Novidades do Projeto #3</h2>
+            <h3 class="date">21/13/2014</h3>
+            <p class="text">Produzimos conteúdo em um canal do You Tube que é dedicado a pessoas que gostam de contos de terror, lendas urbanas, histórias e mitos do gênero no geral.<br>
+            Com 100% do conteúdo produzidos com uso de software de devidamente legalizados, o canal apresenta gratuitamente ao público de todas as idades histórias e contos de terror narradas oralmente que são apresentadas por personagens 3D. É o priemiro canal do mundo a oferecer esse tipo de conteúdo com uso de personagem 3D.</p>
+          </article>
+          <article class="project-news">
+            <h2 class="title">Novidades do Projeto #2</h2>
+            <h3 class="date">21/13/2014</h3>
+            <p class="text">Produzimos conteúdo em um canal do You Tube que é dedicado a pessoas que gostam de contos de terror, lendas urbanas, histórias e mitos do gênero no geral.<br>
+            Com 100% do conteúdo produzidos com uso de software de devidamente legalizados, o canal apresenta gratuitamente ao público de todas as idades histórias e contos de terror narradas oralmente que são apresentadas por personagens 3D. É o priemiro canal do mundo a oferecer esse tipo de conteúdo com uso de personagem 3D.</p>
+          </article>
+          <article class="project-news">
+            <h2 class="title">Novidades do Projeto #1</h2>
+            <h3 class="date">21/13/2014</h3>
+            <p class="text">Produzimos conteúdo em um canal do You Tube que é dedicado a pessoas que gostam de contos de terror, lendas urbanas, histórias e mitos do gênero no geral.<br>
+            Com 100% do conteúdo produzidos com uso de software de devidamente legalizados, o canal apresenta gratuitamente ao público de todas as idades histórias e contos de terror narradas oralmente que são apresentadas por personagens 3D. É o priemiro canal do mundo a oferecer esse tipo de conteúdo com uso de personagem 3D.</p>
+          </article>
+        </article-->
+        <article class="tab-item" ng-class="{current: currentTab == 2}" >
+        <% for i in 0 ... 12 %>
+          <div class="investor">
+            <img src="assets/images/investors/face-1.jpg" alt="" class="image">
+            <h2 class="name">Lise Tyler</h2>
+            <p class="line">Investiu R4 250,00</p>
+            <p class="line">em 10/03/13 às 12:30:21</p>
+            <p class="line">Apoiou 7 projetos até agora</p>
+          </div>
+        <% end %>
+        </article>
+      </section>
+    </div>
+  </section>
 
-<% if !@idea.local.nil? %>
-	Local: <%= @idea.local %>
-<% end %>
-<br>
-<% if !@idea.financial_value.nil? %>
-	$ <%= @idea.financial_value %> | $! <%= @idea.financial_value_sum_accumulated %>
-<% end %>
+	<% if @is_financial_idea %>
 
-<% if !@idea.img_card.nil? %>
-	<p>Card: <%= link_to @idea.img_card, @idea.img_card %></p>
-<% end %>
-<% if !@idea.video.nil? %>
-	<p>Video: <%= link_to @idea.video, @idea.video %></p>
-<% end %>
+	  <%
+	    value_total     = @idea.financial_value
+	    value_funded    = @idea.financial_value_sum_accumulated
+	    value_remain    = value_total - value_funded
+	    funded_percent  = (value_funded / value_total) * 100
+	  %>
+	  <script>
+	    window.v = {};
+	    window.v.valueTotal     = <%= value_total %>;
+	    window.v.valueFunded    = <%= value_funded %>;
+	    window.v.valueRemain    = <%= value_remain %>;
+	    window.v.fundedPercent  = <%= funded_percent %>;
+	  </script>
+	  <footer id="project-pledge-area" class="footer wrapper">
+	    <div id="pledge-value-component">
+	      <h2 class="title">e aí, curtiu? então dá uma força!</h2>
+	      
+				<%= render 'investments/investment_fields',
+					:funded_percent => funded_percent,
+					:value_funded => value_funded,
+					:value_remain => value_remain  %>
 
-<% if !@idea.video.nil? %>
-	<p><%= raw(youtube_embed(@idea.video)) %></p>
-<% end %>
+	    </div>
+	    <div id="predef-pledge-list">
+	      
+			<%= render 'recompenses/show_radio' %>
 
-<% if !@idea.img_pg_1.nil? %>
-	<img src=<%=@idea.img_pg_1%>  width="640" height="390"/><br>
-<% end %>
-<% if !@idea.img_pg_1.nil? %>
-	<p>Img_1: <%= link_to @idea.img_pg_1, @idea.img_pg_1 %></p>
-<% end %>
-<% if !@idea.img_pg_2.nil? %>
-	<p>Img_2: <%= link_to @idea.img_pg_2, @idea.img_pg_2 %></p>
-<% end %>
-<% if !@idea.img_pg_3.nil? %>
-	<p>Img_3: <%= link_to @idea.img_pg_3, @idea.img_pg_3 %></p>
-<% end %>
-<% if !@idea.img_pg_4.nil? %>
-	<p>Img_4: <%= link_to @idea.img_pg_4, @idea.img_pg_4 %></p>
-<% end %>
+	    </div>
+	  </footer>
 
-<% if !@idea.idea_content.nil? %>
-	<p>Descrição da idéia: <%= @idea.idea_content %></p>
-<% end %>
-<% if !@idea.risks_challenges.nil? %>
-	<p>Riscos e desafios: <%= @idea.risks_challenges %></p>
-<% end %>
-<!--<p>Data inicial: <%#= @idea.date_start %></p>-->
-<!--<p>Data final: <%#= @idea.date_end %></p>-->
 
-<span>
-Criado em <%= @idea.created_at.to_date.day %>/<%= @idea.created_at.to_date.month %>/<%= @idea.created_at.to_date.year %>.
-</span>
+	<% end %>
 
-<br><br><br>
-
-<% if @is_financial_idea %>
-
-	<h1>E ae, curtiu? Então dá uma força! </h1>
-
-	<%= render 'investments/investment_fields' %>
-
-	<br><br><br>
-	<%= render 'recompenses/show_radio' %>
-	<br>
-
-<% end %>
+</section>
 
 <div id='address' hidden=true><%= @tab_address %></div>
 

@@ -7,7 +7,7 @@
 
       <% if thumbnail.check_status(thumbnail.status , Idea::COMUNIDEIA_EM_FINANCIAMENTO) %>
         <p class="info time-info">
-          <%= render 'ideas/status', :object => thumbnail %>
+          <%= render 'ideas/thumbnail_status', :object => thumbnail %>
         </p>
       <% end %>
 

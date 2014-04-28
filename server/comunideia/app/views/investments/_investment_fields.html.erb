@@ -1,46 +1,33 @@
-<link rel="stylesheet" href="http://code.jquery.com/ui/1.10.4/themes/smoothness/jquery-ui.css">
-
 <%= form_for @investment, :url => url_for(:controller => 'investments', :action => 'new') do |f| %>
   <%= render 'shared/error_messages', object: f.object %>
 
-	<%= f.label Investment::INVESTMENT_VALUE_STRING %><br>
-  R$ <%= f.text_field :financial_value, :value => @fin_value_input,
+	<%#= f.label Investment::INVESTMENT_VALUE_STRING %>
+  <%#= f.text_field :financial_value, :value => @fin_value_input,
   			:id => :financial_value_input,
   			:onKeyUp => "updateFinancialValues();"
   		%>
 
   <%= f.hidden_field :recompense_id, :value => @investment.recompense_id, :id => :recompense_id_radio  %>
 
+
+  <div>
+    <div id="pledge-metter">
+      <span class="full-value"></span>
+      <div class="funded" style="width: <%= funded_percent %>%;">
+        <span class="value">R$ <%= value_funded %></span>
+      </div>
+      <div class="to-fund">
+        <span class="value">R$ <%= value_remain %></span>
+      </div>
+      <div class="fund-mark" style="left: <%= funded_percent %>%;"><span class="inner"></span></div>
+      <div id="fund-quantity-component" style="left: <%= funded_percent %>%;">
+        <span class="up-arrow"></span>
+        <span class="currency-indicator">R$</span>
+        <input type="text" class="value-input" ng-model="pledgedValue" ng-change="onPledgeValueChange()">
+      </div>
+      <button id="send-pledge-button" class="btn btn-blue">APOIAR</button>
+    </div>
+  </div>
+
   <%= f.submit Investment::INVEST_STRING %>
 <% end %>
-<style>
-  #slider-range-min {
-    float: left;
-    clear: left;
-    width: 1300px;
-  }
-  #slider-range-min .ui-slider-range { background: #FFFF6D; }
-  #slider-range-min .ui-slider-handle { border-color: #FFFFFF; }
-  </style>
-<br> 
-<div id="slider-range-min" style="color:#000;background:#00FF00" ></div>
-
-<!--
-<p>
-  <label for="color">color:</label>
-  <input type="text" id="amount" style="border:0; color:#000; font-weight:bold;" value="amarelo">
-</p>
--->
-
-
-<br><br><br>
-<!--
-<a type="text" id="amount_min" style="border:0; color:#000; font-weight:bold;"></a>
-<a type="text" id="amount_mid" style="border:0; color:#000; font-weight:bold;"></a>
-<a type="text" id="amount_max" style="border:0; color:#000; font-weight:bold;"></a>
-
-
-<script>setDefaultValue(<%= @recompenses.first.financial_value.to_i %>);</script>
-<script>setMaxValue(<%= @recompenses.last.financial_value.to_i %>);</script>
-<script>setRecompensesMaxValue(<%= @recompenses.last.financial_value.to_i %>);</script>
---> 
