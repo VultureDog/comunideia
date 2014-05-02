@@ -21,7 +21,7 @@ class User < ActiveRecord::Base
 
   PASSWORD = "Senha"
   PASSWORD_CONFIRMATION = "#{PASSWORD}: confirmação"
-  PASSWORD_MIN_CHARS = 8
+  PASSWORD_MIN_CHARS = 6
   if(:step1?)
     has_secure_password
   end

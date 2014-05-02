@@ -1,5 +1,5 @@
 # encoding: UTF-8
-class ImagesVideosController < ApplicationController
+class ImagesController < ApplicationController
 
 API_KEY=''
 SHARED_SECRET=''
@@ -33,7 +33,7 @@ FlickRaw.shared_secret=SHARED_SECRET
 
   end
 
-  def upload_image
+  def upload_images
   	
   	begin
       login = flickr.test.login
