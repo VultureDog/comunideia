@@ -24,7 +24,7 @@ class IdeasController < ApplicationController
     @img_pgs[1] = @idea.img_pg_2 unless @idea.img_pg_2.nil?
     @img_pgs[2] = @idea.img_pg_3 unless @idea.img_pg_3.nil?
     @img_pgs[3] = @idea.img_pg_4 unless @idea.img_pg_4.nil?
-    @img_pgs[4] = @idea.img_pg_5 unless @idea.img_pg_5.nil?
+    #@img_pgs[4] = @idea.img_pg_5 unless @idea.img_pg_5.nil?
 
     @idea_user = User.find(@idea.user_id)
 
