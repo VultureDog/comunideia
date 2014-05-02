@@ -1,7 +1,7 @@
 <%# provide(:title, 'Miniaturas') %>
 
 <section
-<% if !thumbnails_id.blank? %>
+<% if !thumbnails_id.nil? && !thumbnails_id.blank? %>
   id= <%= thumbnails_id %>
 
   class="project-index project-invest-index bg-gray"

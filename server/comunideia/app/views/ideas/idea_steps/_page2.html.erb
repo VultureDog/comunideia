@@ -1,27 +1,108 @@
+  <section id="new-proj-page" ng-controller="allProjectsCtrl" class="page-2">
+    <header class="header wrapper">
+      <div class="image-wrapper">
+        <img src="/assets/new-proj-header-2.jpg" alt="" class="image">
+      </div>
+    </header>
+    <div class="body wrapper">
+      <section class="new-proj-form">
+        <div class="form-part">
+          <h2 class="heading">Qual a localidade (cidade/estado) em que sua ideia/projeto vai iniciar?</h2>
+          <input type="text" class="form-control small" placeholder="Digite aqui a cidade ou cep" name="idea[local]">
+        </div>
+        <div class="form-part">
+          <h2 class="heading">Hora de falar de negócios. Quanto você precisa para ter seu projeto funcionando (em reais)?</h2>
+          <input type="text" class="form-control small" placeholder="R$" name="idea[financial_value]">
+        </div>
+        <div class="form-part">
+          <h2 class="heading">Defina agora em quantos dias você pretende atingir este investimento.</h2>
+          <input type="text" class="form-control small" placeholder="Coloque o número de dias" name="idea[idea_end_date_input]">
+        </div>
+        <div class="form-part">
+          <h2 class="heading">Quais são os pacotes de recompensa que os investidores irão receber?<br>Lembrando que eles podem optar por investir sem ser recompensando.</h2>
+          <div id="pledge-create-component">
+            <div class="component-wrapper">
+              <div class="pledge-item predef">
+                <h3 class="heading">Recompensa altrísta</h3>
+                <p class="text">Caso o apoiador escolha essa opção, significa que ele vai ajudar seu projeto sem pedir nada em troca. Legal, né?</p>
+                <sub>(este campo não pode ser editado)</sub>
+              </div>
+              <div class="pledge-item filled">
+                <div class="status-bar"></div>
+                <div class="row">
+                  <div class="field"><label><span class="text">Valor</span><input class="currency-input input" type="text" placeholder="R$" value="0,00"></label></div>
+                  <div class="field"><label><span class="text">até</span><input class="currency-input input" type="text" placeholder="R$" value="70,00"></label></div>
+                </div>
+                <div class="row">
+                  <textarea cols="20" rows="6" placeholder="Recompensa 1">Investindo até 70 reais, vamos te dar um par de havaianas, com seu nome e logotipo do nosso projeto.</textarea>
+                </div>
+                <div class="row last">
+                  <label><span class="text">Date de entrega</span><input type="text" class="date-input input" placeholder="  /  /  " value="13/04/2014"></label>
+                </div>
+              </div>
+              <% for i in 2 ... 6 %>
+              <div class="pledge-item">
+                <div class="status-bar"></div>
+                <div class="row">
+                  <div class="field"><label><span class="text">Valor</span><input class="currency-input input" type="text" placeholder="R$"></label></div>
+                  <div class="field"><label><span class="text">até</span><input class="currency-input input" type="text" placeholder="R$"></label></div>
+                </div>
+                <div class="row">
+                  <textarea cols="20" rows="6" placeholder="Recompensa <%= i %>"></textarea>
+                </div>
+                <div class="row last">
+                  <label><span class="text">Date de entrega</span><input type="text" class="date-input input" placeholder="  /  /  "></label>
+                </div>
+              </div>
+              <% end %>
+            </div>
+          </div>
+        </div>
+        <div class="form-part">
+          <h2 class="heading first">Agora é a reta final!</h2>
+          <p class="heading first">Nos mande algumas referências visuais da sua ideia. Um vídeo, fotos ou<br>imagens que podem passar visualmente o que é a sua ideia ou projeto.</p>
+          <div class="image-upload-container">
+            <div class="image-upload-item"><span class="inner-icon"></span></div>
+            <div class="image-upload-item"><span class="inner-icon"></span></div>
+            <div class="image-upload-item"><span class="inner-icon"></span></div>
+            <div class="image-upload-item"><span class="inner-icon"></span></div>
+            <div class="image-upload-item"><span class="inner-icon"></span></div>
+            <div class="image-upload-item last"><span class="inner-icon"></span></div>
+          </div>
+        </div>
+        <div class="form-part">
+          <h2 class="heading">Link do Youtube/Vimeo</h2>
+          <input type="text" class="form-control" placeholder="ex: https://www.youtube.com/watch?v=BFMGjbj9gco">
+        </div>
+      </section>
+      <div id="terms-of-service">
+        <label for=""><input type="checkbox" class="checkbox">Estou de acordo com os <a href="#" class="link">termos de uso</a>.</label>
+        <button class="btn btn-blue next-step-button">Finalizar</button>
+      </div>
+    </div>
+  </section>
 
-<%= f.text_field :local, placeholder: Idea::PLACE %><br>
 
-<%= label :date_start, Idea::DATE_START + ": " %>
-<%= f.date_field :date_start, value: Date.today %>
 
-<%= label :date_end, Idea::DATE_END + ": " %>
-<%= f.date_field :date_end, value: Date.today + 40 %><br>
 
-<%= f.text_field :financial_value, placeholder: Idea::FINANCIAL_VALUE %>
+
+
+
+
 <%= f.text_field :img_card, placeholder: Idea::THUMBNAIL_IMG %><br>
 <%= f.text_field :video, placeholder: "Link do vídeo" %><br>
 <%= f.text_field :img_pg_1, placeholder: "Link da primeira imagem" %>
 <%= f.text_field :img_pg_2, placeholder: "Link da segunda imagem" %>
 <%= f.text_field :img_pg_3, placeholder: "Link da terceira imagem" %>
 <%= f.text_field :img_pg_4, placeholder: "Link da quarta imagem" %>
-<%= f.text_field :img_pg_5, placeholder: "Link da quinta imagem" %><br>
+<%#= f.text_field :img_pg_5, placeholder: "Link da quinta imagem" %><br>
 <%= f.text_area :risks_challenges, placeholder: Idea::RISKS_AND_CHALLENGES %><br><br>
 
 <br><br><br><br>
 
 
 <% if @is_financial_idea %>
-	<%= render 'recompenses/recompense_form', :f => f %>
+  <%= render 'recompenses/recompense_form', :f => f %>
 <% end %>
 
 

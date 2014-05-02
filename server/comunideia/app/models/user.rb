@@ -5,7 +5,8 @@ class User < ActiveRecord::Base
 	
   include MultiStepModel
 
-  validates :id, presence: { message: "Ocorreu uma confusão por aqui. Envie-nos um e-mail, investigaremos para descobrir o que aconteceu!" }, if: :step2?
+  USER_CONFUSION = "Ocorreu uma confusão por aqui. Envie-nos um e-mail, investigaremos para descobrir o que aconteceu!"
+  validates :id, presence: { message: USER_CONFUSION }, if: :step2?
 
   NAME = "Nome"
   NAME_MAX_CHARS = 50
@@ -148,6 +149,28 @@ class User < ActiveRecord::Base
 
   end
 
+  def User.check_cpf(cpf=nil)
+    return false if cpf.nil?
+   
+    winvalidos = %w{12345678909 11111111111 22222222222 33333333333 44444444444 55555555555 66666666666 77777777777 88888888888 99999999999 00000000000}
+    wvalor = cpf.scan /[0-9]/
+    if wvalor.length == 11
+      unless winvalidos.member?(wvalor.join)
+        wvalor = wvalor.collect{|x| x.to_i}
+        wsoma = 10*wvalor[0]+9*wvalor[1]+8*wvalor[2]+7*wvalor[3]+6*wvalor[4]+5*wvalor[5]+4*wvalor[6]+3*wvalor[7]+2*wvalor[8]
+        wsoma = wsoma - (11 * (wsoma/11))
+        wresult1 = (wsoma == 0 or wsoma == 1) ? 0 : 11 - wsoma
+        if wresult1 == wvalor[9]
+          wsoma = wvalor[0]*11+wvalor[1]*10+wvalor[2]*9+wvalor[3]*8+wvalor[4]*7+wvalor[5]*6+wvalor[6]*5+wvalor[7]*4+wvalor[8]*3+wvalor[9]*2
+          wsoma = wsoma - (11 * (wsoma/11))
+          wresult2 = (wsoma == 0 or wsoma == 1) ? 0 : 11 - wsoma
+          return true if wresult2 == wvalor[10] # CPF validado
+        end
+      end
+    end
+    return false # CPF invalidado
+  end
+
   # start method must be included on models that includes MultiStepModels
   # start method must be called after new method for steps works
   def start
@@ -169,5 +192,11 @@ class User < ActiveRecord::Base
     def valid_steps_1_2?
       self.step1? || self.step2?
     end
-    
+
+    def valid_CPF
+      if !self.cpf.blank? && !User.check_cpf(self.cpf.to_s)
+        errors.add(:cpf, "#{CPF} (O CPF digitado não é válido)")
+      end
+    end
+      
 end

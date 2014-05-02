@@ -11,6 +11,8 @@ Comunideia::Application.routes.draw do
   match '/', to: 'sessions#create', via: 'post'
   match '/sessions', to: 'sessions#create', via: 'get'
 
+  match '/help', to: 'home#help', via: 'get'
+
   resources :users
   resources :sessions, only: [:create, :destroy]
   resources :ideas

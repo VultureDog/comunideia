@@ -31,10 +31,14 @@ class UsersController < ApplicationController
     if @user.save
       sign_in @user
       flash[:success] = "Seja bem vindo a Comunidéia!"
-      redirect_to @user
+      #redirect_to @user
+      redirect_to root_path
     else
+      flash[:error] = User::USER_CONFUSION
       render 'signup'
     end
+    
+    #redirect_to root_path
 
   end
 

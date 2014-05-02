@@ -6,7 +6,7 @@ class CreateIdeas < ActiveRecord::Migration
       t.integer :user_id
       t.datetime :date_start
       t.datetime :date_end
-      t.string :summary
+      t.text :summary
       t.string :local
       t.float :financial_value
       t.float :financial_value_sum_accumulated
@@ -17,12 +17,12 @@ class CreateIdeas < ActiveRecord::Migration
       t.string :img_pg_3
       t.string :img_pg_4
       t.string :img_pg_5
-      t.string :idea_content
-      t.string :risks_challenges
+      t.text :idea_content
+      t.text :risks_challenges
       t.boolean :consulting_project, default: false
       t.boolean :consulting_creativity, default: false
       t.boolean :consulting_financial_structure, default: false
-      t.string :consulting_specific
+      t.text :consulting_specific
 
       t.timestamps
     end

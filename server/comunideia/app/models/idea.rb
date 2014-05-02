@@ -36,6 +36,7 @@ class Idea < ActiveRecord::Base
   default_scope -> { order('created_at DESC') }
 
   NAME = "Nome da idéia"
+  NAME_FORM = "Seja criativo e use um nome que passe sua mensagem sem ser muito comprido"
   NAME_MAX_CHARS = 80
   validates :name, presence: { message: "#{NAME} (nome está em branco, colocar um nome atrativo na idéia pode ser uma boa idéia! Ex: Comunidéia)" }, length: { maximum: NAME_MAX_CHARS, message: "#{NAME} (nome está muito longo, uma boa idéia consegue chamar a atenção com poucas palavras. Máximo de #{NAME_MAX_CHARS} caracteres)" }
   validates :user_id, presence: true, if: :step1?

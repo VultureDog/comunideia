@@ -36,7 +36,7 @@
           <div class="right">
             <nav class="menu">
               <ul class="list-unstyled menu-list">
-                <li class="menu-item first"><a href= <%= random_idea_path %> class="link">Ajuda</a></li>
+                <li class="menu-item first"><a href= <%= help_path %> class="link">Ajuda</a></li>
 
                 <% if signed_in? %>
                 <% else %>
@@ -54,7 +54,7 @@
             <a href="/"><img src="/assets/logo-comunideia.png" alt="Comunideia" class="image"></a>
           </div>
           <div id="header-bottom-nav">
-            <a href="/" class="link"><span class="text">O que é<br><strong>Comunideia?</strong></span></a>
+            <a href= <%= help_path %> class="link"><span class="text">O que é<br><strong>Comunideia?</strong></span></a>
             <a href= <%= random_idea_path %> class="link decorated"><span class="text">Investir<br>Comunideia em Ação</span></a>
           </div>
           <div class="right">

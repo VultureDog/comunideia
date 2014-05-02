@@ -273,6 +273,10 @@ button > span {
   filter: progid:DXImageTransform.Microsoft.gradient( startColorstr='#ea6c55', endColorstr='#3d6697',GradientType=0 ); /* IE6-9 */
 }
 
+#help {
+  background: url("/assets/help.png") no-repeat center center;
+  height: 3100px;
+}
 
 #body {}
 #home-carrousel {
@@ -1334,7 +1338,8 @@ button > span {
 }
 #login-signup-modal .container {
   width: 640px;
-  margin: 180px auto 0 auto;
+  /*margin: 180px auto 0 auto;*/
+  margin: -50px auto 0 auto;
   border-radius: 8px;
   overflow: hidden;
 }

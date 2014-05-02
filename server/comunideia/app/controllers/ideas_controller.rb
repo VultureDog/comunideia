@@ -35,6 +35,9 @@ class IdeasController < ApplicationController
       @fin_value_input = @recompenses.first.financial_value.to_i
       @investment = Investment.new(recompense_id: @recompenses.first.id)
       @recompense = @recompenses.first
+ 
+       # chamar comunidea_investors apenas pra renderizar a aba de investidores
+      @idea_investors = comunidea_investors
     end
 
     @tab_address = params.has_key?(:tab_address) ? params[:tab_address] : nil
@@ -80,12 +83,14 @@ class IdeasController < ApplicationController
     end
 
     @idea.current_step = idea_params[:current_step].to_i
-
-    #paramenters = idea_params
-    #paramenters[:date_start] = paramenters.has_key?(:date_start) ? nil : (paramenters[:date_start] + (Time.now.hour + 1)*3600)
-    #paramenters[:date_end] = paramenters.has_key?(:date_end) ? nil : (paramenters[:date_end] + (Time.now.hour + 1)*3600)
-
-    if @idea.update_attributes(idea_params)
+  
+    parameters = idea_params
+    parameters[:date_start] = DateTime.now + (Time.now.hour + 1).hour
+    parameters[:date_end] = DateTime.now + idea_params[:idea_end_date_input].to_i + (Time.now.hour + 1).hour
+    parameters.delete :idea_end_date_input
+  
+    if @idea.update_attributes(parameters)
+ 
       flash[:success] = "Dados atualizados."
       if (@idea.current_step.to_i == 1) || (@idea.current_step.to_i == 2)
         redirect_to idea_path(@idea)
@@ -117,7 +122,7 @@ class IdeasController < ApplicationController
     end
 
     def idea_params
-      params.require(:idea).permit(:current_step, :name, :status, :summary, :local, :date_start, :date_end, :financial_value, :financial_value_sum_accumulated, :img_card, :video, :img_pg_1, :img_pg_2, :img_pg_3, :img_pg_4, :idea_content, :risks_challenges, :consulting_project, :consulting_creativity, :consulting_financial_structure, :consulting_specific, :recompenses_attributes => [:title, :summary, :quantity, :financial_value, :date_delivery, :_destroy] )
+      params.require(:idea).permit(:current_step, :name, :status, :summary, :local, :idea_end_date_input, :financial_value, :financial_value_sum_accumulated, :img_card, :video, :img_pg_1, :img_pg_2, :img_pg_3, :img_pg_4, :idea_content, :risks_challenges, :consulting_project, :consulting_creativity, :consulting_financial_structure, :consulting_specific, :recompenses_attributes => [:title, :summary, :quantity, :financial_value, :date_delivery, :_destroy] )
     end
 
     def correct_user
@@ -128,6 +133,12 @@ class IdeasController < ApplicationController
 
     def random_idea_id
       Idea.all[0 + Random.rand(Idea.count)].id
+    end
+
+    def comunidea_investors
+      recompenses_ids = Idea.find(@idea).recompenses.map(&:id)
+      investments_ids = Investment.where(recompense_id: recompenses_ids).map(&:user_id).uniq
+      User.where(id: investments_ids)
     end
 
 end

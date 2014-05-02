@@ -1,3 +1,66 @@
+  <section id="new-proj-page" ng-controller="allProjectsCtrl">
+    <header class="header wrapper">
+      <div class="image-wrapper">
+        <img src="/assets/new-proj-header-2.jpg" alt="" class="image">
+      </div>
+    </header>
+    <div class="body wrapper">
+      <section class="new-proj-form">
+        <div class="form-part">
+          <h2 class="heading">Qual a localidade (cidade/estado) em que sua ideia/projeto vai iniciar?</h2>
+          <input type="text" class="form-control small" placeholder="Digite aqui a cidade ou cep">
+        </div>
+
+        <div class="form-part">
+          <h2 class="heading">Uau, que legal!<br>Agora... que tipo de ajuda você quer?</h2>
+          <div id="help-type-list">
+            <div class="help-item">
+              <span class="checkbox"><span class="icon i-check"></span></span>
+              <p class="text">Quero uma consultoria geral. Quero ajuda para colocar minha ideia em prática.</p>
+            </div>
+            <div class="help-item">
+              <span class="checkbox"><span class="icon i-check"></span></span>
+              <p class="text">Quero uma ajuda criativa. Um nome matador, logotipo e coisas visualmente lindas!</p>
+            </div>
+            <div class="help-item selected">
+              <span class="checkbox"><span class="icon i-check"></span></span>
+              <p class="text">Quero ajuda para estruturar o pedido de financiamento coletivo para minha ideia.</p>
+            </div>
+            <div class="help-item control-item">
+              <span class="checkbox"><span class="icon i-check"></span></span>
+              <h3 class="legend">Quero uma ajuda específica que é:</h3>
+              <textarea name="" id="" cols="30" rows="2" class="form-control"></textarea>
+            </div>
+          </div>
+        </div>
+        <div class="form-part">
+          <h2 class="heading first">Agora é a reta final!</h2>
+          <p class="heading first">Nos mande algumas referências visuais da sua ideia. Um vídeo, fotos ou<br>imagens que podem passar visualmente o que é a sua ideia ou projeto.</p>
+          <div class="image-upload-container">
+            <div class="image-upload-item"><span class="inner-icon"></span></div>
+            <div class="image-upload-item"><span class="inner-icon"></span></div>
+            <div class="image-upload-item"><span class="inner-icon"></span></div>
+            <div class="image-upload-item"><span class="inner-icon"></span></div>
+            <div class="image-upload-item"><span class="inner-icon"></span></div>
+            <div class="image-upload-item last"><span class="inner-icon"></span></div>
+          </div>
+        </div>
+        <div class="form-part">
+          <h2 class="heading">Link do Youtube/Vimeo</h2>
+          <input type="text" class="form-control" placeholder="ex: https://www.youtube.com/watch?v=BFMGjbj9gco">
+        </div>
+      </section>
+      <div id="terms-of-service">
+        <label for=""><input type="checkbox" class="checkbox">Estou de acordo com os <a href="#" class="link">termos de uso</a>.</label>
+        <button class="btn btn-blue next-step-button">Finalizar</button>
+      </div>
+    </div>
+  </section>
+
+
+
+
+
 <%= f.text_field :local, placeholder: Idea::PLACE %><br>
 
 <br><br><br><br>

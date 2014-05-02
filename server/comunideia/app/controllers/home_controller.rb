@@ -1,5 +1,6 @@
 # encoding: UTF-8
 class HomeController < ApplicationController
+
   def home
 #    @thumbnails = Idea.all
 
@@ -10,6 +11,10 @@ class HomeController < ApplicationController
     @ideas_count = Idea.count
     @dreams = Idea.find(:all, :conditions => ["status = ?", Idea::PROJECT_FINANCED]).count
     @total_investments = calculate_total_investments
+  end
+
+  def help
+    render 'others/help'
   end
 
   private
