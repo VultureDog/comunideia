@@ -61,4 +61,8 @@ module SessionsHelper
     session[:return_to] = request.url if request.get?
   end
 
+  def user_params
+    params.require(:user).permit(:name, :email, :password, :password_confirmation, :cpf, :birthday_day, :birthday_month, :birthday_year, :address, :address_num, :complement, :district, :cep, :city, :region, :country, :phone, :cell_phone, :notifications, :facebook_association)
+  end
+
 end

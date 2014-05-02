@@ -34,7 +34,7 @@ class UsersController < ApplicationController
       #redirect_to @user
       redirect_to root_path
     else
-      flash[:error] = User::USER_CONFUSION
+      #flash[:error] = User::USER_CONFUSION
       render 'signup'
     end
     
@@ -80,10 +80,6 @@ class UsersController < ApplicationController
       if request.url.split('/').last == Investment::INVESTMENT_en_STRING
         @user.step_forward
       end
-    end
-
-    def user_params
-      params.require(:user).permit(:name, :email, :password, :password_confirmation, :cpf, :birthday_day, :birthday_month, :birthday_year, :address, :address_num, :complement, :district, :cep, :city, :region, :country, :phone, :cell_phone, :notifications, :facebook_association)
     end
 
     # Before filters
