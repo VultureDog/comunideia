@@ -7,6 +7,10 @@ class IdeasController < ApplicationController
 
   def index
     @ideas = Idea.paginate(page: params[:page])
+    
+    @ideas_COMUNIDEIA_EM_ACAO = Idea.find(:all, :conditions => ["status = ?", Idea::COMUNIDEIA_EM_ACAO])
+    @ideas_COMUNIDEIA_EM_FINANCIAMENTO = Idea.find(:all, :conditions => ["status = ?", Idea::COMUNIDEIA_EM_FINANCIAMENTO])
+
   end
 
   def new

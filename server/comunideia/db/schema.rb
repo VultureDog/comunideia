@@ -28,10 +28,12 @@ ActiveRecord::Schema.define(version: 20140124192710) do
     t.float    "financial_value_sum_accumulated"
     t.string   "img_card"
     t.string   "video"
+    t.text     "img_pgs"
     t.string   "img_pg_1"
     t.string   "img_pg_2"
     t.string   "img_pg_3"
     t.string   "img_pg_4"
+    t.string   "img_pg_5"
     t.text     "idea_content"
     t.text     "risks_challenges"
     t.boolean  "consulting_project",              default: false
@@ -73,7 +75,7 @@ ActiveRecord::Schema.define(version: 20140124192710) do
     t.string   "email"
     t.string   "password_digest"
     t.string   "remember_token"
-    t.integer  "cpf",                     limit: 8
+    t.string   "cpf"
     t.date     "birth_date"
     t.string   "address"
     t.integer  "address_num"

@@ -39,4 +39,12 @@
   <%#= submit_tag "Enviar imagem" %> 
 <%# end %>
 
-<br>
+
+<%= form_tag({action: :upload_images, controller: :images}, multipart: true ) do %>
+  <%= hidden_field_tag :idea_id, @idea.id %>
+
+  <% for i in 0 ... Idea::MAX_IMAGES %>
+    <%= file_field_tag 'images', :multiple => true, name: ("images[" + i.to_s + "]") %>
+  <% end %>
+  <%= submit_tag "Enviar imagens" %> 
+<% end %>

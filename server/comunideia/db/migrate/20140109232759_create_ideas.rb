@@ -12,6 +12,7 @@ class CreateIdeas < ActiveRecord::Migration
       t.float :financial_value_sum_accumulated
       t.string :img_card
       t.string :video
+      t.text :img_pgs
       t.string :img_pg_1
       t.string :img_pg_2
       t.string :img_pg_3

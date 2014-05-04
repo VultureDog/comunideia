@@ -31,6 +31,7 @@ class Idea < ActiveRecord::Base
   YEARS_PLUS_15 = YEAR + (current_year..(current_year+15)).to_a
   
   MAX_RECOMPENSES = 5
+  MAX_IMAGES = 5
 
   belongs_to :user
   default_scope -> { order('created_at DESC') }
@@ -88,6 +89,8 @@ class Idea < ActiveRecord::Base
 
   has_many :recompenses, dependent: :destroy
   accepts_nested_attributes_for :recompenses, :allow_destroy => true
+
+  serialize :img_pgs, Array
 
   # helper method for the views
   def status_name

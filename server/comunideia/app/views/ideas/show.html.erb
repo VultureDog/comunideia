@@ -1,7 +1,7 @@
 <section id="project-details" ng-controller="projectSingleCtrl">
   <header class="header wrapper">
-		<% if !@idea.img_pg_1.nil? %>
-    	<img src=<%=@idea.img_pg_1%> alt="" class="image project-banner" width="940" height="372">
+    <% if !@idea.img_pgs[0].nil? && !@idea.img_pgs[0].blank? %>
+      <img src=<%= @idea.img_pgs[0] %> alt="" class="image project-banner" width="940" height="372">
     <% end %>
     <div>
       <div class="main-info">
@@ -56,12 +56,12 @@
             	<% if !@idea_content_paragraphs[i].nil? %>
 	            	<p>
 	            		<%= @idea_content_paragraphs[i] %>
-									<% if !@img_pgs[i].nil? && !@img_pgs[i].blank? %>
-	            			<br><br>
-										<img src=<%= @img_pgs[i] %>  width="640" height="390"/><br>
-										<br><br>
-									<% end %>
 	            	</p>
+                <% if !@idea.img_pgs[i].nil? && !@idea.img_pgs[i].blank? %>
+                  <br><br>
+                  <img src=<%= @idea.img_pgs[i] %>  width="640" height="390"/><br>
+                  <br><br>
+                <% end %>
 	            	<br>
 							<% end %>
             <% end %>
@@ -147,7 +147,7 @@
 investors: <%#= render partial: 'users/user', collection: @idea_investors %>
 
 -->
- +
+ 
 
 <div id='address' hidden=true><%= @tab_address %></div>
 
