@@ -2,12 +2,12 @@
         <% if signed_in? %>
           <ul>
             <li>
-              <li><%= link_to current_user.name, current_user %></li>
+              <li><%= link_to current_user.name, current_user, class: "link" %></li>
               <% if current_user.admin? %><br>
-                <li><%= link_to "Usuários", users_path %></li>
-                <li><%= link_to "Autorizar Flickr uploads", get_token_oauth_path %></li><br>
+                <li><%= link_to "Usuários", users_path, class: "link" %></li>
+                <li><%= link_to "Autorizar Flickr uploads", get_token_oauth_path, class: "link" %></li><br>
               <% end %>
-              <li><%= link_to "Sign out",  signout_path, method: "delete" %></li>
+              <li><%= link_to "Sign out",  signout_path, method: "delete", class: "link" %></li>
             </li>
           </ul>
         <% end %>
@@ -55,7 +55,14 @@
           </div>
           <div id="header-bottom-nav">
             <a href= <%= help_path %> class="link"><span class="text">O que é<br><strong>Comunideia?</strong></span></a>
-            <a href= <%= random_idea_path %> class="link decorated"><span class="text">Investir<br>Comunideia em Ação</span></a>
+          </div>
+
+          <div id="header-bottom-nav">
+            <a href="/ideas" class="link-2 decorated">
+            <span class="text">Investir</span>
+            </a>
+            <a href="/ideas" class="link-2 decorated">
+            <span class="text">Comunideia em Ação</span></a>
           </div>
           <div class="right">
             <a href= <%= new_idea_path %> >

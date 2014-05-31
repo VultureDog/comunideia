@@ -10,12 +10,20 @@
 
 <br><br>
 
-<%= object.text_field :address, placeholder: User::ADDRESS %>
-
-<%= object.text_field :address_num, placeholder: User::ADDRESS_NUMBER %>
-
-<%= object.text_field :complement, placeholder: User::ADDRESS_COMPLEMENT %>
-<br><br>
+<div class="user-info-block">
+  <div class="user-info-blocks-row">
+    <span class="user-info-block"><%= object.label 'Data' %></span>
+		<%= object.text_field :address, placeholder: User::ADDRESS %>
+  </div>
+  <div class="user-info-blocks-row">
+    <span class="user-info-block"><%= object.label 'Data' %></span>
+		<%= object.text_field :address_num, placeholder: User::ADDRESS_NUMBER %>
+  </div>
+  <div class="user-info-blocks-row">
+    <span class="user-info-block"><%= object.label 'Data' %></span>
+		<%= object.text_field :complement, placeholder: User::ADDRESS_COMPLEMENT %>
+  </div>
+</div>
 
 <%= object.text_field :district, placeholder: User::ADDRESS_NEIGHBORHOOD %>
 

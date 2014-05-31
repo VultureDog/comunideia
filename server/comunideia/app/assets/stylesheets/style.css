@@ -21,6 +21,21 @@ button > span {
   vertical-align: middle;
 }
 /* ----- ----- ----- ----- ----- ----- ----- ----- ----- ----- ----- ----- ----- ----- ----- */
+#upload-file-container {
+  height: 201px;
+  background: url("/assets/plus-icon.png") no-repeat 0 0;
+}
+
+#upload-file-container input {
+  height: 201px;
+  filter: alpha(opacity=0);
+  opacity: 0;
+}
+
+
+
+
+
 .wrapper {
   width: 100%;
   max-width: 940px;
@@ -240,14 +255,22 @@ button > span {
   padding: 8px 16px;
   color: #6c747c;
 }
-#header-bottom-nav .link.decorated {
+#header-bottom-nav .link .text {
+  font-size: 16px;
+}
+
+#header-bottom-nav .link-2 {
+  display: block;
+  border-left: 1px solid #dcdcdc;
+  padding: 3px 16px;
+  color: #6c747c;
+}
+#header-bottom-nav .link-2.decorated {
   color: #284f77;
   font-weight: bold;
   text-decoration: underline;
 }
-#header-bottom-nav .link .text {
-  font-size: 16px;
-}
+
 #submit-my-ideia-btn  {
   width:  184px;
   height: 44px;
@@ -623,6 +646,47 @@ button > span {
     background: #7cc36b;
 }
 
+.user-info-blocks-row {
+  position: relative;
+  display: inline-block;
+}
+
+.with-border-bottom {
+  padding-bottom: 30px;
+  border-bottom: 2px solid #dedede;
+}
+
+.user-info-centered {
+  display: block;
+  margin-left: auto;
+  margin-right: auto;
+  text-align: center;
+}
+
+.user-info-picture {
+  border-radius: 75px;
+}
+
+.margb-15 {
+  margin-bottom: 15px;
+}
+
+.user-info-local {
+  font-size: 12px;
+  font-style: italic;
+  color: #959595;
+}
+
+.user-info-block {
+  display: block;
+}
+
+#user-info-details {}
+#user-info-details > .header    {}
+#user-info-details > .body      {
+  background: #7cc36b;
+}
+
 #project-values-info {
     min-height: 112px;
 }
@@ -988,9 +1052,7 @@ button > span {
 /* ----- ----- ----- ----- ----- ----- ----- ----- ----- ----- ----- ----- ----- ----- ----- ----- ----- ----- ----- ----- */
 /* NEW PROJECT */
 /* ----- ----- ----- ----- ----- ----- ----- ----- ----- -----  */
-#new-proj-page {
-  margin-bottom: 100px;
-}
+#new-proj-page {}
 #new-proj-page > .header {
   padding: 44px 0px;
 }
@@ -1051,7 +1113,8 @@ button > span {
   margin: 16px 0;
   background: #95c2e3;
   font-size: 15px;
-  line-height: 2em;
+  line-height: 3em;
+  width: 11em;
   color: #486f8e;
   padding: 0 .7em;
   font-weight: bold;
@@ -1141,6 +1204,16 @@ button > span {
   width: 544px;
   margin: 0 auto;
 }
+
+.image-upload-container input {
+  filter: alpha(opacity=0);
+  opacity: 0;
+  width: 160px;
+  height: 160px;
+  position: absolute;
+  cursor: pointer;
+}
+
 .image-upload-container .image-upload-item {
   background: #fbfbfb;
   width: 160px;
@@ -1151,7 +1224,6 @@ button > span {
   -moz-box-sizing: border-box;
   box-sizing: border-box;
   margin: 6px 8px;
-  cursor: pointer;
 }
 .image-upload-container .image-upload-item .inner-icon {
   width: 84px;
@@ -1387,6 +1459,8 @@ button > span {
 #login-signup-modal .link {
   color: #929292;
   font-size: 16px;
+  background:none;
+  border:0 none;
 }
 .social-login-button {
   background: none;
@@ -1435,3 +1509,67 @@ button > span {
 }
 
 
+
+
+
+
+
+ .teste {
+  width: 37px;
+  height: 47px;
+  display: inline-block;
+  background: green;
+  border: 1px solid #000011;
+  top: 24px;
+  left: 18px;
+  filter: alpha(opacity=0);
+  opacity: 0;
+}
+
+
+
+.teste3 {
+  padding-top: 30px;
+  padding-bottom: 80px;
+  border-bottom:  1px solid #e8e8e8;
+}
+.project-index .teste33 {
+    display: inline-block;
+    width: 220px;
+    margin: 0 8px;
+    margin-bottom: 32px;
+}
+.teste3 .teste33 .teste331 {
+    position: absolute;
+    bottom: 0px;
+    color: white;
+    font-size: 14px;
+    width: 100%;
+    line-height: 1.5em;
+}
+.teste3 .teste33 .teste332 {
+    height: 12px;
+    background: #7cc36b;
+}
+.teste3 .teste33 .teste333 {}
+
+
+#teste2 {
+  color:      #987600;
+  background: #ffd300; /* Old browsers */
+  background: -moz-linear-gradient(top,  #ffd300 0%, #ffc600 100%); /* FF3.6+ */
+  background: -webkit-gradient(linear, left top, left bottom, color-stop(0%,#ffd300), color-stop(100%,#ffc600)); /* Chrome,Safari4+ */
+  background: -webkit-linear-gradient(top,  #ffd300 0%,#ffc600 100%); /* Chrome10+,Safari5.1+ */
+  background: -o-linear-gradient(top,  #ffd300 0%,#ffc600 100%); /* Opera 11.10+ */
+  background: -ms-linear-gradient(top,  #ffd300 0%,#ffc600 100%); /* IE10+ */
+  background: linear-gradient(to bottom,  #ffd300 0%,#ffc600 100%); /* W3C */
+  filter: progid:DXImageTransform.Microsoft.gradient( startColorstr='#ffd300', endColorstr='#ffc600',GradientType=0 );
+  border: 1px solid #d2af1a;
+  font-weight: bold;
+  font-size: 22px;
+  width: 167px;
+  height: 57px;
+  position: absolute;
+  right: -220px;
+  top: 0px; /* IE6-9 */
+}

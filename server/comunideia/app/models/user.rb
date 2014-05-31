@@ -32,6 +32,7 @@ class User < ActiveRecord::Base
   CPF = "CPF"  
   validates :cpf, presence: { message: "#{CPF} (CPF está em branco)" }, if: :step2?
 
+  LOCAL_STRING = "Localização"
   ADDRESS = "Endereço"
   validates :address, presence: { message: "#{ADDRESS} (endereço está em branco)" }, if: :step2?
 
@@ -48,7 +49,7 @@ class User < ActiveRecord::Base
   validates :region, presence: { message: "#{ADDRESS_STATE} (estado está em branco)" }, if: :step2?
 
   ADDRESS_COUNTRY = "País"
-  validates :country, presence: { message: "#{CPF} (nome está em branco)" }, if: :step2?
+  validates :country, presence: { message: "#{ADDRESS_COUNTRY} (país está em branco)" }, if: :step2?
 
   ADDRESS_CEP = "CEP"
   validates :cep, presence: { message: "#{ADDRESS_CEP} (CEP está em branco)" }, if: :step2?
@@ -62,10 +63,12 @@ class User < ActiveRecord::Base
   NOTIFICATIONS_AND_UPDATES = "Quero receber novidades via email"
   FACEBOOK_ASSOCIATION = "Gostaria de associar sua conta do Facebook com sua conta do Comunidéia?"
   GOOGLE_PLUS_ASSOCIATION = "Gostaria de associar sua conta do Google+ com sua conta do Comunidéia?"
-  SIGNUP_STRING = "Cadastrar"
+  SIGNUP_STRING = "CADASTRAR"
   SAVE_STRING = "Salvar"
-  ENTER_STRING = "Acessar"
+  ENTER_STRING = "ENTRAR"
   UPDATED_DATA = "Dados atualizados."
+  BASIC_DATA = "Dados básicos"
+  CONTACT_STRING = "Contato"
   COUNTRY_BRA = "BRA"
 
   BRA_STATES_LIST = [

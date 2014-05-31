@@ -1,0 +1,169 @@
+<img src="/assets/ideia-1.png" class="user-info-picture user-info-centered" width="150" height="150">
+<h1 class="user-info-centered margb-15"><%= @user.name %></h1>
+<span class="user-info-centered user-info-local">
+<% if !@user.city.nil? %>
+  <%= @user.city %>
+<% end %>
+<% if !@user.city.nil? && !@user.region.nil? %>
+  <%= ", " %>
+<% end %>
+<% if !@user.region.nil? %>
+  <%= @user.region %>
+<% end %>
+
+</span>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+<section id="user-info-details" ng-controller="userSingleCtrl">
+  <section class="body wrapper">
+      <div id="user-info-tabs">
+        <header class="tab-items-header">
+          <div class="tab-item tab-item1" ng-class="{current: currentTab == 0}" ng-click="currentTab = 0">Informações pessoais</div>
+          <div class="tab-item tab-item1" ng-class="{current: currentTab == 1}" ng-click="currentTab = 1">Projetos Criados (142)</div>
+          <div class="tab-item tab-item1" ng-class="{current: currentTab == 2}" ng-click="currentTab = 2">Notificações (142)</div>
+        </header>
+        <section class="tab-items-body">
+          <article id="proj-info-tab" class="tab-item" ng-class="{current: currentTab == 0}">
+            
+
+
+
+<br><br><br><br>
+
+
+
+
+            <span class="user-info-block"><%= User::BASIC_DATA %></span>
+
+            <div class="user-info-block with-border-bottom">
+              <div class="user-info-blocks-row">
+                <span class="user-info-block"><%= User::NAME %> completo</span>
+                <%= object.text_field :name, type:"text", class: "text-input" %>
+              </div>
+
+              <div class="user-info-blocks-row">
+                <span class="user-info-block"><%= "#{User::EMAIL}*" %></span>
+                <%= object.text_field :email %>
+              </div>
+
+              <div class="user-info-blocks-row">
+                <span class="user-info-block"><%= User::CPF %></span>
+                <%= object.text_field :cpf, placeholder: User::CPF %>
+              </div>
+
+              <div class="user-info-blocks-row">
+                <span class="user-info-block"><%= object.label 'Data de nascimento:' %></span>
+                <%= object.select :birthday_day, options_for_select(Idea::DAYS_DIA, :selected => @user.birth_date.nil? ? 0 : @user.birth_date.day) %>
+                <%= object.label '/' %>
+                <%= object.select :birthday_month, options_for_select(Idea::MONTHS_MES, :selected => @user.birth_date.nil? ? 0 : Idea::MONTHS_MES[@user.birth_date.month]) %>
+                <%= object.label '/' %>
+                <% current_year = Date.today.strftime('%Y').to_i %>
+                <%= object.select :birthday_year, options_for_select(Idea::YEARS_ANO, :selected => @user.birth_date.nil? ? 0 : @user.birth_date.year) %>
+              </div>
+            </div>
+
+            <br><br>
+
+            <span class="user-info-block"><%= User::CONTACT_STRING %></span>
+            <div class="user-info-block with-border-bottom">
+              <div class="user-info-blocks-row">
+                <span class="user-info-block"><%= User::CELLPHONE %></span>
+                <%= object.text_field :cell_phone, placeholder: User::CELLPHONE %>
+              </div>
+
+              <div class="user-info-blocks-row">
+                <span class="user-info-block"><%= User::ADDRESS_PHONE %></span>
+                <%= object.text_field :phone, placeholder: User::ADDRESS_PHONE %>
+              </div>
+
+              <div class="user-info-blocks-row">
+                <span class="user-info-block">facebook.com/</span>
+                usuarioFB
+                <%#= object.text_field :complement, placeholder: User::ADDRESS_COMPLEMENT %>
+              </div>
+              
+              <div class="user-info-blocks-row">
+                <span class="user-info-block">twitter.com/</span>
+                usuarioTw
+                <%#= object.text_field :complement, placeholder: User::ADDRESS_COMPLEMENT %>
+              </div>
+            </div>
+
+            <br><br>
+
+            <span class="user-info-block"><%= User::LOCAL_STRING %></span>
+            <div class="user-info-block">
+              <div class="user-info-blocks-row">
+                <span class="user-info-block"><%= object.label User::ADDRESS_CEP %></span>
+                <%= object.text_field :cep, placeholder: User::ADDRESS_CEP %>
+              </div>
+
+              <div class="user-info-blocks-row">
+                <span class="user-info-block"><%= object.label User::ADDRESS %></span>
+                <%= object.text_field :address, placeholder: User::ADDRESS %>
+              </div>
+
+              <div class="user-info-blocks-row">
+                <span class="user-info-block"><%= object.label User::ADDRESS_NEIGHBORHOOD %></span>
+                <%= object.text_field :district, placeholder: User::ADDRESS_NEIGHBORHOOD %>
+              </div>
+            </div>
+
+            <div class="user-info-block">
+              <div class="user-info-blocks-row">
+                <span class="user-info-block"><%= object.label User::ADDRESS_CITY %></span>
+                <%= object.text_field :city, placeholder: User::ADDRESS_CITY %>
+              </div>
+              
+              <div class="user-info-blocks-row">
+                <span class="user-info-block"><%= object.label User::ADDRESS_STATE %></span>
+                <%= object.select :region, options_for_select(User::BRA_STATES_LIST, :selected => object.object.region) %>
+              </div>
+            </div>
+
+
+
+
+
+
+
+
+
+          </article>
+          <article class="tab-item" ng-class="{current: currentTab == 2}" >
+          <% for i in 0 ... 12 %>
+            <div class="investor">
+              <img src="assets/images/investors/face-1.jpg" alt="" class="image">
+              <h2 class="name">Lise Tyler</h2>
+              <p class="line">Investiu R4 250,00</p>
+              <p class="line">em 10/03/13 às 12:30:21</p>
+              <p class="line">Apoiou 7 projetos até agora</p>
+            </div>
+          <% end %>
+          </article>
+        </section>
+      </div>
+    </section>
+
+
+</section>

@@ -1,34 +1,68 @@
-<%= form_for @idea do |f| %>
+
+
+
+
+
+
+
+<%#= form_tag({action: :upload_images, controller: :images}, multipart: true ) do %>
+  <%#= hidden_field_tag :idea_id, @idea.id %>
+
+  <%# for i in 0 ... Idea::MAX_IMAGES %>
+    <%#= file_field_tag 'images', :multiple => true, name: ("images[" + i.to_s + "]"), type: "file", id:"upload-file-container" %>
+  <%# end %>
+  <%#= submit_tag "Enviar imagens" %> 
+<%# end %>
+
+
+
+
+
+
+
+
+
+<section id="new-proj-page">
+<%= form_for @idea, :html => {:multipart => true} do |f| %>
+
   <%= render 'shared/error_messages', object: f.object %>
+
+<br><br><br>
+
   <div>
 
-  <% unless params[:all] %>
+    <% unless params[:all] %>
 
-    <%= f.hidden_field :current_step, value: @idea.current_step %>
+      <%= f.hidden_field :current_step, value: @idea.current_step %>
 
-    <%= render "ideas/idea_steps/page#{@idea.current_step + 1}", f: f %>
+      <%= render "ideas/idea_steps/page#{@idea.current_step + 1}", f: f %>
 
-    <br><br>
+    <% else %>
 
-  <% else %>
+      <%# all the fields on one page... %>
+      <%= hidden_field_tag :all, 1 %>
+      <%= render "ideas/idea_steps/page1", f: f %>
+      <%= render "ideas/idea_steps/page2", f: f %>
 
-    <%# all the fields on one page... %>
-    <%= hidden_field_tag :all, 1 %>
-    <%= render "ideas/idea_steps/page1", f: f %>
-    <%= render "ideas/idea_steps/page2", f: f %>
-
-  <% end %>
+    <% end %>
 
 
 
   </div>
   
-  <%= f.submit Idea::SAVE_IDEA_STRING, :id => "save_button" %>
-  <br><br><br><br>
+  <div class="body wrapper">
+    <div id="terms-of-service">
+      
+      <% unless @idea.id.blank? %>
+        <script> toggle_checkbox_and_element('terms_of_use', 'save_button'); </script>
+      <% end %>
 
-  <% unless @idea.id.blank? %>
-    <script> toggle_checkbox_and_element('terms_of_use', 'save_button'); </script>
-  <% end %>
+      <%= f.submit Idea::SAVE_IDEA_STRING, :id => "save_button", class: "btn btn-blue next-step-button" %>
+    </div>
+  </div>
+</section>
+
+  <br><br><br><br>
 
 <% end %>
 
@@ -39,12 +73,3 @@
   <%#= submit_tag "Enviar imagem" %> 
 <%# end %>
 
-
-<%= form_tag({action: :upload_images, controller: :images}, multipart: true ) do %>
-  <%= hidden_field_tag :idea_id, @idea.id %>
-
-  <% for i in 0 ... Idea::MAX_IMAGES %>
-    <%= file_field_tag 'images', :multiple => true, name: ("images[" + i.to_s + "]") %>
-  <% end %>
-  <%= submit_tag "Enviar imagens" %> 
-<% end %>

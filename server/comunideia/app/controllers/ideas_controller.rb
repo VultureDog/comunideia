@@ -78,6 +78,54 @@ class IdeasController < ApplicationController
   end
   
   def update
+
+    if params.has_key?(:images)
+      i = @idea.img_pgs.count
+      params[:images].each do |key, value|
+        if i < Idea::MAX_IMAGES
+
+          begin
+            login = flickr.test.login
+            
+            uploaded_io = value
+            image_name = uploaded_io.original_filename.blank? ? DateTime.now.strftime('%Y%m%d%H%M%S%L') : uploaded_io.original_filename
+
+            pic_path = Rails.root.join('public', 'uploads_tmp', image_name)
+            File.open(pic_path, 'wb') do |file|
+              file.write(uploaded_io.read)
+            end
+
+            # You need to be authentified to do that
+            photo_id = flickr.upload_photo pic_path, :title => image_name
+
+            info = flickr.photos.getInfo(:photo_id => photo_id)
+
+
+            File.delete(pic_path)
+
+            photo_url = FlickRaw.url_b(info).to_s
+            @idea.img_pgs[i] = photo_url
+
+          rescue FlickRaw::OAuthClient::FailedResponse => e
+            flash[:error] = "Ocorreu um erro ao carregar sua imagem. Você pode enviar novamente?"
+          end
+
+        end
+
+        i += 1
+
+      end
+    end
+
+
+
+
+
+
+
+
+
+
     if @is_financial_idea
       @idea.recompenses.clear
     end

@@ -32,7 +32,10 @@
               </label>
             </div>
 
-            <br><br><%= f.submit User::ENTER_STRING %>
+            <div class="form-item">
+              <%= f.submit User::ENTER_STRING, class: "link right bold" %>
+            </div>
+            <br>
 
           <% end %>
 
@@ -80,7 +83,11 @@
 
             <div class="form-item">
               <label id="sign-into-newsletter">
-                <%= f.check_box :notifications, type: "checkbox", class: "checkbox" %>
+                
+
+<span class="checkbox"><span class="icon i-check"></span></span>
+
+                <%= f.check_box :notifications, type: "checkbox", class: "teste" %>
                 <span class="text">
                   <%= f.label User::NOTIFICATIONS_AND_UPDATES %>
                 </span>
@@ -88,17 +95,8 @@
             </div>
 
             <div class="form-item">
-              <a href="" class="link right bold">CADASTRAR</a>
-            </div>
-            <div class="form-item">
               <%= f.submit User::SIGNUP_STRING, class: "link right bold" %>
             </div>
-            
-            <div class="form-item">
-              <a href="" class="link right bold">CADASTRAR</a>
-            </div>
-
-            <%= f.submit User::SAVE_STRING %>
 
 
           <% end %>

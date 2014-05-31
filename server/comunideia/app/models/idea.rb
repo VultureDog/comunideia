@@ -31,12 +31,13 @@ class Idea < ActiveRecord::Base
   YEARS_PLUS_15 = YEAR + (current_year..(current_year+15)).to_a
   
   MAX_RECOMPENSES = 5
-  MAX_IMAGES = 5
+  MAX_IMAGES = 6
 
   belongs_to :user
   default_scope -> { order('created_at DESC') }
 
   NAME = "Nome da idéia"
+  NAME_PLACEHOLDER = "Seja criativo e use um nome que passe a sua mensagem sem ser muito comprido"
   NAME_FORM = "Seja criativo e use um nome que passe sua mensagem sem ser muito comprido"
   NAME_MAX_CHARS = 80
   validates :name, presence: { message: "#{NAME} (nome está em branco, colocar um nome atrativo na idéia pode ser uma boa idéia! Ex: Comunidéia)" }, length: { maximum: NAME_MAX_CHARS, message: "#{NAME} (nome está muito longo, uma boa idéia consegue chamar a atenção com poucas palavras. Máximo de #{NAME_MAX_CHARS} caracteres)" }
@@ -59,12 +60,15 @@ class Idea < ActiveRecord::Base
   IDEA_CONTENT = "Descrição da idéia"
   validates :idea_content, presence: { message: "#{IDEA_CONTENT} (descrição da idéia está em branco.)" }, if: :step1?
 
-  PLACE = "Local"
+  PLACE = "Digite aqui a cidade ou cep"
   PLACE_MAX_CHARS = 60
   validates :local, presence: { message: "#{PLACE} (local está em branco, o lugar onde sua idéia acontece pode ser muito relevante para uma pessoa escolher investir no projeto.)" } , length: { maximum: PLACE_MAX_CHARS, message: "#{PLACE} (o local está muito longo. Máximo de #{PLACE_MAX_CHARS} caracteres)" }, if: :valid_steps_2_3?
 
-  FINANCIAL_VALUE = "Valor financeiro"
+  FINANCIAL_VALUE = "R$"
   validates :financial_value, presence: { message: "#{FINANCIAL_VALUE} (valor financeiro está em branco.)" }, if: :step2?
+
+  IDEA_END_DATE_INPUT = "Coloque o número de dias"
+  validates :idea_end_date_input, presence: { message: "#{IDEA_END_DATE_INPUT} (número de dias do projeto está em branco.)" }, if: :step2?
 
   THUMBNAIL_IMG = "Link da imagem do cartão"
   validates :img_card, presence: { message: "#{THUMBNAIL_IMG} (link da imagem do cartão está em branco.)" }, if: :step2?
@@ -84,7 +88,7 @@ class Idea < ActiveRecord::Base
   CONSULTING_FINANCIAL_STRUCTURE_STRING = "Quero ajuda para estruturar o pedido de financimento coletivo para minha idéia."
   CONSULTING_SPECIFIC_STRING = "Quero uma ajuda específica que é:"
 
-  SAVE_IDEA_STRING = "Salvar projeto para a idéia"
+  SAVE_IDEA_STRING = "Próximo passo      > "
   IDEA_STRING = "idéia"
 
   has_many :recompenses, dependent: :destroy
@@ -100,6 +104,10 @@ class Idea < ActiveRecord::Base
   def createEmptyRecompense
     
     recompenses.build(title:"Investimento altruísta.", summary:"Quero ver o projeto realizado e não é necessário receber para incentivar!", quantity:-1, financial_value:1, date_delivery:Date.today).start
+
+    for ind in 1 ... (Idea::MAX_RECOMPENSES + 1)
+      recompenses.build(title:"Investimento " + ind.to_s, summary:"Descrição", quantity:1, financial_value:1, date_delivery:Date.today).start
+    end
 
   end
 

@@ -15,20 +15,20 @@
     <% end %>
   <% end %>
 
-  <%= render 'users/form_essencial', object: f, email_disabled: !@user.step1? %>
+  <%#= render 'users/form_essencial', object: f, email_disabled: !@user.step1? %>
 
-  <% if @user.step1? %>
-    <%= f.label "#{User::PASSWORD}*" %><br>
-    <%= f.password_field :password %>
-    <br><br>
+  <%# if @user.step1? %>
+    <%#= f.label "#{User::PASSWORD}*" %><br>
+    <%#= f.password_field :password %>
+    <!--br><br-->
 
-    <%= f.label "#{User::PASSWORD_CONFIRMATION}*" %><br>
-    <%= f.password_field :password_confirmation %>
-    <br><br><br><br>
-  <% end %>
+    <%#= f.label "#{User::PASSWORD_CONFIRMATION}*" %><br>
+    <%#= f.password_field :password_confirmation %>
+    <!--br><br><br><br-->
+  <%# end %>
 
   <% if edit %>
-    <%= render 'users/form_user_data', object: f %>
+    <%= render 'users/form_user_data_2', object: f %>
   <% end %>
 
   <% if @user.step1? %>

@@ -1,17 +1,18 @@
-
 <%= f.hidden_field :status, value: f.object.status, id: "idea_status" %>
 
   <section id="new-proj-page" ng-controller="newProjectCtrl">
-    <header class="header wrapper">
-      <div class="image-wrapper">
-        <img src="/assets/new-proj-header.jpg" alt="" class="image">
-      </div>
-    </header>
+    <% if f.object.financial_value.nil? %>
+      <header class="header wrapper">
+        <div class="image-wrapper">
+          <img src="/assets/new-proj-header.jpg" alt="" class="image">
+        </div>
+      </header>
+    <% end  %>
     <div class="body wrapper">
       <section class="new-proj-form">
         <div class="form-part">
           <h2 class="heading">Comece dando um nome pra sua ideia ou projeto:</h2>
-          <input type="text" class="form-control" placeholder="Seja criativo e use um nome que passe a sua mensagem sem ser muito comprido" name="idea[name]">
+          <%= f.text_field :name, placeholder: Idea::NAME_PLACEHOLDER, class: "form-control" %>
         </div>
         <div class="form-part">
           <h2 class="heading">Você quer uma consultoria para a sua ideia/projeto/empresa, ou você está pronto para o financiamento coletivo?</h2>
@@ -28,16 +29,16 @@
         </div>
         <div class="form-part">
           <h2 class="heading">Legal, sua ideia só precisa de recursos para ir para frente. Explica detalhadamente como é a sua ideia, projeto ou empresa!</h2>
-          <textarea id="" cols="30" rows="6" class="form-control" name="idea[idea_content]"></textarea>
+          <%= f.text_area :idea_content, cols: "30", rows: "6", class: "form-control" %>
         </div>
         <div class="form-part">
           <h2 class="heading">Quanto coisa! O que você acha de pegar tudo isso aí em cima e transformar em 120 caracteres?</h2>
-          <textarea id="" cols="30" rows="2" class="form-control" ng-model="newProjShortDesc" name="idea[summary]"></textarea>
+
+          <!--textarea id="" cols="30" rows="2" class="form-control" ng-model="newProjShortDesc" name="idea[summary]"></textarea-->
+
+          <%= f.text_area :summary, cols: "30", rows: "2", class: "form-control" %>
           <div class="legend"><span ng-bind="120 - newProjShortDesc.length">120</span> caracteres restantes</div>
         </div>
       </section>
-      <div>
-        <button class="btn btn-blue next-step-button">Próximo passo &gt;</button>
-      </div>
     </div>
   </section>

@@ -1,28 +1,32 @@
+  <br>
   <section id="new-proj-page" ng-controller="allProjectsCtrl" class="page-2">
-    <header class="header wrapper">
-      <div class="image-wrapper">
-        <img src="/assets/new-proj-header-2.jpg" alt="" class="image">
-      </div>
-    </header>
+    <% if f.object.financial_value.nil? %>
+      <header class="header wrapper">
+        <div class="image-wrapper">
+          <img src="/assets/new-proj-header-2.jpg" alt="" class="image">
+        </div>
+      </header>
+    <% end  %>
     <div class="body wrapper">
       <section class="new-proj-form">
         <div class="form-part">
           <h2 class="heading">Qual a localidade (cidade/estado) em que sua ideia/projeto vai iniciar?</h2>
-          <input type="text" class="form-control small" placeholder="Digite aqui a cidade ou cep" name="idea[local]">
+          <%= f.text_field :local, placeholder: Idea::PLACE, class: "form-control small" %>
         </div>
         <div class="form-part">
           <h2 class="heading">Hora de falar de negócios. Quanto você precisa para ter seu projeto funcionando (em reais)?</h2>
-          <input type="text" class="form-control small" placeholder="R$" name="idea[financial_value]">
+          <%= f.text_field :financial_value, placeholder: Idea::FINANCIAL_VALUE, class: "form-control small" %>
         </div>
         <div class="form-part">
           <h2 class="heading">Defina agora em quantos dias você pretende atingir este investimento.</h2>
           <input type="text" class="form-control small" placeholder="Coloque o número de dias" name="idea[idea_end_date_input]">
+          <%#= f.text_field :idea_end_date_input, placeholder: Idea::FINANCIAL_VALUE, class: "form-control small" %>
         </div>
         <div class="form-part">
           <h2 class="heading">Quais são os pacotes de recompensa que os investidores irão receber?<br>Lembrando que eles podem optar por investir sem ser recompensando.</h2>
           <div id="pledge-create-component">
             <div class="component-wrapper">
-              <div class="pledge-item predef">
+              <!--div class="pledge-item predef">
                 <h3 class="heading">Recompensa altrísta</h3>
                 <p class="text">Caso o apoiador escolha essa opção, significa que ele vai ajudar seu projeto sem pedir nada em troca. Legal, né?</p>
                 <sub>(este campo não pode ser editado)</sub>
@@ -39,36 +43,107 @@
                 <div class="row last">
                   <label><span class="text">Date de entrega</span><input type="text" class="date-input input" placeholder="  /  /  " value="13/04/2014"></label>
                 </div>
-              </div>
-              <% for i in 2 ... 6 %>
+              </div-->
+              <%# for i in 2 ... 6 %>
+
+
+<%# if @is_financial_idea %>
+  <%= render 'recompenses/recompense_form', :f => f %>
+<%# end %>
+
+
+
+
+
+<!--%= f.fields_for :recompenses do |builder| %>
+
+
+
               <div class="pledge-item">
                 <div class="status-bar"></div>
+
+
+
                 <div class="row">
-                  <div class="field"><label><span class="text">Valor</span><input class="currency-input input" type="text" placeholder="R$"></label></div>
-                  <div class="field"><label><span class="text">até</span><input class="currency-input input" type="text" placeholder="R$"></label></div>
+                  <%#= (f.index.to_i + 1).to_s %>
+                  <div class="field">
+                  <label>
+                    <span class="text">Valor</span>
+                    <%#= builder.text_field :financial_value, placeholder: Recompense::FINANCIAL_VALUE, class: "currency-input input" %>
+                  </label>
+                  </div>
+                  <div class="field">
+                    <label>
+                      <span class="text">Qnt</span>
+                      <%#= builder.text_field :quantity, placeholder: Recompense::QUANTITY, class: "currency-input input" %>
+                    </label>
+                  </div>
                 </div>
                 <div class="row">
-                  <textarea cols="20" rows="6" placeholder="Recompensa <%= i %>"></textarea>
+                  <%#= builder.text_area :summary, placeholder: Recompense::SUMMARY, cols: "20", rows: "6" %>
+                  </textarea>
                 </div>
                 <div class="row last">
                   <label><span class="text">Date de entrega</span><input type="text" class="date-input input" placeholder="  /  /  "></label>
                 </div>
+
+
               </div>
-              <% end %>
+
+
+<%# end %>
+
+
+<p id="recompenseCounter" style="visibility:visible" onclick="incrementRecompenseCounter()" value="1" ><%#= link_to_add_fields(Recompense::RECOMPENSE_ADD, f, :recompenses)
+ %></p-->
+
+
+
+
+
+
+
+
+              <%# end %>
             </div>
           </div>
         </div>
         <div class="form-part">
           <h2 class="heading first">Agora é a reta final!</h2>
           <p class="heading first">Nos mande algumas referências visuais da sua ideia. Um vídeo, fotos ou<br>imagens que podem passar visualmente o que é a sua ideia ou projeto.</p>
-          <div class="image-upload-container">
-            <div class="image-upload-item"><span class="inner-icon"></span></div>
-            <div class="image-upload-item"><span class="inner-icon"></span></div>
-            <div class="image-upload-item"><span class="inner-icon"></span></div>
-            <div class="image-upload-item"><span class="inner-icon"></span></div>
-            <div class="image-upload-item"><span class="inner-icon"></span></div>
-            <div class="image-upload-item last"><span class="inner-icon"></span></div>
-          </div>
+
+          <%#= form_tag({action: :upload_images, controller: :images}, multipart: true ) do %>
+            <%= hidden_field_tag :idea_id, @idea.id %>
+
+            <div class="image-upload-container">
+
+                <% for i in 0 ... Idea::MAX_IMAGES %>
+
+                  <div class="image-upload-item">
+                    <%= file_field_tag 'images', :multiple => true, name: ("images[" + i.to_s + "]"), type: "file", id:"upload-file-container"%>
+                    <span class="inner-icon"></span>
+                  </div>
+
+                  <%#= file_field_tag 'images', :multiple => true, name: ("images[" + i.to_s + "]"), type: "file", id:"upload-file-container" %>
+                                
+                <% end %>
+
+              <!--TODOdiv class="image-upload-item last"><span class="inner-icon"></span></div-->
+            </div>
+
+
+
+           <%#= submit_tag "Enviar imagens" %> 
+            <%# end %>
+
+
+
+
+
+
+
+
+
         </div>
         <div class="form-part">
           <h2 class="heading">Link do Youtube/Vimeo</h2>
@@ -77,7 +152,6 @@
       </section>
       <div id="terms-of-service">
         <label for=""><input type="checkbox" class="checkbox">Estou de acordo com os <a href="#" class="link">termos de uso</a>.</label>
-        <button class="btn btn-blue next-step-button">Finalizar</button>
       </div>
     </div>
   </section>
@@ -101,9 +175,9 @@
 <br><br><br><br>
 
 
-<% if @is_financial_idea %>
-  <%= render 'recompenses/recompense_form', :f => f %>
-<% end %>
+<%# if @is_financial_idea %>
+  <%#= render 'recompenses/recompense_form', :f => f %>
+<%# end %>
 
 
 

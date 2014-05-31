@@ -1,5 +1,8 @@
 /* ----- ----- ----- ----- ----- ----- ----- ----- ----- ----- */
 angular.module('comunideiaProto', [])
+.controller('userSingleCtrl', ['$scope', function($scope) {
+  $scope.currentTab         = 0;
+}])
 .controller('allProjectsCtrl', ['$scope', function($scope) {
   $scope.projType   = 0;
   $scope.toggleProjType = function() {
@@ -37,6 +40,9 @@ angular.module('comunideiaProto', [])
     $("#login-signup-modal").fadeOut();
   }
   window.accountActionModalScope = $scope;
+}])
+.controller('userSingleCtrl', ['$scope', function($scope) {
+  $scope.currentTab         = 0;
 }]);
 /* ----- ----- ----- ----- ----- ----- ----- ----- ----- ----- */
 $(function(){
