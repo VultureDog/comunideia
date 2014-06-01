@@ -38,22 +38,35 @@
 
             <div class="image-upload-container">
 
+                <h2 class="heading">Imagens</h2>
                 <% for i in 0 ... Idea::MAX_IMAGES %>
 
                   <div class="image-upload-item">
-                    <%= file_field_tag 'images', :multiple => true, name: ("images[" + i.to_s + "]"), type: "file", id:"upload-file-container"%>
+                    <%= file_field_tag 'images', name: ("images[" + i.to_s + "]"), type: "file", id:"upload-file-container"%>
                     <span class="inner-icon"></span>
                   </div>
 
                 <% end %>
 
               <!--TODOdiv class="image-upload-item last"><span class="inner-icon"></span></div-->
+
+                <h2 class="heading">Video</h2>
+                <div class="image-upload-item">
+                  <%= file_field_tag 'video', name: "video", type: "file", id:"upload-file-container"%>
+                  <span class="inner-icon"></span>
+                </div>
+
             </div>
 
         </div>
-        <div class="form-part">
+        <!--div class="form-part">
           <h2 class="heading">Link do Youtube/Vimeo</h2>
           <input type="text" class="form-control" placeholder="ex: https://www.youtube.com/watch?v=BFMGjbj9gco">
+        </div-->
+
+        <div class="form-part">
+          <h2 class="heading">Quais são os riscos e desafios possíveis imagináveis?</h2>
+          <%= f.text_area :risks_challenges, cols: "30", rows: "6", class: "form-control", placeholder: Idea::RISKS_AND_CHALLENGES %>          
         </div>
       </section>
       <div id="terms-of-service">
@@ -70,8 +83,6 @@
 
 
 <%#= f.text_field :img_card, placeholder: Idea::THUMBNAIL_IMG %>
-<%= f.text_field :video, placeholder: "Link do vídeo" %><br>
-<%= f.text_area :risks_challenges, placeholder: Idea::RISKS_AND_CHALLENGES %><br>
 
 
 
