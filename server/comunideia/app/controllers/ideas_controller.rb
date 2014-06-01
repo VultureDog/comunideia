@@ -57,16 +57,16 @@ class IdeasController < ApplicationController
     @is_financial_idea = false
     if is_financial_idea?
       @is_financial_idea = is_financial_idea?
-      @idea.createEmptyRecompense
+      @idea.createRecompenses
     end
 
     if @idea.valid_and_set_steps && @idea.save
       @idea.step_forward
 
       recompenses = @idea.recompenses
-      if @is_financial_idea
-        recompenses.build.start
-      end
+#      if @is_financial_idea
+#        recompenses.build.start
+#      end
     else
       flash[:error] = "Ocorreu um erro, tente criar novamente."
     end
@@ -116,22 +116,14 @@ class IdeasController < ApplicationController
 
       end
     end
-
-
-
-
-
-
-
-
-
+    
 
     if @is_financial_idea
       @idea.recompenses.clear
     end
 
     if !@idea.save
-      flash[:error] = "Ocorreu um erro, atualize o projeto novamente."
+      flash[:error] = Idea::IDEA_SAVE_ERROR
     end
 
     @idea.current_step = idea_params[:current_step].to_i
@@ -139,10 +131,9 @@ class IdeasController < ApplicationController
     parameters = idea_params
     parameters[:date_start] = DateTime.now + (Time.now.hour + 1).hour
     parameters[:date_end] = DateTime.now + idea_params[:idea_end_date_input].to_i + (Time.now.hour + 1).hour
-    parameters.delete :idea_end_date_input
-  
-    if @idea.update_attributes(parameters)
+    #parameters.delete :idea_end_date_input
  
+    if @idea.update_attributes(parameters)
       flash[:success] = "Dados atualizados."
       if (@idea.current_step.to_i == 1) || (@idea.current_step.to_i == 2)
         redirect_to idea_path(@idea)
@@ -174,7 +165,7 @@ class IdeasController < ApplicationController
     end
 
     def idea_params
-      params.require(:idea).permit(:current_step, :name, :status, :summary, :local, :idea_end_date_input, :financial_value, :financial_value_sum_accumulated, :img_card, :video, :img_pg_1, :img_pg_2, :img_pg_3, :img_pg_4, :idea_content, :risks_challenges, :consulting_project, :consulting_creativity, :consulting_financial_structure, :consulting_specific, :recompenses_attributes => [:title, :summary, :quantity, :financial_value, :date_delivery, :_destroy] )
+      params.require(:idea).permit(:current_step, :name, :status, :summary, :local, :idea_end_date_input, :financial_value, :financial_value_sum_accumulated, :img_card, :video, :img_pg_1, :img_pg_2, :img_pg_3, :img_pg_4, :idea_content, :risks_challenges, :consulting_project, :consulting_creativity, :consulting_financial_structure, :consulting_specific, :recompenses_attributes => [:title, :summary, :quantity, :financial_value, :index_order, :date_delivery, :_destroy] )
     end
 
     def correct_user

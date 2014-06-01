@@ -22,6 +22,7 @@ ActiveRecord::Schema.define(version: 20140124192710) do
     t.integer  "user_id"
     t.datetime "date_start"
     t.datetime "date_end"
+    t.integer  "idea_end_date_input"
     t.text     "summary"
     t.string   "local"
     t.float    "financial_value"
@@ -64,6 +65,7 @@ ActiveRecord::Schema.define(version: 20140124192710) do
     t.float    "financial_value"
     t.string   "summary"
     t.datetime "date_delivery"
+    t.integer  "index_order"
     t.datetime "created_at"
     t.datetime "updated_at"
   end

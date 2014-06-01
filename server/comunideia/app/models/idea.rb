@@ -1,6 +1,6 @@
 # encoding: UTF-8
 class Idea < ActiveRecord::Base
-  
+    
   include MultiStepModel
 
   DAY = ['Dia:']
@@ -35,6 +35,8 @@ class Idea < ActiveRecord::Base
 
   belongs_to :user
   default_scope -> { order('created_at DESC') }
+
+  IDEA_SAVE_ERROR = "Ocorreu um erro, atualize o projeto novamente."
 
   NAME = "Nome da idéia"
   NAME_PLACEHOLDER = "Seja criativo e use um nome que passe a sua mensagem sem ser muito comprido"
@@ -71,7 +73,7 @@ class Idea < ActiveRecord::Base
   validates :idea_end_date_input, presence: { message: "#{IDEA_END_DATE_INPUT} (número de dias do projeto está em branco.)" }, if: :step2?
 
   THUMBNAIL_IMG = "Link da imagem do cartão"
-  validates :img_card, presence: { message: "#{THUMBNAIL_IMG} (link da imagem do cartão está em branco.)" }, if: :step2?
+  #validates :img_card, presence: { message: "#{THUMBNAIL_IMG} (link da imagem do cartão está em branco.)" }, if: :step2?
 
   RISKS_AND_CHALLENGES = "Riscos e desafios"
   validates :risks_challenges, presence: { message: "#{RISKS_AND_CHALLENGES} (os riscos e desafios foram deixados em branco.)" }, if: :step2?
@@ -101,12 +103,12 @@ class Idea < ActiveRecord::Base
     STATUSES[status]
   end
 
-  def createEmptyRecompense
+  def createRecompenses
     
-    recompenses.build(title:"Investimento altruísta.", summary:"Quero ver o projeto realizado e não é necessário receber para incentivar!", quantity:-1, financial_value:1, date_delivery:Date.today).start
+    recompenses.build(title:"Investimento altruísta.", summary:"Quero ver o projeto realizado e não é necessário receber para incentivar!", quantity:-1, financial_value:1, index_order:0, date_delivery:Date.today).start
 
-    for ind in 1 ... (Idea::MAX_RECOMPENSES + 1)
-      recompenses.build(title:"Investimento " + ind.to_s, summary:"Descrição", quantity:1, financial_value:1, date_delivery:Date.today).start
+    for index_order in 1 ... (Idea::MAX_RECOMPENSES + 1)
+      recompenses.build(title:"Investimento " + index_order.to_s, summary:"Descrição", quantity:0, financial_value:1, index_order:index_order, date_delivery:Date.today).start
     end
 
   end

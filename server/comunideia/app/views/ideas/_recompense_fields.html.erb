@@ -1,11 +1,19 @@
 <%#= (f.index.to_i + 1).to_s %>
+<%= f.hidden_field :index_order, value: f.object.index_order %>
 <% if f.index.to_i == 0 %>
   
   <div class="pledge-item predef">
     <h3 class="heading">Recompensa altruísta</h3>
     <p class="text">Caso o apoiador escolha essa opção, significa que ele vai ajudar seu projeto sem pedir nada em troca. Legal, né?</p>
     <sub>(este campo não pode ser editado)</sub>
-  </div>
+    
+    
+    <%= f.hidden_field :title, value: f.object.title %>
+    <%= f.hidden_field :summary, value: f.object.summary %>
+    <%= f.hidden_field :quantity, value: f.object.quantity %>
+    <%= f.hidden_field :financial_value, value: f.object.financial_value %>
+    <%= f.hidden_field :date_delivery, value: f.object.date_delivery %>
+      </div>
 
 
 
@@ -31,14 +39,25 @@
       </div>
     </div>
     <div class="row">
-      <%= f.text_area :summary, placeholder: Recompense::SUMMARY, cols: "20", rows: "6" %>
+      <%= f.text_area :title, placeholder: Recompense::TITLE, cols: "20", rows: "1" %>
       </textarea>
     </div>
-    <div class="row last">
+    <div class="row">
+      <%= f.text_area :summary, placeholder: Recompense::SUMMARY, cols: "20", rows: "5" %>
+      </textarea>
+    </div>
+    <!--div class="row last">
       <label><span class="text">Date de entrega</span><input type="text" class="date-input input" placeholder="  /  /  "></label>
+    </div-->
+
+    <div class="row last">
+      <label>
+        <span class="text">Data de entrega</span>
+        <%= f.date_field :date_delivery, value: Date.today + 40, class: "date-input input" %>
+      </label>
     </div>
 
-    <p onclick="decrementRecompenseCounter()"><%= link_to_remove_fields Recompense::RECOMPENSE_REMOVE, f %></p>
+    <!--p onclick="decrementRecompenseCounter()"><%#= link_to_remove_fields Recompense::RECOMPENSE_REMOVE, f %></p-->
   </div>
 
 <% end %>

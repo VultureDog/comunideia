@@ -26,7 +26,7 @@ class RecompensesController < ApplicationController
   private
 
     def idea_params
-      params.require(:idea).permit(:current_step, :name, :status, :summary, :local, :idea_end_date_input, :financial_value, :financial_value_sum_accumulated, :img_card, :video, :img_pg_1, :img_pg_2, :img_pg_3, :img_pg_4, :idea_content, :risks_challenges, :consulting_project, :consulting_creativity, :consulting_financial_structure, :consulting_specific, :recompenses_attributes => [:title, :summary, :quantity, :financial_value, :date_delivery, :_destroy] )
+      params.require(:idea).permit(:current_step, :name, :status, :summary, :local, :idea_end_date_input, :financial_value, :financial_value_sum_accumulated, :img_card, :video, :img_pg_1, :img_pg_2, :img_pg_3, :img_pg_4, :idea_content, :risks_challenges, :consulting_project, :consulting_creativity, :consulting_financial_structure, :consulting_specific, :recompenses_attributes => [:title, :summary, :quantity, :financial_value, :index_order, :date_delivery, :_destroy] )
     end
 
 end

@@ -6,6 +6,7 @@ class CreateIdeas < ActiveRecord::Migration
       t.integer :user_id
       t.datetime :date_start
       t.datetime :date_end
+      t.integer :idea_end_date_input
       t.text :summary
       t.string :local
       t.float :financial_value

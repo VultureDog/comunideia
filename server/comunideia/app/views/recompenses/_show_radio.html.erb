@@ -1,16 +1,19 @@
 <% for i in 0 ... @recompenses.count%>
-  <% pledge_value = @recompenses[i].financial_value %>
-  <section class="pledge-item <%= ["full", ""][rand(2)] %>" data-pledge-value="<%= pledge_value %>" data-idx="<%= i %>" ng-class="{current: selectedPledgeItem == <%= i %>}">
-    <header class="header">
-      <h2 class="name"><%= @recompenses[i].title %> </h2>
-      <span class="donation-value">R$ <%= pledge_value %></span>
-      <span class="pledged-indicator"><%= @recompenses[i].investments.count %>/<%= @recompenses[i].quantity.to_i %> apoiadores</span>
-    </header>
-    <div class="body">
-      <%= @recompenses[i].summary %>
-    </div>
-    <footer class="footer">
-      Estimativa de Entrega: <%= Idea::MONTHS_MES[@recompenses[i].date_delivery.month][0] %>/<%= @recompenses[i].date_delivery.year %>
-    </footer>
-  </section>
+
+  <% if @recompenses[i].quantity.to_i > 0 %>
+    <% pledge_value = @recompenses[i].financial_value %>
+    <section class="pledge-item <%= ["full", ""][rand(2)] %>" data-pledge-value="<%= pledge_value %>" data-idx="<%= i %>" ng-class="{current: selectedPledgeItem == <%= i %>}">
+      <header class="header">
+        <h2 class="name"><%= @recompenses[i].title %> </h2>
+        <span class="donation-value">R$ <%= pledge_value %></span>
+        <span class="pledged-indicator"><%= @recompenses[i].investments.count %>/<%= @recompenses[i].quantity.to_i %> apoiadores</span>
+      </header>
+      <div class="body">
+        <%= @recompenses[i].summary %>
+      </div>
+      <footer class="footer">
+        Estimativa de Entrega: <%= Idea::MONTHS_MES[@recompenses[i].date_delivery.month][0] %>/<%= @recompenses[i].date_delivery.year %>
+      </footer>
+    </section>
+  <% end %>
 <% end %>
