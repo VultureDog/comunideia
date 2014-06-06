@@ -17,7 +17,7 @@ Comunideia::Application.routes.draw do
   resources :sessions, only: [:create, :destroy]
   resources :ideas
   get '/random_idea' => 'ideas#show'
-  
+
   resources :recompenses, only: [:create, :edit, :update, :destroy]
   resources :investments, only: [:create]
   post '/new' => 'investments#new'
@@ -26,11 +26,15 @@ Comunideia::Application.routes.draw do
 
   match '/get_token_oauth', to: 'images#get_token_oauth', via: 'get'
   match '/callback_token', to: 'images#callback_token', via: 'get'
-  match '/upload_images', to: 'images#upload_images', via: 'post'
 
   get '/auth/:provider/callback' => 'sessions#create', as: :auth_callback
   get '/auth/failure' => 'sessions#failure', as: :auth_failure
 
+  resources :videos do
+    new do
+       get  :save_video
+     end
+  end
 
   # The priority is based upon order of creation: first created -> highest priority.
   # See how all your routes lay out with "rake routes".

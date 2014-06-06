@@ -31,6 +31,7 @@ class User < ActiveRecord::Base
 
   CPF = "CPF"  
   validates :cpf, presence: { message: "#{CPF} (CPF está em branco)" }, if: :step2?
+  validate :valid_CPF
 
   LOCAL_STRING = "Localização"
   ADDRESS = "Endereço"
@@ -201,5 +202,4 @@ class User < ActiveRecord::Base
         errors.add(:cpf, "#{CPF} (O CPF digitado não é válido)")
       end
     end
-      
 end

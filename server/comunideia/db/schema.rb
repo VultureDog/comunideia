@@ -100,4 +100,13 @@ ActiveRecord::Schema.define(version: 20140124192710) do
   add_index "users", ["email", "created_at"], name: "index_users_on_email_and_created_at", unique: true, using: :btree
   add_index "users", ["remember_token", "created_at"], name: "index_users_on_remember_token_and_created_at", using: :btree
 
+  create_table "videos", force: true do |t|
+    t.string   "title"
+    t.string   "description"
+    t.string   "yt_video_id"
+    t.boolean  "is_complete", default: false
+    t.datetime "created_at"
+    t.datetime "updated_at"
+  end
+
 end

@@ -42,6 +42,7 @@ class IdeasController < ApplicationController
  
        # chamar comunidea_investors apenas pra renderizar a aba de investidores
       @idea_investors = comunidea_investors
+
     end
 
     @tab_address = params.has_key?(:tab_address) ? params[:tab_address] : nil
@@ -127,7 +128,7 @@ class IdeasController < ApplicationController
     end
 
     @idea.current_step = idea_params[:current_step].to_i
-  
+ 
     parameters = idea_params
     parameters[:date_start] = DateTime.now + (Time.now.hour + 1).hour
     parameters[:date_end] = DateTime.now + idea_params[:idea_end_date_input].to_i + (Time.now.hour + 1).hour
@@ -135,6 +136,7 @@ class IdeasController < ApplicationController
  
     if @idea.update_attributes(parameters)
       flash[:success] = "Dados atualizados."
+
       if (@idea.current_step.to_i == 1) || (@idea.current_step.to_i == 2)
         redirect_to idea_path(@idea)
       else

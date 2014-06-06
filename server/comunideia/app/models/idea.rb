@@ -39,17 +39,18 @@ class Idea < ActiveRecord::Base
   IDEA_SAVE_ERROR = "Ocorreu um erro, atualize o projeto novamente."
 
   NAME = "Nome da idéia"
+
   NAME_PLACEHOLDER = "Seja criativo e use um nome que passe a sua mensagem sem ser muito comprido"
   NAME_FORM = "Seja criativo e use um nome que passe sua mensagem sem ser muito comprido"
   NAME_MAX_CHARS = 80
   validates :name, presence: { message: "#{NAME} (nome está em branco, colocar um nome atrativo na idéia pode ser uma boa idéia! Ex: Comunidéia)" }, length: { maximum: NAME_MAX_CHARS, message: "#{NAME} (nome está muito longo, uma boa idéia consegue chamar a atenção com poucas palavras. Máximo de #{NAME_MAX_CHARS} caracteres)" }
   validates :user_id, presence: true, if: :step1?
- 
+
   # bit flag
   COMUNIDEIA_EM_ACAO = 1
   COMUNIDEIA_EM_FINANCIAMENTO = 2
   PROJECT_FINANCED = 3
-  
+
   STATUSES = {
     COMUNIDEIA_EM_ACAO => 'comunidéia em ação',
     COMUNIDEIA_EM_FINANCIAMENTO => 'comunidéia em financiamento'

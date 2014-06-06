@@ -11,6 +11,7 @@ class HomeController < ApplicationController
     @ideas_count = Idea.count
     @dreams = Idea.find(:all, :conditions => ["status = ?", Idea::PROJECT_FINANCED]).count
     @total_investments = calculate_total_investments
+    
   end
 
   def help

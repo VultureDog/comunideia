@@ -14,7 +14,7 @@ class UsersController < ApplicationController
     @user = User.find(params[:id])
     #@feed_items = @user.feed.paginate(page: params[:page])
     @thumbnails = @user.feed
- 
+
     @timeline_activitys = timeline_activities(@user)
   end
 
