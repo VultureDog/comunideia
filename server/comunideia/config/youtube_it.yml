@@ -1,7 +1,7 @@
 common: &common
   dev_key: 'AI39si5ayecAKufTVgb6H40ooLuPCaUq-_XI-HCa1qI44T-052DVLr_wdyfBI8qboqwosKsALC5TGa6k0yeUJi5NIw_muJsTvQ'
-  username:  'fredericomenezes.mail'
-  password:  'qwerty987'
+  username:  ''
+  password:  ''
   
 test:
   <<: *common

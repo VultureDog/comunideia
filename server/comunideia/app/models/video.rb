@@ -20,6 +20,13 @@ class Video < ActiveRecord::Base
     self.incompletes.map{|r| r.destroy}
   end
 
+  def self.delete_video(video)
+    yt_session.video_delete(video.yt_video_id)
+    video.destroy
+      rescue
+        video.destroy
+  end
+
   private
     def self.video_options(params)
       opts = {:title => params[:title],

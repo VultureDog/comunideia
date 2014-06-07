@@ -15,6 +15,7 @@ class IdeasController < ApplicationController
 
   def new
     @idea = params.has_key?(:idea) ? current_user.ideas.new(idea_params).start : current_user.ideas.new.start
+    
   end
 
   def show
@@ -79,7 +80,6 @@ class IdeasController < ApplicationController
   end
   
   def update
-
     if params.has_key?(:images)
       i = @idea.img_pgs.count
       params[:images].each do |key, value|
@@ -117,6 +117,27 @@ class IdeasController < ApplicationController
 
       end
     end
+
+    if params.has_key?(:video)
+      video_params = {title: 'tit.', description: 'desc.'}
+
+      @video = Video.create(video_params)
+      video_url = ""
+
+      if @video
+        @upload_info = Video.token_form(video_params, save_video_new_video_url(:video_id => @video.id))
+
+          vid_path = Rails.root.join('public', 'uploads_tmp', params[:video].original_filename)
+
+          vid_info = Video.yt_session.video_upload(File.open(vid_path), :title => video_params[:title],:description => video_params[:description], :category => 'People',:keywords => %w[cool blah test])
+
+          video_url = vid_info.player_url
+          Video.delete_video(@video)
+      end
+      
+      @idea.video = video_url
+    end
+
     
 
     if @is_financial_idea
@@ -151,6 +172,11 @@ class IdeasController < ApplicationController
     @idea.destroy
     redirect_to current_user
   end
+
+  protected
+    def collection
+      @videos ||= end_of_association_chain.completes
+    end
 
   private
 
