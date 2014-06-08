@@ -11,6 +11,7 @@ class IdeasController < ApplicationController
     @ideas_COMUNIDEIA_EM_ACAO = Idea.find(:all, :conditions => ["status = ?", Idea::COMUNIDEIA_EM_ACAO])
     @ideas_COMUNIDEIA_EM_FINANCIAMENTO = Idea.find(:all, :conditions => ["status = ?", Idea::COMUNIDEIA_EM_FINANCIAMENTO])
 
+    @index_proj_type = params[:index_proj_type]
   end
 
   def new

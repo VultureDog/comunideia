@@ -4,7 +4,7 @@ angular.module('comunideiaProto', [])
   $scope.currentTab         = 0;
 }])
 .controller('allProjectsCtrl', ['$scope', function($scope) {
-  $scope.projType   = 0;
+  $scope.projType   = window.v.projTypeInit;
   $scope.toggleProjType = function() {
     $scope.projType = ($scope.projType == 0 ? 1 : 0)
   }
