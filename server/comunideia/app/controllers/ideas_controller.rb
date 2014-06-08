@@ -119,22 +119,22 @@ class IdeasController < ApplicationController
     end
 
     if params.has_key?(:video)
-      video_params = {title: 'tit.', description: 'desc.'}
+      video_params = {title: @idea.name, description: 'desc.'}
 
       @video = Video.create(video_params)
       video_url = ""
 
       if @video
-        @upload_info = Video.token_form(video_params, save_video_new_video_url(:video_id => @video.id))
+        @upload_info = Video.token_form(video_params, new_idea_url)
 
-          vid_path = Rails.root.join('public', 'uploads_tmp', params[:video].original_filename)
+        arq_vid = File.open(params[:video].tempfile, 'r')
 
-          vid_info = Video.yt_session.video_upload(File.open(vid_path), :title => video_params[:title],:description => video_params[:description], :category => 'People',:keywords => %w[cool blah test])
+        vid_info = Video.yt_session.video_upload(arq_vid, :title => video_params[:title],:description => video_params[:description], :category => 'People',:keywords => %w[cool blah test])
 
-          video_url = vid_info.player_url
-          Video.delete_video(@video)
+        video_url = vid_info.player_url
+        Video.delete_video(@video)
       end
-      
+
       @idea.video = video_url
     end
 
