@@ -75,6 +75,7 @@ class Idea < ActiveRecord::Base
 
   THUMBNAIL_IMG = "Link da imagem do cartão"
   #validates :img_card, presence: { message: "#{THUMBNAIL_IMG} (link da imagem do cartão está em branco.)" }, if: :step2?
+  THUMBNAIL_IMG_SAMPLE = "http://farm4.staticflickr.com/3895/14419566791_3482f3b846_b.jpg"
 
   RISKS_AND_CHALLENGES = "Riscos e desafios"
   validates :risks_challenges, presence: { message: "#{RISKS_AND_CHALLENGES} (os riscos e desafios foram deixados em branco.)" }, if: :step2?

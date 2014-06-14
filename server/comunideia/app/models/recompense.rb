@@ -10,10 +10,10 @@ class Recompense < ActiveRecord::Base
   TITLE_MAX_CHARS = 30
   validates :title, presence: { message: "#{TITLE} de uma recompensa (título está em branco)" }, length: { maximum: TITLE_MAX_CHARS, message: "#{TITLE} de uma recompensa (titulo está muito longo. Maximo de #{TITLE_MAX_CHARS} caracteres)" }, if: :valid_steps_2_3?
 
-  QUANTITY = "Quantidade"
+  QUANTITY = "Qnt"
   validates :quantity, presence: { message: "#{QUANTITY} de uma recompensa (quantidade de recompensas está em branco)" }, if: :valid_steps_2_3?
 
-  FINANCIAL_VALUE = "Valor financeiro"
+  FINANCIAL_VALUE = "R$"
   validates :financial_value, presence: { message: "#{FINANCIAL_VALUE} de uma recompensa (valor financeiro da recompensa está em branco.)" }, if: :valid_steps_2_3?
 
   SUMMARY = "Resumo"

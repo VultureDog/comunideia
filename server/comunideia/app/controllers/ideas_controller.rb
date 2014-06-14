@@ -92,18 +92,13 @@ class IdeasController < ApplicationController
             uploaded_io = value
             image_name = uploaded_io.original_filename.blank? ? DateTime.now.strftime('%Y%m%d%H%M%S%L') : uploaded_io.original_filename
 
-            pic_path = Rails.root.join('public', 'uploads_tmp', image_name)
-            File.open(pic_path, 'wb') do |file|
-              file.write(uploaded_io.read)
-            end
+            arq_img = File.open(value.tempfile, 'r')
 
             # You need to be authentified to do that
-            photo_id = flickr.upload_photo pic_path, :title => image_name
+            photo_id = flickr.upload_photo arq_img, :title => image_name
 
             info = flickr.photos.getInfo(:photo_id => photo_id)
 
-
-            File.delete(pic_path)
 
             photo_url = FlickRaw.url_b(info).to_s
             @idea.img_pgs[i] = photo_url
@@ -143,6 +138,10 @@ class IdeasController < ApplicationController
 
     if @is_financial_idea
       @idea.recompenses.clear
+    end
+
+    if @idea.img_card.nil?
+      @idea.img_card = Idea::THUMBNAIL_IMG_SAMPLE
     end
 
     if !@idea.save
