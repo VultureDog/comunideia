@@ -90,8 +90,12 @@ class Idea < ActiveRecord::Base
   CONSULTING_CREATIVITY_STRING = "Quero ajuda criativa, um nome matador, logotipo e coisas visualmente lindas!"
   CONSULTING_FINANCIAL_STRUCTURE_STRING = "Quero ajuda para estruturar o pedido de financimento coletivo para minha idéia."
   CONSULTING_SPECIFIC_STRING = "Quero uma ajuda específica que é:"
+  TERMS_OF_USE_STRING = "Estou de acordo com os termos de uso"
+  TERMS_OF_USE_STRING_1 = "Estou de acordo com os "
+  TERMS_OF_USE_STRING_2 = "termos de uso"
 
   SAVE_IDEA_STRING = "Próximo passo      > "
+  CONCLUDE_IDEA_STRING = "Finalizar"
   IDEA_STRING = "idéia"
 
   has_many :recompenses, dependent: :destroy

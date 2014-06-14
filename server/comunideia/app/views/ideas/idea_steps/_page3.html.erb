@@ -1,92 +1,60 @@
-  <section id="new-proj-page" ng-controller="allProjectsCtrl">
-    <header class="header wrapper">
-      <div class="image-wrapper">
-        <img src="/assets/new-proj-header-2.jpg" alt="" class="image">
-      </div>
-    </header>
-    <div class="body wrapper">
-      <section class="new-proj-form">
-        <div class="form-part">
-          <h2 class="heading">Qual a localidade (cidade/estado) em que sua ideia/projeto vai iniciar?</h2>
-          <input type="text" class="form-control small" placeholder="Digite aqui a cidade ou cep">
-        </div>
-
-        <div class="form-part">
-          <h2 class="heading">Uau, que legal!<br>Agora... que tipo de ajuda você quer?</h2>
-          <div id="help-type-list">
-
-            <div class="help-item" id="help-item_1">
-              <div class="checkxborder">
-                <%= f.check_box :consulting_project, checked: false, class: "css-checkbox", id: "checkbox_1",  onclick: "set_checkbox_classes('help-item_1');" %>
-
-                <%= f.label Idea::CONSULTING_PROJECT_STRING, class: "css-label lite-red-check", for: "checkbox_1" %>
-              </div>
-            </div>
-
-            <div class="help-item" id="help-item_2">
-              <div class="checkxborder">
-                <%= f.check_box :consulting_creativity, checked: false, class: "css-checkbox", id: "checkbox_2",  onclick: "set_checkbox_classes('help-item_2');" %>
-
-                <%= f.label Idea::CONSULTING_CREATIVITY_STRING, class: "css-label lite-red-check", for: "checkbox_2" %>
-              </div>
-            </div>
-
-            <div class="help-item" id="help-item_3">
-              <div class="checkxborder">
-                <%= f.check_box :consulting_financial_structure, checked: false, class: "css-checkbox", id: "checkbox_3",  onclick: "set_checkbox_classes('help-item_3');" %>
-
-                <%= f.label Idea::CONSULTING_FINANCIAL_STRUCTURE_STRING, class: "css-label lite-red-check", for: "checkbox_3" %>
-              </div>
-            </div>
-
-            <div class="help-item ckx-control-item" id="help-item_4">
-              <div class="checkxborder">
-                <%= f.check_box :consulting_specific_checkbox, checked: false, class: "css-checkbox", id: "checkbox_4",  onclick: "set_checkbox_classes('help-item_4');" %>
-
-                <%= f.label Idea::CONSULTING_SPECIFIC_STRING, class: "css-label lite-red-check", for: "checkbox_4" %>
-
-                <textarea name="" id="" cols="30" rows="2" class="form-control"></textarea>
-              </div>
-            </div>
-
-          </div>
-        </div>
-        
-      <%= render 'ideas/idea_steps/page_midias_upload', :f => f %>
-
-      </section>
-      <div id="terms-of-service">
-        <label for=""><input type="checkbox" class="checkbox">Estou de acordo com os <a href="#" class="link">termos de uso</a>.</label>
-        <button class="btn btn-blue next-step-button">Finalizar</button>
-      </div>
+<section id="new-proj-page" ng-controller="allProjectsCtrl">
+  <header class="header wrapper">
+    <div class="image-wrapper">
+      <img src="/assets/new-proj-header-2.jpg" alt="" class="image">
     </div>
-  </section>
+  </header>
+  <div class="body wrapper">
+    <section class="new-proj-form">
+      <div class="form-part">
+        <h2 class="heading">Qual a localidade (cidade/estado) em que sua ideia/projeto vai iniciar?</h2>
+        <%= f.text_field :local, placeholder: Idea::PLACE, class: "form-control small" %>
+      </div>
 
+      <div class="form-part">
+        <h2 class="heading">Uau, que legal!<br>Agora... que tipo de ajuda você quer?</h2>
+        <div id="help-type-list">
 
-<%#= f.check_box :consulting_specific_checkbox, checked: false, :id => "consulting_specific_checkbox", :onclick => "toggle_checkbox_and_element('consulting_specific_checkbox', 'consulting_specific_text');" %>
-<%#= f.label Idea::CONSULTING_SPECIFIC_STRING %>
+          <div class="help-item" id="help-item_1">
+            <div class="checkxborder">
+              <%= f.check_box :consulting_project, checked: false, class: "css-checkbox", id: "checkbox_1",  onclick: "set_checkbox_classes('help-item_1');" %>
 
-<%#= f.text_area :consulting_specific, :id => "consulting_specific_text", disabled: true %>
+              <%= f.label Idea::CONSULTING_PROJECT_STRING, class: "css-label lite-red-check", for: "checkbox_1" %>
+            </div>
+          </div>
 
+          <div class="help-item" id="help-item_2">
+            <div class="checkxborder">
+              <%= f.check_box :consulting_creativity, checked: false, class: "css-checkbox", id: "checkbox_2",  onclick: "set_checkbox_classes('help-item_2');" %>
 
+              <%= f.label Idea::CONSULTING_CREATIVITY_STRING, class: "css-label lite-red-check", for: "checkbox_2" %>
+            </div>
+          </div>
 
+          <div class="help-item" id="help-item_3">
+            <div class="checkxborder">
+              <%= f.check_box :consulting_financial_structure, checked: false, class: "css-checkbox", id: "checkbox_3",  onclick: "set_checkbox_classes('help-item_3');" %>
 
+              <%= f.label Idea::CONSULTING_FINANCIAL_STRUCTURE_STRING, class: "css-label lite-red-check", for: "checkbox_3" %>
+            </div>
+          </div>
 
+          <div class="help-item ckx-control-item" id="help-item_4">
+            <div class="checkxborder">
+              <%= f.check_box :consulting_specific_checkbox, checked: false, class: "css-checkbox", id: "checkbox_4",  onclick: "set_checkbox_classes('help-item_4');" %>
 
+              <%= f.label Idea::CONSULTING_SPECIFIC_STRING, class: "css-label lite-red-check", for: "checkbox_4" %>
 
+              <textarea name="" id="" cols="30" rows="2" class="form-control"></textarea>
+            </div>
+          </div>
 
+        </div>
+      </div>
+      
+    <%= render 'ideas/idea_steps/page_midias_upload', :f => f %>
 
+    </section>
 
-
-<%#= f.text_field :local, placeholder: "Local" %><br>
-
-<br><br><br><br>
-<%= f.check_box :terms_of_use, checked: false, :id => "terms_of_use", :onclick => "toggle_checkbox_and_element('terms_of_use', 'save_button');" %>
-<%= f.label "Estou de acordo com os termos de uso" %>
-
-
-
-
-
-
-
+  </div>
+</section>

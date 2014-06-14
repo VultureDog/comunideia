@@ -21,19 +21,31 @@
     <% end %>
 
 
-
   </div>
   
   <div class="body wrapper">
     <div id="terms-of-service">
       
+    <% if @idea.current_step == 0 %>
+      <%= f.submit Idea::SAVE_IDEA_STRING, :id => "save_button", class: "btn btn-blue next-step-button" %>
+    <% else %>
+      <!--div class="checkxborder checkxborder-terms">
+        <%#= f.check_box :terms_of_use, checked: false, class: "css-checkbox-terms", id: "terms_of_use",  onclick: "set_checkbox_classes('help-item_7');toggle_checkbox_and_element('terms_of_use', 'save_button');" %>
+        <%#= f.label Idea::TERMS_OF_USE_STRING, class: "css-label lite-red-check", for: "terms_of_use" %>
+      </div-->
+      <%= f.submit Idea::CONCLUDE_IDEA_STRING, :id => "save_button", class: "btn btn-blue next-step-button" %>
+    <% end %>
+          
+
       <% unless @idea.id.blank? %>
         <script> toggle_checkbox_and_element('terms_of_use', 'save_button'); </script>
       <% end %>
 
-      <%= f.submit Idea::SAVE_IDEA_STRING, :id => "save_button", class: "btn btn-blue next-step-button" %>
+
     </div>
   </div>
 </section>
-<br><br><br><br>
+
 <% end %>
+
+<br><br><br><br><br><br><br><br>

@@ -1564,10 +1564,44 @@ input[type=checkbox].css-checkbox:checked + label.css-label {
   height: 135px;
 }
 
+.checkxborder-terms {
+  margin-right: 15px;
+}
+
+input[type=checkbox].css-checkbox-terms {
+    position: absolute;
+    overflow: hidden; 
+    clip: rect(0 0 0 0); 
+    height:1px; 
+    width:1px; 
+    margin:-1px;
+}
+
+input[type=checkbox].css-checkbox-terms + label.css-label {
+  padding-left:25px;
+  padding-top:9px;
+  height:35px; 
+  width: 365px;
+  display:inline-block;
+  background-repeat:no-repeat;
+  background-position: -282px -100px;
+  font-size:15px;
+  vertical-align:middle;
+  cursor:pointer;
+
+  font-weight: normal;
+  color: #6a6a6a;
+  line-height: 20px;
+  margin-top: -10px;
+}
+
+input[type=checkbox].css-checkbox-terms:checked + label.css-label {
+  background-position: -282px -67px;
+}
+
 .lite-red-check{
   background-image:url("/assets/comunideia-sprites.png");
 }
-
 
 
 

@@ -1,81 +1,42 @@
-  <br>
-  <section id="new-proj-page" ng-controller="allProjectsCtrl" class="page-2">
-    <% if f.object.financial_value.nil? %>
-      <header class="header wrapper">
-        <div class="image-wrapper">
-          <img src="/assets/new-proj-header-2.jpg" alt="" class="image">
-        </div>
-      </header>
-    <% end  %>
-    <div class="body wrapper">
-      <section class="new-proj-form">
-        <div class="form-part">
-          <h2 class="heading">Qual a localidade (cidade/estado) em que sua ideia/projeto vai iniciar?</h2>
-          <%= f.text_field :local, placeholder: Idea::PLACE, class: "form-control small" %>
-        </div>
-        <div class="form-part">
-          <h2 class="heading">Hora de falar de negócios. Quanto você precisa para ter seu projeto funcionando (em reais)?</h2>
-          <%= f.text_field :financial_value, placeholder: Idea::FINANCIAL_VALUE, class: "form-control small" %>
-        </div>
-        <div class="form-part">
-          <h2 class="heading">Defina agora em quantos dias você pretende atingir este investimento.</h2>
-          <%= f.text_field :idea_end_date_input, placeholder: Idea::IDEA_END_DATE_INPUT, class: "form-control small" %>
-        </div>
-        <div class="form-part">
-          <h2 class="heading">Quais são os pacotes de recompensa que os investidores irão receber?<br>Lembrando que eles podem optar por investir sem ser recompensando.</h2>
-          <div id="pledge-create-component">
-            <div class="component-wrapper">
-              <% if @is_financial_idea %>
-                <%= render 'recompenses/recompense_form', :f => f %>
-              <% end %>
-            </div>
+<section id="new-proj-page" ng-controller="allProjectsCtrl" class="page-2">
+  <% if f.object.financial_value.nil? %>
+    <header class="header wrapper">
+      <div class="image-wrapper">
+        <img src="/assets/new-proj-header-2.jpg" alt="" class="image">
+      </div>
+    </header>
+  <% end  %>
+  <div class="body wrapper">
+    <section class="new-proj-form">
+      <div class="form-part">
+        <h2 class="heading">Qual a localidade (cidade/estado) em que sua ideia/projeto vai iniciar?</h2>
+        <%= f.text_field :local, placeholder: Idea::PLACE, class: "form-control small" %>
+      </div>
+      <div class="form-part">
+        <h2 class="heading">Hora de falar de negócios. Quanto você precisa para ter seu projeto funcionando (em reais)?</h2>
+        <%= f.text_field :financial_value, placeholder: Idea::FINANCIAL_VALUE, class: "form-control small" %>
+      </div>
+      <div class="form-part">
+        <h2 class="heading">Defina agora em quantos dias você pretende atingir este investimento.</h2>
+        <%= f.text_field :idea_end_date_input, placeholder: Idea::IDEA_END_DATE_INPUT, class: "form-control small" %>
+      </div>
+      <div class="form-part">
+        <h2 class="heading">Quais são os pacotes de recompensa que os investidores irão receber?<br>Lembrando que eles podem optar por investir sem ser recompensando.</h2>
+        <div id="pledge-create-component">
+          <div class="component-wrapper">
+            <% if @is_financial_idea %>
+              <%= render 'recompenses/recompense_form', :f => f %>
+            <% end %>
           </div>
         </div>
-        
-        <%= render 'ideas/idea_steps/page_midias_upload', :f => f %>
-
-        <!--div class="form-part">
-          <h2 class="heading">Link do Youtube/Vimeo</h2>
-          <input type="text" class="form-control" placeholder="ex: https://www.youtube.com/watch?v=BFMGjbj9gco">
-        </div-->
-
-        <div class="form-part">
-          <h2 class="heading">Quais são os riscos e desafios possíveis imagináveis?</h2>
-          <%= f.text_area :risks_challenges, cols: "30", rows: "6", class: "form-control", placeholder: Idea::RISKS_AND_CHALLENGES %>          
-        </div>
-      </section>
-      <div id="terms-of-service">
-        <label for=""><input type="checkbox" class="checkbox">Estou de acordo com os <a href="#" class="link">termos de uso</a>.</label>
       </div>
-    </div>
-  </section>
+      
+      <%= render 'ideas/idea_steps/page_midias_upload', :f => f %>
 
-
-
-
-
-
-
-
-<%#= f.text_field :img_card, placeholder: Idea::THUMBNAIL_IMG %>
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-<br><br><br><br>
-<%= f.check_box :terms_of_use, checked: false, :id => "terms_of_use", :onclick => "toggle_checkbox_and_element('terms_of_use', 'save_button');" %>
-<%= f.label "Estou de acordo com os termos de uso" %>
+      <div class="form-part">
+        <h2 class="heading">Quais são os riscos e desafios possíveis imagináveis?</h2>
+        <%= f.text_area :risks_challenges, cols: "30", rows: "6", class: "form-control", placeholder: Idea::RISKS_AND_CHALLENGES %>          
+      </div>
+    </section>
+  </div>
+</section>
