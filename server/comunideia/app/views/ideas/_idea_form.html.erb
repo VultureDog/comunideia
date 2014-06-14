@@ -16,7 +16,12 @@
       <%# all the fields on one page... %>
       <%= hidden_field_tag :all, 1 %>
       <%= render "ideas/idea_steps/page1", f: f %>
-      <%= render "ideas/idea_steps/page2", f: f %>
+
+      <% if @idea.check_status(@idea.status , Idea::COMUNIDEIA_EM_FINANCIAMENTO) %>
+        <%= render "ideas/idea_steps/page2", f: f %>
+      <% elsif @idea.check_status(@idea.status , Idea::COMUNIDEIA_EM_ACAO) %>
+        <%= render "ideas/idea_steps/page3", f: f %>
+      <% end %>
 
     <% end %>
 

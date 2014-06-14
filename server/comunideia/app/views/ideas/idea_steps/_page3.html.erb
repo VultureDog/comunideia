@@ -1,9 +1,11 @@
 <section id="new-proj-page" ng-controller="allProjectsCtrl">
-  <header class="header wrapper">
-    <div class="image-wrapper">
-      <img src="/assets/new-proj-header-2.jpg" alt="" class="image">
-    </div>
-  </header>
+  <% if f.object.financial_value.nil? %>
+    <header class="header wrapper">
+      <div class="image-wrapper">
+        <img src="/assets/new-proj-header-2.jpg" alt="" class="image">
+      </div>
+    </header>
+  <% end  %>
   <div class="body wrapper">
     <section class="new-proj-form">
       <div class="form-part">
@@ -45,7 +47,8 @@
 
               <%= f.label Idea::CONSULTING_SPECIFIC_STRING, class: "css-label lite-red-check", for: "checkbox_4" %>
 
-              <textarea name="" id="" cols="30" rows="2" class="form-control"></textarea>
+              <%= f.text_area :consulting_specific, cols: "30", rows: "2", class: "form-control", id: "consulting_specific_text" %>
+
             </div>
           </div>
 
