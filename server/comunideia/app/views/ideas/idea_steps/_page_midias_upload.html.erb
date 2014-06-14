@@ -1,0 +1,28 @@
+<div class="form-part">
+  <h2 class="heading first">Agora é a reta final!</h2>
+  <p class="heading first">Nos mande algumas referências visuais da sua ideia. Um vídeo, fotos ou<br>imagens que podem passar visualmente o que é a sua ideia ou projeto.</p>
+    <%= hidden_field_tag :idea_id, @idea.id %>
+
+    <div class="image-upload-container">
+
+        <h2 class="heading">Imagens</h2>
+        <% for i in 0 ... Idea::MAX_IMAGES %>
+
+          <div class="image-upload-item">
+            <%= file_field_tag 'images', name: ("images[" + i.to_s + "]"), type: "file", id:"upload-file-container"%>
+            <span class="inner-icon"></span>
+          </div>
+
+        <% end %>
+
+      <!--TODOdiv class="image-upload-item last"><span class="inner-icon"></span></div-->
+
+        <h2 class="heading">Video</h2>
+        <div class="image-upload-item">
+          <%= file_field_tag 'video', name: "video", type: "file", id:"upload-file-container"%>
+          <span class="inner-icon"></span>
+        </div>
+
+    </div>
+
+</div>

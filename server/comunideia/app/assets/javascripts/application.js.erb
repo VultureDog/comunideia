@@ -77,3 +77,13 @@ function decrementRecompenseCounter(){
 function set_idea_status(idea_status) {
   document.getElementById('idea_status').value = idea_status;
 }
+
+function set_checkbox_classes(checkbox_id) {
+  checkboxElem = document.getElementById(checkbox_id);
+  if ( checkboxElem.className.match(/(?:^|\s)selected(?!\S)/) ) {
+    checkboxElem.className = checkboxElem.className.replace( /(?:^|\s)selected(?!\S)/g , '' );
+  } else {
+    checkboxElem.className += " selected";
+  }
+  
+}
