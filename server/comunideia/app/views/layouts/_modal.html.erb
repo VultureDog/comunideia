@@ -81,17 +81,15 @@
               </label>
             </div>
 
-            <div class="form-item">
-              <label id="sign-into-newsletter">
-                
 
-<span class="checkbox"><span class="icon i-check"></span></span>
 
-                <%= f.check_box :notifications, type: "checkbox", class: "teste" %>
-                <span class="text">
-                  <%= f.label User::NOTIFICATIONS_AND_UPDATES %>
-                </span>
-              </label>
+
+
+
+            <div class="checkxborder checkxborder-signup">
+              <%= f.check_box :notifications, checked: false, class: "css-checkbox", id: "checkbox_1",  onclick: "set_checkbox_classes('help-item_1');" %>
+
+              <%= f.label User::NOTIFICATIONS_AND_UPDATES, class: "css-label lite-red-check checkxborder-label-signup", for: "checkbox_1" %>
             </div>
 
             <div class="form-item">

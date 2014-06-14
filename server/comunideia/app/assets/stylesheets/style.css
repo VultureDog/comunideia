@@ -1522,6 +1522,12 @@ button > span {
   margin-right: 15px;
 }
 
+.checkxborder-signup {
+  display: block;
+  margin-left: 30%;
+  text-align: left;
+}
+
 input[type='checkbox'] {
   width: 10px;
   height: 10px;
@@ -1554,6 +1560,10 @@ input[type=checkbox].css-checkbox + label.css-label {
   color: #6a6a6a;
   line-height: 20px;
   margin-top: -10px;
+}
+
+.checkxborder-label-signup {
+  padding-top:8px;
 }
 
 input[type=checkbox].css-checkbox:checked + label.css-label {
