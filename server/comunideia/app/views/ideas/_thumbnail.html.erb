@@ -10,6 +10,10 @@
       <!--/section-->
 
 
+<% financial_value_percentage = (thumbnail.financial_value_sum_accumulated/thumbnail.financial_value*100).to_i %>
+
+<% investment_metter_complement_percentage = 100 - financial_value_percentage %>
+
 <article class="project-item">
   <header class="header">
     <a href= <%= url_for :controller => :ideas, :action => :show, :id=> thumbnail.id %> >
@@ -30,9 +34,22 @@
       <% if thumbnail.check_status(thumbnail.status , Idea::COMUNIDEIA_EM_FINANCIAMENTO) %>
 
         <% if !thumbnail.financial_value.nil? %>
-          <div class="investment-metter"><div class="progress-bar"></div></div>
+          <div class="investment-metter"></div>
+          <% if (investment_metter_complement_percentage > 0) && (investment_metter_complement_percentage < 100) %>
+            <div class="investment-metter-complement" style="width: <%= investment_metter_complement_percentage %>%;
+
+  border-left: 6px solid transparent;
+
+            "></div>
+          <% else %>
+            <div class="investment-metter-complement" style="width: <%= investment_metter_complement_percentage %>%;
+
+  border-left: 1px solid transparent;
+
+            "></div>
+          <% end %>
           <p class="info investment-info">
-            <span class="bold">R$<%= thumbnail.financial_value - thumbnail.financial_value_sum_accumulated %></span>&nbsp;restante (<%= (thumbnail.financial_value_sum_accumulated/thumbnail.financial_value*100).to_i %>%)<br>
+            <span class="bold">R$<%= thumbnail.financial_value - thumbnail.financial_value_sum_accumulated %></span>&nbsp;restante (<%= financial_value_percentage %>%)<br>
             <span class="total left">total R$<%= thumbnail.financial_value %></span>
             <span class="achieved right">R$<%= thumbnail.financial_value_sum_accumulated %> alcançado</span>
           </p>

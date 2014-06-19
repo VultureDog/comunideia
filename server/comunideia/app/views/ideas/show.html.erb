@@ -1,3 +1,14 @@
+<%# financial_value_percentage = 5 %>
+<% financial_value_percentage = (@idea.financial_value_sum_accumulated/@idea.financial_value*100).to_i %>
+
+<% investment_metter_complement_percentage = 100 - financial_value_percentage %>
+
+
+<%# time_percentage = 30 %>
+<% time_percentage = ((@idea.date_end - DateTime.now)/1.hour).ceil/((@idea.date_end - @idea.created_at)/1.hour).ceil %>
+
+<% time_complement_percentage = 100 - time_percentage %>
+
 <section id="project-details" ng-controller="projectSingleCtrl">
   <header class="header wrapper">
     <% if !@idea.img_pgs[0].nil? && !@idea.img_pgs[0].blank? %>
@@ -16,13 +27,34 @@
       </div>
       <div class="social-action-buttons"></div>
     </div>
-    <div>
-      <div class="proj-data-metter" id="project-remaining-time">
-        <span class="text">TEMPO RESTANTE</span>
-      </div>
-      <div class="proj-data-metter" id="project-achieved-resources">
-        <span class="text">RECURSOS RESTANTE</span>
-      </div>
+    <div id="project-details-info">
+      <div id="project-values-info-bars">
+      
+        <div class="proj-data-metter" id="project-remaining-time">
+          <span class="text">TEMPO RESTANTE</span>
+        </div>
+        <% if (time_complement_percentage > 0) && (time_complement_percentage < 100) %>
+          <div class="proj-data-metter-complement" style="width: <%= time_complement_percentage %>%;
+
+  border-left: 6px solid transparent;
+
+          "></div>
+        <% end %>
+        </div>
+
+      <div id="project-values-info-bars">
+        <div class="proj-data-metter" id="project-achieved-resources">
+          <span class="text">RECURSOS RESTANTE</span>
+        </div>
+        <% if (investment_metter_complement_percentage > 0) && (investment_metter_complement_percentage < 100) %>
+          <div class="proj-data-metter-complement" style="width: <%= investment_metter_complement_percentage %>%;
+
+  border-left: 6px solid transparent;
+
+          "></div>
+        <% end %>
+        </div>
+
     </div>
     <div id="project-values-info">
 	    <% if !@idea.financial_value.nil? %>

@@ -1,0 +1,150 @@
+<span class="user-info-block user-header"><%= User::BASIC_DATA %></span>
+
+<div class="user-info-block with-border-bottom width-95">
+  <div class="user-info-blocks-row">
+    <span class="user-info-block user-field-title"><%= User::NAME %> completo</span>
+    <span class="user-field-label"><%= @user.name %></span>
+  </div>
+
+  <div class="user-info-blocks-row">
+    <span class="user-info-block user-field-title"><%= "#{User::EMAIL}*" %></span>
+    <span class="user-field-label"><%= @user.email %></span>
+  </div>
+
+  <div class="user-info-blocks-row">
+    <span class="user-info-block user-field-title"><%= User::CPF %></span>
+    <span class="user-field-label">
+      <% if !@user.cpf.nil? && !@user.cpf.blank? %>
+        <%= @user.cpf %>
+      <% else %>
+        <%= " _ _ _ . _ _ _ . _ _ _ . _ _ " %>
+      <% end %>
+    </span>
+  </div>
+
+  <div class="user-info-blocks-row">
+    <span class="user-info-block user-field-title"><%= object.label 'Data de nascimento:' %></span>
+    <span class="user-field-label user-date-field">
+      <% if !@user.birth_date.nil? %>
+        <%= @user.birth_date.day %> / <%= @user.birth_date.month %> / <%= @user.birth_date.year %>
+      <% else %>
+        <%= " _ _ / _ _ / _ _ " %>
+      <% end %>
+    </span>
+  </div>
+</div>
+
+<span class="user-info-block user-header"><%= User::CONTACT_STRING %></span>
+<div class="user-info-block with-border-bottom width-95">
+  <div class="user-info-blocks-row">
+    <span class="user-info-block user-field-title"><%= User::CELLPHONE %></span>
+    <span class="user-field-label">
+      <% if !@user.cell_phone.nil? %>
+        <%= @user.cell_phone %>
+      <% else %>
+        <%= " (_ _) _ _ _ _ _ _ - _ _ _ _ " %>
+      <% end %>
+    </span>
+  </div>
+
+  <div class="user-info-blocks-row">
+    <span class="user-info-block user-field-title"><%= User::ADDRESS_PHONE %></span>
+    <span class="user-field-label">
+      <% if !@user.phone.nil? %>
+        <%= @user.phone %>
+      <% else %>
+        <%= " (_ _) _ _ _ _ _ _ - _ _ _ _ " %>
+      <% end %>
+    </span>
+  </div>
+
+  <% if !@user.phone.nil? %>
+    <div class="user-info-blocks-row">
+      <span class="user-info-block user-field-title">facebook.com/</span>
+      <span class="user-field-label">
+          <%= @user.phone %>
+      </span>
+    </div>
+  <% end %>
+
+  <% if !@user.phone.nil? %>
+    <div class="user-info-blocks-row">
+      <span class="user-info-block user-field-title">twitter.com/</span>
+      <span class="user-field-label">
+          <%= @user.phone %>
+      </span>
+    </div>
+  <% end %>
+
+</div>
+
+<span class="user-info-block user-header"><%= User::LOCAL_STRING %></span>
+<div class="user-info-block width-95">
+  <% empty_label = " ______________________ " %>
+
+  <div class="user-info-blocks-row">
+    <span class="user-info-block user-field-title"><%= object.label User::ADDRESS_CEP %></span>
+    <span class="user-field-label">
+      <% if !@user.cep.nil? %>
+        <%= @user.cep %>
+      <% else %>
+        <%= empty_label %>
+      <% end %>
+    </span>
+  </div>
+
+  <div class="user-info-blocks-row">
+    <span class="user-info-block user-field-title"><%= object.label User::ADDRESS %></span>
+    <span class="user-field-label">
+      <% if !@user.address.nil? %>
+        <%= @user.address %>
+      <% else %>
+        <%= empty_label %>
+      <% end %>
+    </span>
+  </div>
+
+  <div class="user-info-blocks-row">
+    <span class="user-info-block user-field-title"><%= object.label User::ADDRESS_NEIGHBORHOOD %></span>
+    <span class="user-field-label">
+      <% if !@user.district.nil? %>
+        <%= @user.district %>
+      <% else %>
+        <%= empty_label %>
+      <% end %>
+    </span>
+  </div>
+
+  <% if !@user.complement.nil? %>
+    <div class="user-info-blocks-row">
+      <span class="user-info-block user-field-title"><%= object.label User::ADDRESS_COMPLEMENT %></span>
+      <span class="user-field-label">
+          <%= @user.complement %>
+      </span>
+    </div>
+  <% end %>
+</div>
+
+<div class="user-info-block width-95">
+  <div class="user-info-blocks-row">
+    <span class="user-info-block user-field-title"><%= object.label User::ADDRESS_CITY %></span>
+    <span class="user-field-label">
+      <% if !@user.city.nil? %>
+        <%= @user.city %>
+      <% else %>
+        <%= empty_label %>
+      <% end %>
+    </span>
+  </div>
+  
+  <div class="user-info-blocks-row">
+    <span class="user-info-block user-field-title"><%= object.label User::ADDRESS_STATE %></span>
+    <span class="user-field-label">
+      <% if !@user.region.nil? %>
+        <%= @user.region %>
+      <% else %>
+        <%= " _ _ " %>
+      <% end %>
+    </span>
+  </div>
+</div>

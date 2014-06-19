@@ -28,14 +28,14 @@
   <%# end %>
 
   <% if edit %>
-    <%= render 'users/form_user_data_2', object: f %>
-  <% end %>
+    <%= render 'users/form_user_data_2', object: f, edit: edit %>
 
-  <% if @user.step1? %>
-    <br><br>
-    <%= f.check_box :notifications %>
-    <%= f.label User::NOTIFICATIONS_AND_UPDATES %>
-    <br><br>
+    <div class="checkxborder checkxborder-signup">
+      <%= f.check_box :notifications, checked: false, class: "css-checkbox", id: "checkbox_1",  onclick: "set_checkbox_classes('help-item_1');" %>
+
+      <%= f.label User::NOTIFICATIONS_AND_UPDATES, class: "css-label lite-red-check checkxborder-label-signup", for: "checkbox_1" %>
+    </div>
+
   <% end %>
   
   <%= f.submit User::SAVE_STRING %>
