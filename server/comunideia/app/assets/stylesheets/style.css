@@ -1721,6 +1721,35 @@ input[type=checkbox].css-checkbox-terms:checked + label.css-label {
   background-image:url("/assets/comunideia-sprites.png");
 }
 
+.dropdown {
+  width: 129px;
+  height: 130px;
+  display: inline-block;
+  background: #eeeeee;
+  top: 45px;
+  position: absolute;
+  border: 1px solid #e2e2e2;
+  z-index:2;
+}
+
+.dropdown-menu {
+  padding: 3px;
+}
+
+.dropdown-text {
+  color: #929292;
+  text-decoration: none;
+  padding: 5px;
+  width: 120px;
+  height: 37px;
+  background: white;
+  border: 1px solid #e2e2e2;
+}
+
+.dropdown ul {
+  list-style-type: none;
+}
+
 
 
 
@@ -1804,3 +1833,5 @@ input[type=checkbox].css-checkbox-terms:checked + label.css-label {
   right: -220px;
   top: 0px; /* IE6-9 */
 }
+
+

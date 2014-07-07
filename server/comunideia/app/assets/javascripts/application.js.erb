@@ -87,3 +87,13 @@ function set_checkbox_classes(checkbox_id) {
   }
   
 }
+
+function toggle_dropdown_visibility(){
+  var vis = document.getElementById('fat-menu').style.visibility;
+  if (vis == 'hidden') {
+    document.getElementById('fat-menu').style.visibility = "visible";
+  }
+  else {
+    document.getElementById('fat-menu').style.visibility = "hidden";
+  }
+}
