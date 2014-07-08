@@ -6,8 +6,8 @@
     <div class="container">
       <header class="tab-items-header">
         <a class="close-button" ng-click="disposeModal()">x</a>
-        <div class="tab-item" ng-class="{current: currentTab == 0}" ng-click="currentTab = 0">Login</div>
-        <div class="tab-item" ng-class="{current: currentTab == 1}" ng-click="currentTab = 1">Cadastro</div>
+        <div class="tab-item tab-item-others" ng-class="{current: currentTab == 0}" ng-click="currentTab = 0">Login</div>
+        <div class="tab-item tab-item-others" ng-class="{current: currentTab == 1}" ng-click="currentTab = 1">Cadastro</div>
       </header>
       <section class="tab-items-body">
         <article id="proj-info-tab" class="tab-item" ng-class="{current: currentTab == 0}">
@@ -47,10 +47,10 @@
           -->
           <div>
             <a href="/auth/facebook" >
-              <button class="social-login-button facebook"><span class="icon i-facebook-big"></span><span class="text">Logar com o Facebook</span></button>
+              <button class="social-login-button facebook" onclick="show_facebook_login_confirmation()"><span class="icon i-facebook-big"></span><span class="text">Logar com o Facebook</span></button>
             </a>
             <a href="/auth/google_oauth2" >
-              <button class="social-login-button gplus"><span class="icon i-gplus-big"></span><span class="text">Logar com o Google+</span></button>
+              <button class="social-login-button gplus" onclick="show_google_plus_login_confirmation()"><span class="icon i-gplus-big"></span><span class="text">Logar com o Google+</span></button>
             </a>
           </div>
         </article>

@@ -23,7 +23,7 @@
       <%= yield %>
       <%= render 'layouts/footer' %>
       <%= render 'layouts/modal' %>
-      <%= params if Rails.env.development? %>
+      <%#= params if Rails.env.development? %>
     </div>
 
     <%= javascript_include_tag "angular.min" %>

@@ -70,13 +70,13 @@
   <section class="body wrapper">
     <div id="project-tabs">
       <header class="tab-items-header">
-        <div class="tab-item" ng-class="{current: currentTab == 0}" ng-click="currentTab = 0">Projeto</div>
+        <div class="tab-item bold tab-item-others" ng-class="{current: currentTab == 0}" ng-click="currentTab = 0">Projeto</div>
         <!--TODO
         <div class="tab-item" ng-class="{current: currentTab == 1}" ng-click="currentTab = 1">Atualizações (7)</div-->
-        <div class="tab-item" ng-class="{current: currentTab == 2}" ng-click="currentTab = 2">Apoiadores (142)</div>
+        <div class="tab-item tab-item-others" ng-class="{current: currentTab == 2}" ng-click="currentTab = 2">Apoiadores (142)</div>
       </header>
       <section class="tab-items-body">
-        <article id="proj-info-tab" class="tab-item" ng-class="{current: currentTab == 0}">
+        <article id="proj-info-tab" class="tab-item tab-item-others" ng-class="{current: currentTab == 0}">
           <h2 class="title"><%= @idea.name %></h2>
 
 						<% if !@idea.video.nil? && !@idea.video.blank? %>
@@ -102,7 +102,7 @@
         <aside id="project-comment-sidebar" ng-if="currentTab == 0">
         </aside>
         <!--TODO
-        <article class="tab-item" ng-class="{current: currentTab == 1}" >
+        <article class="tab-item tab-item-others" ng-class="{current: currentTab == 1}" >
           <article class="project-news">
             <h2 class="title">Novidades do Projeto #3</h2>
             <h3 class="date">21/13/2014</h3>
@@ -122,7 +122,7 @@
             Com 100% do conteúdo produzidos com uso de software de devidamente legalizados, o canal apresenta gratuitamente ao público de todas as idades histórias e contos de terror narradas oralmente que são apresentadas por personagens 3D. É o priemiro canal do mundo a oferecer esse tipo de conteúdo com uso de personagem 3D.</p>
           </article>
         </article-->
-        <article class="tab-item" ng-class="{current: currentTab == 2}" >
+        <article class="tab-item tab-item-others" ng-class="{current: currentTab == 2}" >
         <% for i in 0 ... 12 %>
           <div class="investor">
             <img src="assets/images/investors/face-1.jpg" alt="" class="image">

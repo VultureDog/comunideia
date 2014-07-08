@@ -267,7 +267,7 @@ button > span {
 }
 #header-bottom-nav .link-2.decorated {
   color: #284f77;
-  font-weight: bold;
+  /*font-weight: bold;*/
   text-decoration: underline;
 }
 
@@ -832,13 +832,16 @@ button > span {
 }
 .tab-item {
     display: inline-block;
-    font-weight: bold;
     margin-right: 32px;
     padding-bottom: 4px;
     cursor: pointer;
     color: #929292;
 }
 .tab-item.current {
+    color: black;
+    margin-top: 5px;
+}
+.tab-item-others.current {
     border-bottom: 2px solid #6ab2fc;
     color: black;
     margin-top: 41px;
@@ -1521,7 +1524,7 @@ button > span {
 #login-signup-modal .container {
   width: 640px;
   /*margin: 180px auto 0 auto;*/
-  margin: -50px auto 0 auto;
+  margin: 0px auto 0 auto;
   border-radius: 8px;
   overflow: hidden;
 }
