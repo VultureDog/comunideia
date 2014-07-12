@@ -416,7 +416,7 @@ button > span {
     position: absolute;
     bottom: 0px;
     color: white;
-    font-size: 14px;
+    font-size: 13px;
     width: 100%;
     line-height: 1.5em;
 }
@@ -478,10 +478,10 @@ button > span {
 }
 .project-index .project-item .progress-bar {}
 .project-index .project-item .total {
-  font-size: 13px;
+  font-size: 11px;
 }
 .project-index .project-item .achieved {
-  font-size: 13px;
+  font-size: 11px;
 }
 .project-index .project-item .share-links {}
 .project-index.project-help-index .project-item .project-data {
