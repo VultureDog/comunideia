@@ -14,6 +14,10 @@
 
 <% investment_metter_complement_percentage = 100 - financial_value_percentage %>
 
+<% if financial_value_percentage > 100 %>
+  <% investment_metter_complement_percentage = 0.1 %>
+<% end %>
+
 <article class="project-item">
   <header class="header">
     <a href= <%= url_for :controller => :ideas, :action => :show, :id=> thumbnail.id %> >
