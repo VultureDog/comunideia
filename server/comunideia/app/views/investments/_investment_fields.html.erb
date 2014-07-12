@@ -23,7 +23,7 @@
       <div id="fund-quantity-component" style="left: <%= funded_percent %>%;">
         <span class="up-arrow"></span>
         <span class="currency-indicator">R$</span>
-        <input type="text" class="value-input" ng-model="pledgedValue" ng-change="onPledgeValueChange()">
+        <input  name="investment[financial_value]" type="text" class="value-input" ng-model="pledgedValue" ng-change="onPledgeValueChange()">
       </div>
       <button id="send-pledge-button" class="btn btn-blue">APOIAR</button>
     </div>

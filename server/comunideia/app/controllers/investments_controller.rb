@@ -3,7 +3,7 @@ class InvestmentsController < ApplicationController
   before_action :signed_in_for_investment, only: [:create, :new]
 
   def new
-    flash[:success] = "Ficamos gratos pelo depósito em nossa confiança e pelo investimento! "
+    flash[:success] = "Ficamos gratos pelo depósito em nossa confiança e pelo investimento!"
     redirect_to investment_first_step_path( :investment => {:recompense_id => investment_params[:recompense_id], :financial_value => investment_params[:financial_value]} )
   end
 
@@ -31,6 +31,12 @@ class InvestmentsController < ApplicationController
       @idea = Idea.find(@recompense.idea_id)
       @recompenses = @idea.recompenses
       @idea_user = User.find(@idea.user_id)
+      @idea_content_paragraphs = @idea.idea_content.split("\r\n", 6)
+      @img_pgs = []
+      @img_pgs[0] = @idea.img_pg_1 unless @idea.img_pg_1.nil?
+      @img_pgs[1] = @idea.img_pg_2 unless @idea.img_pg_2.nil?
+      @img_pgs[2] = @idea.img_pg_3 unless @idea.img_pg_3.nil?
+      @img_pgs[3] = @idea.img_pg_4 unless @idea.img_pg_4.nil?
 
       if @fin_value_input.blank?
         flash[:error] = "Valor em branco."
