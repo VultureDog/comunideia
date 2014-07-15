@@ -5,9 +5,7 @@
 
 
 <%# time_percentage = 30 %>
-<% time_percentage = ((@idea.date_end - DateTime.now)/1.hour).ceil/((@idea.date_end - @idea.created_at)/1.hour).ceil %>
-
-<% time_complement_percentage = 100 - time_percentage %>
+<% time_complement_percentage = ((((@idea.date_end - DateTime.now)/1.hour).ceil*100)/((@idea.date_end - @idea.created_at)/1.hour).ceil) %>
 
 <section id="project-details" ng-controller="projectSingleCtrl">
   <header class="header wrapper">
@@ -60,7 +58,12 @@
 	    <% if !@idea.financial_value.nil? %>
 	      <div class="v-info"><span class="value">R$ <%= number_with_delimiter(@idea.financial_value.to_i, delimiter: ".") %></span><span class="sub-text">total</span></div>
 	      <div class="v-info"><span class="value green">R$ <%= number_with_delimiter(@idea.financial_value_sum_accumulated.to_i, delimiter: ".") %></span><span class="sub-text">alcançados</span></div>
-	      <div class="v-info"><span class="value gray">R$ <%= number_with_delimiter(@idea.financial_value.to_i - @idea.financial_value_sum_accumulated.to_i, delimiter: ".") %></span><span class="sub-text">restantes</span></div>
+        <% if (@idea.financial_value_sum_accumulated < @idea.financial_value) %>
+          <div class="v-info"><span class="value gray">R$ <%= number_with_delimiter(@idea.financial_value.to_i - @idea.financial_value_sum_accumulated.to_i, delimiter: ".") %></span>
+        <% else %>
+          <div class="v-info"><span class="value gray">R$ 0.00 </span>
+        <% end %>
+        <span class="sub-text">restantes</span></div>
 	      <div class="v-info">
 	      	<%= render 'ideas/idea_status', :object => @idea %>
 	      </div>
