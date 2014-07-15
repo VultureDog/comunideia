@@ -72,6 +72,8 @@ class User < ActiveRecord::Base
   CONTACT_STRING = "Contato"
   COUNTRY_BRA = "BRA"
 
+  UPDATE_en_STRING = "users"
+
   BRA_STATES_LIST = [
 
     [User::ADDRESS_STATE+':', ''],

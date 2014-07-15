@@ -77,7 +77,8 @@ class UsersController < ApplicationController
     def set_start_step
       @user.start
 
-      if request.url.split('/').last == Investment::INVESTMENT_en_STRING
+      request_strings = request.url.split('/')
+      if request.url.split('/').last == Investment::INVESTMENT_en_STRING || ( (request_strings[request_strings.length - 2] == User::UPDATE_en_STRING) && (request_strings.last.to_i == @current_user.id) )
         @user.step_forward
       end
     end

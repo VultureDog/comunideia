@@ -42,6 +42,8 @@
           <%= render 'users/form_user_data_showable', object: object %>
         <% end %>
 
+<%= object.hidden_field :country, value: User::COUNTRY_BRA %>
+
 
 
 

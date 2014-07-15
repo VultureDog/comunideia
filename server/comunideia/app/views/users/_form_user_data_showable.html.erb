@@ -105,6 +105,17 @@
   </div>
 
   <div class="user-info-blocks-row">
+    <span class="user-info-block user-field-title"><%= object.label User::ADDRESS_NUMBER %></span>
+    <span class="user-field-label">
+      <% if !@user.address_num.nil? %>
+        <%= @user.address_num %>
+      <% else %>
+        <%= empty_label %>
+      <% end %>
+    </span>
+  </div>
+
+  <div class="user-info-blocks-row">
     <span class="user-info-block user-field-title"><%= object.label User::ADDRESS_NEIGHBORHOOD %></span>
     <span class="user-field-label">
       <% if !@user.district.nil? %>
