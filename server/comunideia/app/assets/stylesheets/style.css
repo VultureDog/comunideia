@@ -909,7 +909,7 @@ button > span {
 .tab-items-body {}
 .tab-items-body .tab-item {
   display: none;
-  padding-top: 30px;
+  padding-top: 5px;
   padding-bottom: 30px;
 }
 .tab-items-body .tab-item.current {

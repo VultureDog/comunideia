@@ -35,8 +35,6 @@
 
 
 
-					<%= render 'form', edit: true, controller: 'users', action: 'update', method: 'patch' %>
-
 
 
           <article class="tab-item" ng-class="{current: currentTab == 2}" >
@@ -50,6 +48,8 @@
             </div>
           <% end %>
           </article>
+
+          <%= render 'form', edit: true, controller: 'users', action: 'update', method: 'patch' %>
 
         </section>
       </div>
