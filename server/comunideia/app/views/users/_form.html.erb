@@ -1,42 +1,39 @@
 <%= form_for(@user, :url => url_for(:controller => controller, :action => action), :method => method) do |f| %>
   <%= render 'shared/error_messages', object: f.object %>
 
-  <% if @user.step1? %>
-    <% if !@user.facebook_association %>
-      <%= f.check_box :facebook_association, id:"facebook_association_check_box" , onclick:"show_facebook_login_confirmation()" %>
-      <%= f.label User::FACEBOOK_ASSOCIATION %>
-      <br><br>
-    <% end %>
+  <%# if @user.step1? %>
+    <%# if !@user.facebook_association %>
+      <%#= f.check_box :facebook_association, id:"facebook_association_check_box" , onclick:"show_facebook_login_confirmation()" %>
+      <%#= f.label User::FACEBOOK_ASSOCIATION %>
+      <!--br><br>
+    <%# end %>
 
-    <% if !@user.google_plus_association %>
-      <%= f.check_box :google_plus_association, id:"google_association_check_box", onclick:"show_google_plus_login_confirmation()" %>
-      <%= f.label User::GOOGLE_PLUS_ASSOCIATION %>
-      <br><br>
-    <% end %>
-  <% end %>
+    <%# if !@user.google_plus_association %>
+      <%#= f.check_box :google_plus_association, id:"google_association_check_box", onclick:"show_google_plus_login_confirmation()" %>
+      <%#= f.label User::GOOGLE_PLUS_ASSOCIATION %>
+      <br><br-->
+    <%# end %>
+  <%# end %>
 
   <%#= render 'users/form_essencial', object: f, email_disabled: !@user.step1? %>
 
   <%# if @user.step1? %>
-    <%#= f.label "#{User::PASSWORD}*" %><br>
+    <%#= f.label "#{User::PASSWORD}*" %><!--br-->
     <%#= f.password_field :password %>
     <!--br><br-->
 
-    <%#= f.label "#{User::PASSWORD_CONFIRMATION}*" %><br>
+    <%#= f.label "#{User::PASSWORD_CONFIRMATION}*" %><!--br-->
     <%#= f.password_field :password_confirmation %>
     <!--br><br><br><br-->
   <%# end %>
 
-  <% if edit %>
-    <%= render 'users/form_user_data_2', object: f, edit: edit %>
+  <%= render 'users/form_user_data_2', object: f, edit: edit %>
 
-    <div class="checkxborder checkxborder-signup">
-      <%= f.check_box :notifications, checked: false, class: "css-checkbox", id: "checkbox_1",  onclick: "set_checkbox_classes('help-item_1');" %>
+  <div class="checkxborder checkxborder-signup">
+    <%= f.check_box :notifications, checked: false, class: "css-checkbox", id: "checkbox_1",  onclick: "set_checkbox_classes('help-item_1');" %>
 
-      <%= f.label User::NOTIFICATIONS_AND_UPDATES, class: "css-label lite-red-check checkxborder-label-signup", for: "checkbox_1" %>
-    </div>
+    <%= f.label User::NOTIFICATIONS_AND_UPDATES, class: "css-label lite-red-check checkxborder-label-signup", for: "checkbox_1" %>
+  </div>
 
-  <% end %>
-  
   <%= f.submit User::SAVE_STRING %>
 <% end %>

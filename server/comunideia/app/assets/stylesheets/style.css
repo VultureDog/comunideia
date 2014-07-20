@@ -696,6 +696,69 @@ button > span {
     background: #7cc36b;
 }
 
+.item-info-centered {
+  display: block;
+  margin-left: auto;
+  margin-right: auto;
+  text-align: center;
+}
+
+.investment-info-picture {
+  border-radius: 120px;
+  margin-bottom: 55px;
+  margin-top: 55px;
+}
+
+.investment-info {
+  font-size: 26px;
+}
+
+#investment-proj-page {
+  text-align: center;
+  box-sizing: border-box;
+  padding: 40px;
+  border: 1px solid #dedede;
+  border-radius: 5px;
+  background: #fbfbfb;
+  width: 60%;
+  margin-left: auto;
+  margin-right: auto;
+  margin-bottom: 25px;
+  margin-top: 25px;
+}
+
+#investment-proj-page .heading {
+  color: #999999;
+  font-weight: normal;
+  font-size: 15px;
+}
+
+.investment-info-green {
+  color: #649e56;
+  font-weight: bold;
+}
+
+.margl-100 {
+  margin-left: 50px;
+}
+
+.investment-page-h2 {
+  color: #000000;
+  font-weight: bold;
+  font-size: 22px;
+  margin-top: 95px;
+}
+
+.investment-page-subtitle {
+  color: #929292;
+  font-size: 16px;
+  margin-top: 5px;
+}
+
+.info-underlines {
+  text-decoration: underline;
+}
+
 .user-info-blocks-row {
   position: relative;
   display: inline-block;
@@ -718,15 +781,9 @@ button > span {
   width: 95%;
 }
 
-.user-info-centered {
-  display: block;
-  margin-left: auto;
-  margin-right: auto;
-  text-align: center;
-}
-
 .user-info-picture {
   border-radius: 75px;
+  margin-top: 55px;
 }
 
 .margb-15 {

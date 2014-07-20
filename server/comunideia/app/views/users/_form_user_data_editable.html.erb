@@ -1,88 +1,92 @@
-<span class="user-info-block user-header"><%= User::BASIC_DATA %></span>
+<section class="wrapper">
+  <article id="user-info-tab" class="tab-item" ng-class="{current: currentTab == 0}">
+    <span class="user-info-block user-header"><%= User::BASIC_DATA %></span>
 
-<div class="user-info-block with-border-bottom width-95">
-  <div class="user-info-blocks-row">
-    <span class="user-info-block user-field-title"><%= User::NAME %> completo</span>
-    <%= object.text_field :name, type:"text", class: "text-input" %>
-  </div>
+    <div class="user-info-block with-border-bottom width-95">
+      <div class="user-info-blocks-row">
+        <span class="user-info-block user-field-title"><%= User::NAME %> completo</span>
+        <%= object.text_field :name, type:"text", class: "text-input" %>
+      </div>
 
-  <div class="user-info-blocks-row">
-    <span class="user-info-block user-field-title"><%= "#{User::EMAIL}*" %></span>
-    <%= object.text_field :email %>
-  </div>
+      <div class="user-info-blocks-row">
+        <span class="user-info-block user-field-title"><%= "#{User::EMAIL}*" %></span>
+        <%= object.text_field :email %>
+      </div>
 
-  <div class="user-info-blocks-row">
-    <span class="user-info-block user-field-title"><%= User::CPF %></span>
-    <%= object.text_field :cpf, placeholder: User::CPF %>
-  </div>
+      <div class="user-info-blocks-row">
+        <span class="user-info-block user-field-title"><%= User::CPF %></span>
+        <%= object.text_field :cpf, placeholder: User::CPF %>
+      </div>
 
-  <div class="user-info-blocks-row">
-    <span class="user-info-block user-field-title"><%= object.label 'Data de nascimento:' %></span>
-    <%= object.select :birthday_day, options_for_select(Idea::DAYS_DIA, :selected => @user.birth_date.nil? ? 0 : @user.birth_date.day) %>
-    <%= object.label '/' %>
-    <%= object.select :birthday_month, options_for_select(Idea::MONTHS_MES, :selected => @user.birth_date.nil? ? 0 : Idea::MONTHS_MES[@user.birth_date.month]) %>
-    <%= object.label '/' %>
-    <% current_year = Date.today.strftime('%Y').to_i %>
-    <%= object.select :birthday_year, options_for_select(Idea::YEARS_ANO, :selected => @user.birth_date.nil? ? 0 : @user.birth_date.year) %>
-  </div>
-</div>
+      <div class="user-info-blocks-row">
+        <span class="user-info-block user-field-title"><%= object.label 'Data de nascimento:' %></span>
+        <%= object.select :birthday_day, options_for_select(Idea::DAYS_DIA, :selected => @user.birth_date.nil? ? 0 : @user.birth_date.day) %>
+        <%= object.label '/' %>
+        <%= object.select :birthday_month, options_for_select(Idea::MONTHS_MES, :selected => @user.birth_date.nil? ? 0 : Idea::MONTHS_MES[@user.birth_date.month]) %>
+        <%= object.label '/' %>
+        <% current_year = Date.today.strftime('%Y').to_i %>
+        <%= object.select :birthday_year, options_for_select(Idea::YEARS_ANO, :selected => @user.birth_date.nil? ? 0 : @user.birth_date.year) %>
+      </div>
+    </div>
 
-<span class="user-info-block user-header"><%= User::CONTACT_STRING %></span>
-<div class="user-info-block with-border-bottom width-95">
-  <div class="user-info-blocks-row">
-    <span class="user-info-block user-field-title"><%= User::CELLPHONE %></span>
-    <%= object.text_field :cell_phone, placeholder: User::CELLPHONE %>
-  </div>
+    <span class="user-info-block user-header"><%= User::CONTACT_STRING %></span>
+    <div class="user-info-block with-border-bottom width-95">
+      <div class="user-info-blocks-row">
+        <span class="user-info-block user-field-title"><%= User::CELLPHONE %></span>
+        <%= object.text_field :cell_phone, placeholder: User::CELLPHONE %>
+      </div>
 
-  <div class="user-info-blocks-row">
-    <span class="user-info-block user-field-title"><%= User::ADDRESS_PHONE %></span>
-    <%= object.text_field :phone, placeholder: User::ADDRESS_PHONE %>
-  </div>
+      <div class="user-info-blocks-row">
+        <span class="user-info-block user-field-title"><%= User::ADDRESS_PHONE %></span>
+        <%= object.text_field :phone, placeholder: User::ADDRESS_PHONE %>
+      </div>
 
-  <div class="user-info-blocks-row">
-    <span class="user-info-block user-field-title">facebook.com/</span>
-    usuarioFB
-    <%#= object.text_field :complement, placeholder: User::ADDRESS_COMPLEMENT %>
-  </div>
-  
-  <div class="user-info-blocks-row">
-    <span class="user-info-block user-field-title">twitter.com/</span>
-    usuarioTw
-    <%#= object.text_field :complement, placeholder: User::ADDRESS_COMPLEMENT %>
-  </div>
-</div>
+      <div class="user-info-blocks-row">
+        <span class="user-info-block user-field-title">facebook.com/</span>
+        usuarioFB
+        <%#= object.text_field :complement, placeholder: User::ADDRESS_COMPLEMENT %>
+      </div>
+      
+      <div class="user-info-blocks-row">
+        <span class="user-info-block user-field-title">twitter.com/</span>
+        usuarioTw
+        <%#= object.text_field :complement, placeholder: User::ADDRESS_COMPLEMENT %>
+      </div>
+    </div>
 
-<span class="user-info-block user-header"><%= User::LOCAL_STRING %></span>
-<div class="user-info-block width-95">
-  <div class="user-info-blocks-row">
-    <span class="user-info-block user-field-title"><%= object.label User::ADDRESS_CEP %></span>
-    <%= object.text_field :cep, placeholder: User::ADDRESS_CEP %>
-  </div>
+    <span class="user-info-block user-header"><%= User::LOCAL_STRING %></span>
+    <div class="user-info-block width-95">
+      <div class="user-info-blocks-row">
+        <span class="user-info-block user-field-title"><%= object.label User::ADDRESS_CEP %></span>
+        <%= object.text_field :cep, placeholder: User::ADDRESS_CEP %>
+      </div>
 
-  <div class="user-info-blocks-row">
-    <span class="user-info-block user-field-title"><%= object.label User::ADDRESS %></span>
-    <%= object.text_field :address, placeholder: User::ADDRESS %>
-  </div>
+      <div class="user-info-blocks-row">
+        <span class="user-info-block user-field-title"><%= object.label User::ADDRESS %></span>
+        <%= object.text_field :address, placeholder: User::ADDRESS %>
+      </div>
 
-  <div class="user-info-blocks-row">
-    <span class="user-info-block user-field-title"><%= object.label User::ADDRESS_NUMBER %></span>
-    <%= object.text_field :address_num, placeholder: User::ADDRESS_NUMBER %>
-  </div>
+      <div class="user-info-blocks-row">
+        <span class="user-info-block user-field-title"><%= object.label User::ADDRESS_NUMBER %></span>
+        <%= object.text_field :address_num, placeholder: User::ADDRESS_NUMBER %>
+      </div>
 
-  <div class="user-info-blocks-row">
-    <span class="user-info-block user-field-title"><%= object.label User::ADDRESS_NEIGHBORHOOD %></span>
-    <%= object.text_field :district, placeholder: User::ADDRESS_NEIGHBORHOOD %>
-  </div>
-</div>
+      <div class="user-info-blocks-row">
+        <span class="user-info-block user-field-title"><%= object.label User::ADDRESS_NEIGHBORHOOD %></span>
+        <%= object.text_field :district, placeholder: User::ADDRESS_NEIGHBORHOOD %>
+      </div>
+    </div>
 
-<div class="user-info-block width-95">
-  <div class="user-info-blocks-row">
-    <span class="user-info-block user-field-title"><%= object.label User::ADDRESS_CITY %></span>
-    <%= object.text_field :city, placeholder: User::ADDRESS_CITY %>
-  </div>
-  
-  <div class="user-info-blocks-row">
-    <span class="user-info-block user-field-title"><%= object.label User::ADDRESS_STATE %></span>
-    <%= object.select :region, options_for_select(User::BRA_STATES_LIST, :selected => object.object.region) %>
-  </div>
-</div>
+    <div class="user-info-block width-95">
+      <div class="user-info-blocks-row">
+        <span class="user-info-block user-field-title"><%= object.label User::ADDRESS_CITY %></span>
+        <%= object.text_field :city, placeholder: User::ADDRESS_CITY %>
+      </div>
+      
+      <div class="user-info-blocks-row">
+        <span class="user-info-block user-field-title"><%= object.label User::ADDRESS_STATE %></span>
+        <%= object.select :region, options_for_select(User::BRA_STATES_LIST, :selected => object.object.region) %>
+      </div>
+    </div>
+  </article>
+</section>
