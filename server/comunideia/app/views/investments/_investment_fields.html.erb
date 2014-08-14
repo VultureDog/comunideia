@@ -25,9 +25,8 @@
         <span class="currency-indicator">R$</span>
         <input  name="investment[financial_value]" type="text" class="value-input" ng-model="pledgedValue" ng-change="onPledgeValueChange()">
       </div>
-      <button id="send-pledge-button" class="btn btn-blue">APOIAR</button>
+      <%= f.submit Investment::INVEST_STRING, :id => "send-pledge-button", class: "btn btn-blue" %>
     </div>
   </div>
 
-  <%= f.submit Investment::INVEST_STRING %>
 <% end %>

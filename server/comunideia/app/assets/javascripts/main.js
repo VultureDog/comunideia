@@ -15,7 +15,13 @@ angular.module('comunideiaProto', [])
   $scope.currentTab         = 0;
   //----- ----- -----
   $scope.onPledgeValueChange = function() {
-    var percent = (((window.v.valueFunded + (parseInt($scope.pledgedValue)) / 1000) / window.v.valueTotal) * 100) + "%";
+    var percent = (((window.v.valueFunded + (parseInt($scope.pledgedValue))) * 100) / window.v.valueTotal);
+    if (percent < 0) {
+      percent = 0;
+    } else if (percent > 100) {
+      percent = 100;
+    }
+    percent = percent + "%";
     $("#pledge-metter .fund-mark, #fund-quantity-component").css("left", percent);
     $("#pledge-metter .to-fund").css("width", percent);
   }
@@ -43,6 +49,30 @@ angular.module('comunideiaProto', [])
 }])
 .controller('userSingleCtrl', ['$scope', function($scope) {
   $scope.currentTab         = 0;
+}])
+.controller('creditCardCtrl', ['$scope', function($scope) {
+  $scope.selectedCreditCardItem = 0;
+  $scope.currentTab         = 0;
+  
+  //----- ----- -----
+  $("#predef-credit-card-list").delegate(".credit-card-item", "click", function(){
+    var $this = $(this);
+    $scope.$apply(function(){
+      $this.addClass("current").siblings().removeClass("current");
+    });
+  });
+}])
+.controller('bankCtrl', ['$scope', function($scope) {
+  $scope.selectedBankItem = 0;
+  $scope.currentTab         = 0;
+  
+  //----- ----- -----
+  $("#predef-bank-list").delegate(".bank-item", "click", function(){
+    var $this = $(this);
+    $scope.$apply(function(){
+      $this.addClass("current").siblings().removeClass("current");
+    });
+  });
 }]);
 /* ----- ----- ----- ----- ----- ----- ----- ----- ----- ----- */
 $(function(){

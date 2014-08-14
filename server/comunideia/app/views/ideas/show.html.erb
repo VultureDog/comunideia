@@ -37,6 +37,12 @@
   border-left: 6px solid transparent;
 
           "></div>
+        <% elsif (time_complement_percentage > 99) %>
+          <div class="proj-data-metter-complement" style="width: 99.5%;
+
+  border-left: 0px solid transparent;
+
+          "></div>
         <% end %>
         </div>
 
@@ -48,6 +54,12 @@
           <div class="proj-data-metter-complement" style="width: <%= investment_metter_complement_percentage %>%;
 
   border-left: 6px solid transparent;
+
+          "></div>
+        <% elsif (investment_metter_complement_percentage > 99) %>
+          <div class="proj-data-metter-complement" style="width: 99.5%;
+
+  border-left: 0px solid transparent;
 
           "></div>
         <% end %>
@@ -142,12 +154,20 @@
 
 	<% if @is_financial_idea %>
 
-	  <%
-	    value_total     = @idea.financial_value
-	    value_funded    = @idea.financial_value_sum_accumulated
-	    value_remain    = value_total - value_funded
-	    funded_percent  = (value_funded / value_total) * 100
-	  %>
+    <%
+      value_total     = @idea.financial_value
+      value_funded    = @idea.financial_value_sum_accumulated
+      value_remain    = 0
+      funded_percent  = 100
+    %>
+
+    <% if @idea.financial_value_sum_accumulated < @idea.financial_value %>
+  	  <%
+  	    value_remain    = value_total - value_funded
+  	    funded_percent  = (value_funded / value_total) * 100
+  	  %>
+    <% end %>
+
 	  <script>
 	    window.v = {};
 	    window.v.valueTotal     = <%= value_total %>;
