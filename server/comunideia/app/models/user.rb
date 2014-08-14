@@ -124,7 +124,7 @@ class User < ActiveRecord::Base
   def auth_provider_association(auth_provider)
     if auth_provider == "google_oauth2"
       self.google_plus_association = true
-    elsif auth.provider == "facebook"
+    elsif auth_provider == "facebook"
       self.facebook_association = true
     end
   end
