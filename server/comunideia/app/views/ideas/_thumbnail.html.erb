@@ -9,13 +9,14 @@
       </article-->
       <!--/section-->
 
+<% if !thumbnail.financial_value.nil? %>
+  <% financial_value_percentage = (thumbnail.financial_value_sum_accumulated/thumbnail.financial_value*100).to_i %>
 
-<% financial_value_percentage = (thumbnail.financial_value_sum_accumulated/thumbnail.financial_value*100).to_i %>
+  <% investment_metter_complement_percentage = 100 - financial_value_percentage %>
 
-<% investment_metter_complement_percentage = 100 - financial_value_percentage %>
-
-<% if financial_value_percentage > 100 %>
-  <% investment_metter_complement_percentage = 0.1 %>
+  <% if financial_value_percentage > 100 %>
+    <% investment_metter_complement_percentage = 0.1 %>
+  <% end %>
 <% end %>
 
 <article class="project-item">

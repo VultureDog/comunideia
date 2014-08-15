@@ -1,11 +1,13 @@
-<%# financial_value_percentage = 5 %>
-<% financial_value_percentage = (@idea.financial_value_sum_accumulated/@idea.financial_value*100).to_i %>
+<% if !@idea.financial_value.nil? %>
+  <%# financial_value_percentage = 5 %>
+  <% financial_value_percentage = (@idea.financial_value_sum_accumulated/@idea.financial_value*100).to_i %>
 
-<% investment_metter_complement_percentage = 100 - financial_value_percentage %>
+  <% investment_metter_complement_percentage = 100 - financial_value_percentage %>
 
 
-<%# time_percentage = 30 %>
-<% time_complement_percentage = ((((@idea.date_end - DateTime.now)/1.hour).ceil*100)/((@idea.date_end - @idea.created_at)/1.hour).ceil) %>
+  <%# time_percentage = 30 %>
+  <% time_complement_percentage = ((((@idea.date_end - DateTime.now)/1.hour).ceil*100)/((@idea.date_end - @idea.created_at)/1.hour).ceil) %>
+<% end %>
 
 <section id="project-details" ng-controller="projectSingleCtrl">
   <header class="header wrapper">
@@ -13,6 +15,7 @@
       <img src=<%= @idea.img_pgs[0] %> alt="" class="image project-banner" width="940" height="372">
     <% end %>
     <div>
+    <% if !@idea.financial_value.nil? %>
       <div class="main-info">
         <img src="/assets/proj-icon.png" alt="" class="proj-icon">
         <h1 class="project-name"><%= @idea.name %></h1>
@@ -66,6 +69,7 @@
         </div>
 
     </div>
+    <% end %>
     <div id="project-values-info">
 	    <% if !@idea.financial_value.nil? %>
 	      <div class="v-info"><span class="value">R$ <%= number_with_delimiter(@idea.financial_value.to_i, delimiter: ".") %></span><span class="sub-text">total</span></div>
