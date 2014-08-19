@@ -7,7 +7,7 @@
   			:onKeyUp => "updateFinancialValues();"
   		%>
 
-  <%= f.hidden_field :recompense_id, :value => @investment.recompense_id, :id => :recompense_id_radio  %>
+  <%= f.hidden_field :recompense_id, :value => @default_recompense.id, :id => 'recompense_id_radio'  %>
 
 
   <div>

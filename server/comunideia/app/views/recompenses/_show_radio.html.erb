@@ -1,8 +1,8 @@
-<% for i in 0 ... @recompenses.count%>
+<% for i in 0 ... @recompenses.count %>
 
   <% if (@recompenses[i].quantity.to_i > 0) || (@recompenses[i].quantity.to_i < 0) %>
     <% pledge_value = @recompenses[i].financial_value %>
-    <section class="pledge-item <%= ["full", ""][rand(2)] %>" data-pledge-value="<%= pledge_value %>" data-idx="<%= i %>" ng-class="{current: selectedPledgeItem == <%= i %>}">
+    <section class="pledge-item <%= ["full", ""][rand(2)] %>" data-pledge-value="<%= pledge_value %>" data-idx="<%= i %>" ng-class="{current: selectedPledgeItem == <%= i %>}" onclick="set_recompense_id(<%= @recompenses[i].id %>)">
       <header class="header">
         <h2 class="name"><%= @recompenses[i].title %> </h2>
 
